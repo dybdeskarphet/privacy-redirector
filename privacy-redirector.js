@@ -4,7 +4,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license AGPLv3
-// @version 1.0.7
+// @version 1.0.8
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -46,11 +46,11 @@ function redirectReddit() {
 function redirectYoutube() {
   if (window.location.pathname.indexOf("results?search_query") == 1) {
     window.stop();
-    location.hostname = "invidious.snopyta.org";
+    location.hostname = "vid.puffyan.us";
     window.location.replace("results?search_query", "search?q");
   } else {
     window.stop();
-    location.hostname = "invidious.snopyta.org";
+    location.hostname = "vid.puffyan.us";
   }
  
 }
