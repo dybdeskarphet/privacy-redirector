@@ -4,7 +4,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.0.9
+// @version 1.1.0
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -17,68 +17,100 @@
 // @match *://youtube.com/*
 // @match *://*.youtube.com/*
 // ==/UserScript==
- 
+
+/*
+  ___  _   _        ___  _____ _____ 
+ / _ \| \ | |      / _ \|  ___|  ___|
+| | | |  \| |_____| | | | |_  | |_   
+| |_| | |\  |_____| |_| |  _| |  _|  
+ \___/|_| \_|      \___/|_|   |_|    
+
+CHANGE THE RELEVANT VALUE TO "false" TO
+DISABLE THE REDIRECTION FOR THAT
+PARTICULAR SITE */
+
+let redirect_youtube = true;
+let redirect_instagram = true;
+let redirect_twitter = true;
+let redirect_reddit = true;
+
+// // // // // // // // // // // // //
+
 function redirectInstagram() {
-  if (window.location.pathname.indexOf("/p/") == 0) {
-    window.stop();
-    location.hostname = 'bibliogram.art';
-  } else if (window.location.pathname == "/") {
-    window.stop();
-    location.hostname = 'bibliogram.art';
-  } else {
-    let oldUrlPath  = window.location.pathname;
-    let newURL  = window.location.protocol + "//" + "bibliogram.art" + "/u" + oldUrlPath + window.location.search + window.location.hash;
-    
-    window.location.replace (newURL);
-  }
+    if (redirect_instagram == false) {
+        return;
+    }
+  
+    if (window.location.pathname.indexOf("/p/") == 0) {
+        window.stop();
+        location.hostname = 'bibliogram.art';
+    } else if (window.location.pathname == "/") {
+        window.stop();
+        location.hostname = 'bibliogram.art';
+    } else {
+        let oldUrlPath  = window.location.pathname;
+        let newURL  = window.location.protocol + "//" + "bibliogram.art" + "/u" + oldUrlPath + window.location.search + window.location.hash;
+        window.location.replace (newURL);
+    }
 }
  
 function redirectTwitter() {
-	window.stop();
-	location.hostname = "nitter.42l.fr";
+    if (redirect_twitter == false) {
+        return;
+    }
+  
+    window.stop();
+    location.hostname = "nitter.42l.fr";
 }
  
 function redirectReddit() {
-	window.stop();
-	location.hostname = "teddit.net";
+    if (redirect_reddit == false) {
+        return;
+    }
+  
+    window.stop();
+    location.hostname = "teddit.net";
 }
  
 function redirectYoutube() {
-  if (window.location.pathname.indexOf("results?search_query") == 1) {
-    window.stop();
-    location.hostname = "vid.puffyan.us";
-    window.location.replace("results?search_query", "search?q");
-  } else {
-    window.stop();
-    location.hostname = "vid.puffyan.us";
-  }
- 
+    if (redirect_youtube == false) {
+        return;
+    }
+  
+    if (window.location.pathname.indexOf("results?search_query") == 1) {
+        window.stop();
+        location.hostname = "vid.puffyan.us";
+        window.location.replace("results?search_query", "search?q");
+    } else {
+        window.stop();
+        location.hostname = "vid.puffyan.us";
+    }
 }
  
 var urlHostname = window.location.hostname;
  
 switch (urlHostname) {
-	case "www.instagram.com":
-	  redirectInstagram();
-	  break;
-	
-	case "twitter.com":
-	  redirectTwitter();
-	  break;
- 
-	case "mobile.twitter.com":
-	  redirectTwitter();
-	  break;
- 
-	case "www.reddit.com":
-	  redirectReddit();
-	  break;
- 
-	case "www.youtube.com":
-	  redirectYoutube();
-	  break;
- 
-	case "m.youtube.com":
-	  redirectYoutube();
-	  break;
+    case "www.instagram.com":
+        redirectInstagram();
+        break;
+    	
+    case "twitter.com":
+        redirectTwitter();
+        break;
+    
+    case "mobile.twitter.com":
+        redirectTwitter();
+        break;
+     
+    case "www.reddit.com":
+        redirectReddit();
+        break;
+     
+    case "www.youtube.com":
+        redirectYoutube();
+        break;
+     
+    case "m.youtube.com":
+        redirectYoutube();
+        break;
 }
