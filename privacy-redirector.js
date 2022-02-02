@@ -4,7 +4,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.0
+// @version 1.1.1
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -43,13 +43,13 @@ function redirectInstagram() {
   
     if (window.location.pathname.indexOf("/p/") == 0) {
         window.stop();
-        location.hostname = 'bibliogram.art';
+        location.hostname = 'bibliogram.pussthecat.org';
     } else if (window.location.pathname == "/") {
         window.stop();
-        location.hostname = 'bibliogram.art';
+        location.hostname = 'bibliogram.pussthecat.org';
     } else {
         let oldUrlPath  = window.location.pathname;
-        let newURL  = window.location.protocol + "//" + "bibliogram.art" + "/u" + oldUrlPath + window.location.search + window.location.hash;
+        let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + oldUrlPath + window.location.search + window.location.hash;
         window.location.replace (newURL);
     }
 }
