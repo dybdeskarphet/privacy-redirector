@@ -4,7 +4,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.2
+// @version 1.1.3
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -37,21 +37,30 @@ let redirect_reddit = true;
 // // // // // // // // // // // // //
 
 function redirectInstagram() {
+
     if (redirect_instagram == false) {
         return;
     }
-  
+
     if (window.location.pathname.indexOf("/p/") == 0) {
         window.stop();
         location.hostname = 'bibliogram.pussthecat.org';
     } else if (window.location.pathname == "/") {
         window.stop();
         location.hostname = 'bibliogram.pussthecat.org';
+    } else if (window.location.pathname === "/accounts/login/") {
+        window.stop();
+        let oldQuery  = window.location.search;
+        let newQuery  = oldQuery.replace("?next=/", "/")
+        let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + newQuery + window.location.hash;
+        window.location.replace(newURL);
     } else {
+        window.stop();
         let oldUrlPath  = window.location.pathname;
         let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + oldUrlPath + window.location.search + window.location.hash;
-        window.location.replace (newURL);
+        window.location.replace(newURL);
     }
+
 }
  
 function redirectTwitter() {
@@ -114,3 +123,4 @@ switch (urlHostname) {
         redirectYoutube();
         break;
 }
+
