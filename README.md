@@ -5,3 +5,4 @@ You can add the script from [Greasyfork](https://greasyfork.org/scripts/436359-p
 
 ## To-do
 - [ ] Find a way to redirect to the up instances without releasing a whole new verison.
+- [ ] Redirect old.reddit to teddit.net
