@@ -4,7 +4,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.3
+// @version 1.1.4
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -16,6 +16,11 @@
 // @match *://*.reddit.com/*
 // @match *://youtube.com/*
 // @match *://*.youtube.com/*
+// @match *://*.tiktok.com/*
+// @match *://imgur.com/*
+// @match *://*.imgur.com/*
+// @match *://medium.com/*
+// @match *://*.medium.com/*
 // ==/UserScript==
 
 /*
@@ -33,6 +38,9 @@ let redirect_youtube = true;
 let redirect_instagram = true;
 let redirect_twitter = true;
 let redirect_reddit = true;
+let redirect_tiktok = true;
+let redirect_imgur = true;
+let redirect_medium = true;
 
 // // // // // // // // // // // // //
 
@@ -62,7 +70,7 @@ function redirectInstagram() {
     }
 
 }
- 
+
 function redirectTwitter() {
     if (redirect_twitter == false) {
         return;
@@ -78,23 +86,76 @@ function redirectReddit() {
     }
   
     window.stop();
-    location.hostname = "libreddit.spike.codes";
+
+    if (window.location.hostname == "old.reddit.com"){
+	location.hostname = "reddit.lol";
+    } else {
+        location.hostname = "libreddit.spike.codes";
+    }
 }
  
 function redirectYoutube() {
     if (redirect_youtube == false) {
         return;
     }
+
+    window.stop();
+    location.hostname = "vid.puffyan.us";
+}
+
+function redirectTiktok() {
+    if (redirect_tiktok == false) {
+        return;
+    }
   
-    if (window.location.pathname.indexOf("results?search_query") == 1) {
-        window.stop();
-        location.hostname = "vid.puffyan.us";
-        window.location.replace("results?search_query", "search?q");
+    window.stop();
+
+    let langcodeIndex = window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g);
+
+    if (window.location.pathname.includes("/discover") == true) {
+      let oldPath  = window.location.pathname;
+      let newPath  = oldPath.replace("discover", "tag")
+      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com" + newPath + window.location.hash;
+      window.location.replace(newURL);
+    } else if(langcodeIndex != -1) {
+      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com";
+      window.location.replace(newURL);
     } else {
-        window.stop();
-        location.hostname = "vid.puffyan.us";
+      location.hostname = "proxitok.herokuapp.com";
+    }
+
+// Add this if language query strings start to break proxitok in the future
+//    if (window.location.search.includes("?lang") == true) {
+//      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com" + window.location.pathname + window.location.hash;
+//      window.location.replace(newURL);
+//    }
+
+}
+
+function redirectImgur() {
+    if (redirect_imgur == false) {
+        return;
+    }
+
+    window.stop();
+    location.hostname = "rimgo.pussthecat.org";
+}
+
+function redirectMedium() {
+    if (redirect_medium == false) {
+      window.stop();
+    }
+  
+    if (window.location.pathname == "/") {
+      window.stop();
+      alert("Disable the script for viewing this Medium account")
+      return;
+    } else {
+      window.stop();
+      location.hostname = "scribe.rip";
     }
 }
+
  
 var urlHostname = window.location.hostname;
  
@@ -115,6 +176,10 @@ switch (urlHostname) {
         redirectReddit();
         break;
      
+    case "old.reddit.com":
+        redirectReddit();
+        break;
+     
     case "www.youtube.com":
         redirectYoutube();
         break;
@@ -122,5 +187,14 @@ switch (urlHostname) {
     case "m.youtube.com":
         redirectYoutube();
         break;
+
+    case "www.tiktok.com":
+        redirectTiktok();
+        break;
 }
 
+if (urlHostname.includes("medium.com")) {
+  redirectMedium();
+} else if (urlHostname.includes("imgur.com")) {
+  redirectImgur();
+}
