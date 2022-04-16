@@ -7,7 +7,7 @@ Bu kullanıcı betiği popüler sosyal medya platformlarını gizliliğe saygı 
 
 Bu betiği [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector) kullanarak ekleyebilir veya bu depoyu klonlayıp [elle](https://violentmonkey.github.io/guide/creating-a-userscript/) tarayıcınıza ekleyebilirsiniz.
 
-## FAQ
+## SSS
 __Neden scribe.rip kullanıcı sayfalarına yönlendirmiyor?__
 > Projenin yazarı Medium'u daha değerli hale getirmek yerine yazarları kötü platformlardan daha güzel platformlara yönlendirmek istiyor. Bu sebeple Medium'u eksiksiz bir şekilde gezinmeyi sağlayan bir önyüz yerine sadece makalelerin kendisine erişmeyi sağlayacak şekilde kalmasını istiyor. Asıl yazı için: [Project Goals](https://sr.ht/~edwardloveall/scribe/#project-goals)
 
