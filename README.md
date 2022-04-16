@@ -1,3 +1,7 @@
+<p align="center">
+<a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README_tr.md">🇹🇷 Türkçe</a> / <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README.md">🇬🇧 English</a>
+</p>
+
 # Privacy Redirector
 This userscript redirects popular social media platforms to their privacy respecting frontends.
 
