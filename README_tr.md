@@ -5,7 +5,7 @@
 # Privacy Redirector (Gizlilik Yönlendiricisi)
 Bu kullanıcı betiği popüler sosyal medya platformlarını gizliliğe saygı duyan önyüzlerine yönlendirir.
 
-Bu betiği [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector) kullanarak ekleyebili veya bu depoyu klonlayıp [elle](https://violentmonkey.github.io/guide/creating-a-userscript/) tarayıcınıza ekleyebilirsiniz.
+Bu betiği [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector) kullanarak ekleyebilir veya bu depoyu klonlayıp [elle](https://violentmonkey.github.io/guide/creating-a-userscript/) tarayıcınıza ekleyebilirsiniz.
 
 ## FAQ
 __Neden scribe.rip kullanıcı sayfalarına yönlendirmiyor?__
