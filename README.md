@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README_tr.md">🇹🇷 Türkçe</a> / <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README.md">🇬🇧 English</a>
+<a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README_tr.md">🇹🇷 Türkçe</a> <b>/</b> <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README.md">🇬🇧 English</a>
 </p>
 
 # Privacy Redirector

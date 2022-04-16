@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README_tr.md">🇹🇷 Türkçe</a> / <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README.md">🇬🇧 English</a>
+<a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README_tr.md">🇹🇷 Türkçe</a> <b>/</b> <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/README.md">🇬🇧 English</a>
 </p>
 
 # Privacy Redirector (Gizlilik Yönlendiricisi)
@@ -13,3 +13,4 @@ __Neden scribe.rip kullanıcı sayfalarına yönlendirmiyor?__
 
 __Neden Bibliogram tüm profili yüklemiyor?__
 > Kısaca Instagram'ın uyguladığı ekstrem kısıtlamalar bu soruna yol açmaktadır, ayrıntılı bilgi için: [Future of Bibliogram by Cadence Ember](https://proxy.vulpes.one/gemini/cadence.moe/gemlog/2020-12-17-future-of-bibliogram.bliz)
+
