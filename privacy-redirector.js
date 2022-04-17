@@ -5,7 +5,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.6
+// @version 1.1.7
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -45,34 +45,38 @@ let redirect_medium = true;
 
 // // // // // // // // // // // // //
 
-/*
 function redirectInstagram() {
-
-    if (redirect_instagram == false) {
-        return;
-    }
-
-    if (window.location.pathname.includes("/p/") == false) {
-        window.stop();
-        location.hostname = 'bibliogram.pussthecat.org';
-    } else if (window.location.pathname == "/") {
-        window.stop();
-        location.hostname = 'bibliogram.pussthecat.org';
-    } else if (window.location.pathname === "/accounts/login/") {
-        window.stop();
-        let oldQuery  = window.location.search;
-        let newQuery  = oldQuery.replace("?next=/", "/")
-        let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + newQuery + window.location.hash;
-        window.location.replace(newURL);
-    } else {
-        window.stop();
-        let oldUrlPath  = window.location.pathname;
-        let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + oldUrlPath + window.location.search + window.location.hash;
-        window.location.replace(newURL);
-    }
-
+	if (window.location.pathname.indexOf("/accounts/login/") != -1) {
+		if (window.location.href.indexOf("/p/") == -1) {
+			window.stop();
+			let tempQuery = window.location.search
+			let tempPath = window.location.pathname
+			let newQuery = tempQuery.replace("?next=", "u")
+			let newPath = tempPath.replace("/accounts/login/", "/")
+        		let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
+        		window.location.replace(newURL);
+		} else {
+			window.stop();
+			let tempQuery = window.location.search
+			let tempPath = window.location.pathname
+			let newQuery = tempQuery.replace("?next=", "")
+			let newPath = tempPath.replace("/accounts/login/", "")
+        		let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
+        		window.location.replace(newURL);
+		}
+	} else {
+		if (window.location.pathname.indexOf("/") != -1) {
+			location.hostname = "bibliogram.pussthecat.org"
+		} else if (window.location.href.indexOf("/p/") == -1) {
+			window.stop();
+        		let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + window.location.pathname + window.location.search + window.location.hash;
+        		window.location.replace(newURL);
+		} else {
+			window.stop();
+			location.hostname = "bibliogram.pussthecat.org"
+		}
+	}
 }
-*/
 
 function redirectTwitter() {
     if (redirect_twitter == false) {
@@ -115,16 +119,16 @@ function redirectTiktok() {
 
     let langcodeIndex = window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g);
 
-    if (window.location.pathname.includes("/discover") == true) {
+    if (window.location.pathname.indexOf("/discover") != -1) {
       let oldPath  = window.location.pathname;
       let newPath  = oldPath.replace("discover", "tag")
       let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com" + newPath + window.location.hash;
       window.location.replace(newURL);
     } else if(langcodeIndex != -1) {
-      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com";
+      let newURL  = window.location.protocol + "//" + "proxitok.pussthecat.org";
       window.location.replace(newURL);
     } else {
-      location.hostname = "proxitok.herokuapp.com";
+      location.hostname = "proxitok.pussthecat.org";
     }
 
 // Add this if language query strings start to break proxitok in the future
@@ -163,11 +167,10 @@ function redirectMedium() {
 var urlHostname = window.location.hostname;
  
 switch (urlHostname) {
-/*
+
     case "www.instagram.com":
         redirectInstagram();
         break;
-*/
     	
     case "twitter.com":
         redirectTwitter();
