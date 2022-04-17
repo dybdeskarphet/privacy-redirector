@@ -15,8 +15,8 @@ You can add the script from [Greasyfork](https://greasyfork.org/scripts/436359-p
 - [ ] Redirect Medium user pages to Medium itself without giving an error
 
 ## FAQ
-__Why Instagram doesn't redirect to Bibliogram?__
-> Gonna fix it soon, it's really hard to manipulate Instagram's messy URLs while being a Javascript novice
+__Why does Instagram open multiple tabs?__
+> I have no idea, I spent hours just to find the cause but I'm still not sure what's causing it.
 
 __Why scribe.rip doesn't redirect to user pages?__
 > "It's intentional that there is no way to browse content from a user, see popular posts, consume via an RSS feed, or further engage with an article via comments or "claps". I want to spend my time encouraging writers to move to worthy platforms, not making a bad platform worthy."
