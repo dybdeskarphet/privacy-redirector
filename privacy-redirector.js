@@ -4,7 +4,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.5-1
+// @version 1.1.5.1
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
