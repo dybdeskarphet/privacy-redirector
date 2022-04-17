@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name Privacy Redirector
+// @name:tr Gizlilik Yönlendiricisi
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.5.1
+// @version 1.1.6
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start

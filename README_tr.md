@@ -8,6 +8,9 @@ Bu kullanıcı betiği popüler sosyal medya platformlarını gizliliğe saygı 
 Bu betiği [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector) kullanarak ekleyebilir veya bu depoyu klonlayıp [elle](https://violentmonkey.github.io/guide/creating-a-userscript/) tarayıcınıza ekleyebilirsiniz.
 
 ## SSS
+__Neden Instagram, Bibliogram'a yönlendirmiyor?__
+> Yakında düzelteceğim, Javascript acemisi olup Instagram'ın karman çorman URLlerini işlemek oldukça zor oluyor.
+
 __Neden scribe.rip kullanıcı sayfalarına yönlendirmiyor?__
 > Projenin yazarı Medium'u daha değerli hale getirmek yerine yazarları kötü platformlardan daha güzel platformlara yönlendirmek istiyor. Bu sebeple Medium'u eksiksiz bir şekilde gezinmeyi sağlayan bir önyüz yerine sadece makalelerin kendisine erişmeyi sağlayacak şekilde kalmasını istiyor. Asıl yazı için: [Project Goals](https://sr.ht/~edwardloveall/scribe/#project-goals)
 
