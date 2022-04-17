@@ -4,7 +4,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.5
+// @version 1.1.5-1
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -44,6 +44,7 @@ let redirect_medium = true;
 
 // // // // // // // // // // // // //
 
+/*
 function redirectInstagram() {
 
     if (redirect_instagram == false) {
@@ -70,6 +71,7 @@ function redirectInstagram() {
     }
 
 }
+*/
 
 function redirectTwitter() {
     if (redirect_twitter == false) {
@@ -160,9 +162,11 @@ function redirectMedium() {
 var urlHostname = window.location.hostname;
  
 switch (urlHostname) {
+/*
     case "www.instagram.com":
         redirectInstagram();
         break;
+*/
     	
     case "twitter.com":
         redirectTwitter();
@@ -198,3 +202,4 @@ if (urlHostname.includes("medium.com")) {
 } else if (urlHostname.includes("imgur.com")) {
   redirectImgur();
 }
+
