@@ -2,10 +2,8 @@
 // @name Privacy Redirector
 // @name:tr Gizlilik Yönlendiricisi
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
-// @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
-// @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @license WTFPL
-// @version 1.1.7
+// @version 1.1.8
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @run-at document-start
@@ -34,7 +32,6 @@
 CHANGE THE RELEVANT VALUE TO "false" TO
 DISABLE THE REDIRECTION FOR THAT
 PARTICULAR SITE */
-
 let redirect_youtube = true;
 let redirect_instagram = true;
 let redirect_twitter = true;
@@ -46,61 +43,62 @@ let redirect_medium = true;
 // // // // // // // // // // // // //
 
 function redirectInstagram() {
-	if (window.location.pathname.indexOf("/accounts/login/") != -1) {
-		if (window.location.href.indexOf("/p/") == -1) {
-			window.stop();
-			let tempQuery = window.location.search
-			let tempPath = window.location.pathname
-			let newQuery = tempQuery.replace("?next=", "u")
-			let newPath = tempPath.replace("/accounts/login/", "/")
-        		let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
-        		window.location.replace(newURL);
-		} else {
-			window.stop();
-			let tempQuery = window.location.search
-			let tempPath = window.location.pathname
-			let newQuery = tempQuery.replace("?next=", "")
-			let newPath = tempPath.replace("/accounts/login/", "")
-        		let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
-        		window.location.replace(newURL);
-		}
-	} else {
-		if (window.location.pathname.indexOf("/") != -1) {
-			location.hostname = "bibliogram.pussthecat.org"
-		} else if (window.location.href.indexOf("/p/") == -1) {
-			window.stop();
-        		let newURL  = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + window.location.pathname + window.location.search + window.location.hash;
-        		window.location.replace(newURL);
-		} else {
-			window.stop();
-			location.hostname = "bibliogram.pussthecat.org"
-		}
-	}
+    if (window.location.pathname.indexOf("/accounts/login/") != -1) {
+        if (window.location.href.indexOf("/p/") == -1) {
+            window.stop();
+            let tempQuery = window.location.search
+            let tempPath = window.location.pathname
+            let newQuery = tempQuery.replace("?next=", "u")
+            let newPath = tempPath.replace("/accounts/login/", "/")
+            let newURL = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
+            window.location.replace(newURL);
+        } else {
+            window.stop();
+            let tempQuery = window.location.search
+            let tempPath = window.location.pathname
+            let newQuery = tempQuery.replace("?next=", "")
+            let newPath = tempPath.replace("/accounts/login/", "")
+            let newURL = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
+            window.location.replace(newURL);
+        }
+    } else {
+        if (window.location.pathname == "/") {
+            window.stop();
+            location.hostname = "bibliogram.pussthecat.org"
+        } else if (window.location.href.indexOf("/p/") == -1) {
+            window.stop();
+            let newURL = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + window.location.pathname + window.location.search + window.location.hash;
+            window.location.replace(newURL);
+        } else {
+            window.stop();
+            location.hostname = "bibliogram.pussthecat.org"
+        }
+    }
 }
 
 function redirectTwitter() {
     if (redirect_twitter == false) {
         return;
     }
-  
+
     window.stop();
     location.hostname = "nitter.42l.fr";
 }
- 
+
 function redirectReddit() {
     if (redirect_reddit == false) {
         return;
     }
-  
+
     window.stop();
 
-    if (window.location.hostname == "old.reddit.com"){
-	location.hostname = "reddit.lol";
+    if (window.location.hostname == "old.reddit.com") {
+        location.hostname = "reddit.lol";
     } else {
         location.hostname = "libreddit.spike.codes";
     }
 }
- 
+
 function redirectYoutube() {
     if (redirect_youtube == false) {
         return;
@@ -114,28 +112,28 @@ function redirectTiktok() {
     if (redirect_tiktok == false) {
         return;
     }
-  
+
     window.stop();
 
     let langcodeIndex = window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g);
 
     if (window.location.pathname.indexOf("/discover") != -1) {
-      let oldPath  = window.location.pathname;
-      let newPath  = oldPath.replace("discover", "tag")
-      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com" + newPath + window.location.hash;
-      window.location.replace(newURL);
-    } else if(langcodeIndex != -1) {
-      let newURL  = window.location.protocol + "//" + "proxitok.pussthecat.org";
-      window.location.replace(newURL);
+        let oldPath = window.location.pathname;
+        let newPath = oldPath.replace("discover", "tag")
+        let newURL = window.location.protocol + "//" + "proxitok.herokuapp.com" + newPath + window.location.hash;
+        window.location.replace(newURL);
+    } else if (langcodeIndex != -1) {
+        let newURL = window.location.protocol + "//" + "proxitok.pussthecat.org";
+        window.location.replace(newURL);
     } else {
-      location.hostname = "proxitok.pussthecat.org";
+        location.hostname = "proxitok.pussthecat.org";
     }
 
-// Add this if language query strings start to break proxitok in the future
-//    if (window.location.search.includes("?lang") == true) {
-//      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com" + window.location.pathname + window.location.hash;
-//      window.location.replace(newURL);
-//    }
+    // Add this if language query strings start to break proxitok in the future
+    //    if (window.location.search.includes("?lang") == true) {
+    //      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com" + window.location.pathname + window.location.hash;
+    //      window.location.replace(newURL);
+    //    }
 
 }
 
@@ -150,48 +148,48 @@ function redirectImgur() {
 
 function redirectMedium() {
     if (redirect_medium == false) {
-      window.stop();
+        window.stop();
     }
-  
+
     if (window.location.pathname == "/") {
-      window.stop();
-      alert("Disable the script for viewing this Medium account")
-      return;
+        window.stop();
+        alert("Disable the script for viewing this Medium account")
+        return;
     } else {
-      window.stop();
-      location.hostname = "scribe.rip";
+        window.stop();
+        location.hostname = "scribe.rip";
     }
 }
 
- 
+
 var urlHostname = window.location.hostname;
- 
+
 switch (urlHostname) {
 
     case "www.instagram.com":
         redirectInstagram();
         break;
-    	
+
     case "twitter.com":
         redirectTwitter();
         break;
-    
+
     case "mobile.twitter.com":
         redirectTwitter();
         break;
-     
+
     case "www.reddit.com":
         redirectReddit();
         break;
-     
+
     case "old.reddit.com":
         redirectReddit();
         break;
-     
+
     case "www.youtube.com":
         redirectYoutube();
         break;
-     
+
     case "m.youtube.com":
         redirectYoutube();
         break;
@@ -202,8 +200,7 @@ switch (urlHostname) {
 }
 
 if (urlHostname.includes("medium.com")) {
-  redirectMedium();
+    redirectMedium();
 } else if (urlHostname.includes("imgur.com")) {
-  redirectImgur();
+    redirectImgur();
 }
-
