@@ -8,9 +8,9 @@ This userscript redirects popular social media platforms to their privacy respec
 You can add the script from [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector), or you can clone this repo and add it [manually](https://violentmonkey.github.io/guide/creating-a-userscript/).
 
 ## To-do
-- [ ] Add [Beatbump](https://github.com/snuffyDev/Beatbump), [hn-search](https://github.com/algolia/hn-search), [Lingva](https://github.com/TheDavidDelta/lingva-translate) and [Neuters](https://github.com/HookedBehemoth/neuters)
 - [ ] Find a way to redirect to the up instances without releasing a whole new verison.
 - [ ] Redirect Medium user pages to Medium itself without giving an error
+- [x] Add [Beatbump](https://github.com/snuffyDev/Beatbump), [hn-search](https://github.com/algolia/hn-search), [Lingva](https://github.com/TheDavidDelta/lingva-translate) and [Neuters](https://github.com/HookedBehemoth/neuters)
 - [x] Add [ProxiTok](https://github.com/pablouser1/ProxiTok), [Rimgo](https://codeberg.org/video-prize-ranch/rimgo#instances), [Scribe](https://sr.ht/~edwardloveall/scribe/) redirections
 - [x] Redirect old.reddit to teddit.net
 
