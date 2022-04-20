@@ -8,8 +8,10 @@ Bu kullanıcı betiği popüler sosyal medya platformlarını gizliliğe saygı 
 Bu betiği [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector) kullanarak ekleyebilir veya bu depoyu klonlayıp [elle](https://violentmonkey.github.io/guide/creating-a-userscript/) tarayıcınıza ekleyebilirsiniz.
 
 ## SSS
-__Neden Instagram birden fazla sekme açıyor?__
-> Hiçbir fikrim yok, bulmak için saatlerimi harcadım ama neyin buna sebep olduğundan hâlâ emin değilim.
+~~__Neden Instagram birden fazla sekme açıyor?__~~
+> ~~Hiçbir fikrim yok, bulmak için saatlerimi harcadım ama neyin buna sebep olduğundan hâlâ emin değilim.~~
+>
+> Sanırım düzeldi, ama neden düzeldiğinden emin değilim. Eğer tarayıcınız için sorun devam ediyorsa bildiri oluşturabilirsiniz.
 
 __Neden scribe.rip kullanıcı sayfalarına yönlendirmiyor?__
 > Projenin yazarı Medium'u daha değerli hale getirmek yerine yazarları kötü platformlardan daha güzel platformlara yönlendirmek istiyor. Bu sebeple Medium'u eksiksiz bir şekilde gezinmeyi sağlayan bir önyüz yerine sadece makalelerin kendisine erişmeyi sağlayacak şekilde kalmasını istiyor. Asıl yazı için: [Project Goals](https://sr.ht/~edwardloveall/scribe/#project-goals)

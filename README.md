@@ -15,8 +15,10 @@ You can add the script from [Greasyfork](https://greasyfork.org/scripts/436359-p
 - [ ] Redirect Medium user pages to Medium itself without giving an error
 
 ## FAQ
-__Why does Instagram open multiple tabs?__
-> I have no idea, I spent hours just to find the cause but I'm still not sure what's causing it.
+~~__Why does Instagram open multiple tabs?__~~
+> ~~I have no idea, I spent hours just to find the cause but I'm still not sure what's causing it.~~
+>
+> Looks like it's fixed, I'm not sure why it's fixed though. Create an issue if the problem persist for your browser
 
 __Why scribe.rip doesn't redirect to user pages?__
 > "It's intentional that there is no way to browse content from a user, see popular posts, consume via an RSS feed, or further engage with an article via comments or "claps". I want to spend my time encouraging writers to move to worthy platforms, not making a bad platform worthy."
