@@ -11,6 +11,7 @@ You can add the script from [![GreasyFork](https://img.shields.io/static/v1?labe
 - [ ] Find a way to redirect to the up instances without releasing a whole new verison.
 - [ ] Redirect Medium user pages to Medium itself without giving an error
 - [ ] Use random instances for Nitter, Reddit, Invidious, Rimgo and Lingva
+- [ ] Make the previous site after redirecting is the original previous site and not the platform itself.
 - [x] Add [Beatbump](https://github.com/snuffyDev/Beatbump), [hn-search](https://github.com/algolia/hn-search), [Lingva](https://github.com/TheDavidDelta/lingva-translate) and [Neuters](https://github.com/HookedBehemoth/neuters)
 - [x] Add [ProxiTok](https://github.com/pablouser1/ProxiTok), [Rimgo](https://codeberg.org/video-prize-ranch/rimgo#instances), [Scribe](https://sr.ht/~edwardloveall/scribe/) redirections
 - [x] Redirect old.reddit to teddit.net
