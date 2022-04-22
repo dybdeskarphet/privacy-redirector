@@ -3,7 +3,7 @@
 // @name:tr Gizlilik Yönlendiricisi
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.1.9
+// @version 1.2.0
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -88,7 +88,19 @@ function redirectTwitter() {
 	}
 
 	window.stop();
-	location.hostname = "nitter.42l.fr";
+
+	let nitterInstances = [
+		'nitter.42l.fr',
+		'nitter.pussthecat.org',
+		'nitter.fdn.fr',
+		'nitter.unixfox.eu',
+		'nitter.eu',
+		'nitter.namazso.eu',
+		'nitter.hu'
+	];
+
+	let randomInstance = Math.floor(Math.random()*nitterInstances.length);
+	location.hostname = nitterInstances[randomInstance];
 }
 
 function redirectReddit() {
@@ -98,10 +110,33 @@ function redirectReddit() {
 
 	window.stop();
 
+	let tedditInstances = [
+		'teddit.ggc-project.de',
+		'teddit.zaggy.nl',
+		'teddit.namazso.eu',
+		'teddit.alefvanoon.xyz',
+		'teddit.pussthecat.org',
+		'reddit.lol',
+		'teddit.sethforprivacy.com'
+	];
+
+	let libredditInstances = [
+		'libredd.it',
+		'libreddit.spike.codes',
+		'libreddit.dothq.co',
+		'reddit.invak.id',
+		'libreddit.silkky.cloud',
+		'libreddit.strongthany.cc',
+		'libreddit.privacy.com.de'
+	];
+
+	let randomInstance = Math.floor(Math.random()*libredditInstances.length);
+	let randomInstanceOld = Math.floor(Math.random()*tedditInstances.length);
+
 	if (window.location.hostname == "old.reddit.com") {
-		location.hostname = "reddit.lol";
+		location.hostname = tedditInstances[randomInstanceOld];
 	} else {
-		location.hostname = "libreddit.spike.codes";
+		location.hostname = libredditInstances[randomInstance];
 	}
 }
 
@@ -111,7 +146,20 @@ function redirectYoutube() {
 	}
 
 	window.stop();
-	location.hostname = "vid.puffyan.us";
+
+	let invidiousInstances = [
+		'invidious.snopyta.org',
+		'yewtu.be',
+		'invidious.kavin.rocks',
+		'vid.puffyan.us',
+		'invidious.osi.kr',
+		'invidio.xamh.de',
+		'tube.cthd.icu'
+	];
+
+	let randomInstance = Math.floor(Math.random()*invidiousInstances.length);
+
+	location.hostname = invidiousInstances[randomInstance];
 }
 
 function redirectTiktok() {
@@ -147,23 +195,26 @@ function redirectImgur() {
 		return;
 	}
 
+	let rimgoInstances = [
+		'i.bcow.xyz',
+		'rimgo.pussthecat.org',
+		'rimgo.totaldarkness.net',
+		'rimgo.bus-hit.me'
+	];
+
+	let randomInstance = Math.floor(Math.random()*rimgoInstances.length);
+
 	window.stop();
-	location.hostname = "rimgo.pussthecat.org";
+	location.hostname = rimgoInstances[randomInstance];
 }
 
 function redirectMedium() {
-	if (redirect_medium == false) {
-		window.stop();
+	if (redirect_medium == false || window.location.pathname == "/") {
+		return;
 	}
 
 	window.stop();
-
-	if (window.location.pathname == "/") {
-		alert("Disable the script for viewing this Medium account")
-		return;
-	} else {
-		location.hostname = "scribe.rip";
-	}
+	location.hostname = "scribe.rip";
 }
 
 function redirectYoutubeMusic() {
@@ -212,12 +263,22 @@ function redirectGTranslate() {
 
 	window.stop();
 
+	let lingvaInstances = [
+		'lingva.pussthecat.org',
+		'translate.datatunnel.xyz',
+		'lingva.ml'
+	];
+
+	let randomInstance = Math.floor(Math.random()*lingvaInstances.length);
+
 	if (window.location.search != "") {
-		let newQuery = window.location.search.replace("?sl=", "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "")
-		let newURL = window.location.protocol + "//" + "lingva.ml" + window.location.pathname + newQuery + window.location.hash;
+		const hlRegex=/\?hl=tr/
+		const slRegex=/.sl=/
+		let newQuery = window.location.search.replace(hlRegex, "").replace(slRegex, "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "")
+		let newURL = window.location.protocol + "//" + lingvaInstances[randomInstance] + window.location.pathname + newQuery + window.location.hash;
 		window.location.replace(newURL);
 	} else {
-		let newURL = window.location.protocol + "//" + "lingva.ml";
+		let newURL = window.location.protocol + "//" + lingvaInstances[randomInstance];
 		window.location.replace(newURL);
 	}
 }
