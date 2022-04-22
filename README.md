@@ -21,6 +21,7 @@ __Why Bibliogram doesn't load the full profile?__
 > [Future of Bibliogram by Cadence Ember](https://proxy.vulpes.one/gemini/cadence.moe/gemlog/2020-12-17-future-of-bibliogram.bliz)
 
 ## To-do
+- [ ] Add [Wikiless](https://codeberg.org/orenom/wikiless) with multiple instances (NSA here, NSA there)
 - [x] Redirect Medium user pages to Medium itself without giving an error
 - [x] Delete `?hl=<langcode>` query when redirecting to Lingva. 
 - [x] Use random instances for Nitter, Reddit, Invidious, Rimgo and Lingva
