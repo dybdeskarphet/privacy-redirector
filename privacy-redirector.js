@@ -26,6 +26,7 @@
 // @match *://translate.google.com/*
 // @match *://news.ycombinator.com/*
 // @match *://*.reuters.com/*
+// @match *://*.wikipedia.org/*
 // ==/UserScript==
 
 /*
@@ -48,6 +49,7 @@ var redirect_medium = true;
 var redirect_hackernews = true;
 var redirect_gtranslate = true;
 var redirect_reuters = true;
+var redirect_wikipedia = true;
 
 // // // // // // // // // // // // //
 
@@ -292,6 +294,36 @@ function redirectReuters() {
 	location.hostname = "neuters.de";
 }
 
+function redirectWikipedia() {
+ 	if (redirect_wikipedia == false) {
+		return;
+	}
+
+	let wikilessInstances = [
+		'wikiless.org',
+		'wikiless.alefvanoon.xyz',
+		'wikiless.sethforprivacy.com',
+		'wiki.604kph.xyz',
+		'wiki.froth.zone'
+	];
+
+	let randomInstance = Math.floor(Math.random()*wikilessInstances.length);
+
+	let hostnameVar = window.location.hostname
+	let langCodeIndex = hostnameVar.search(/^[a-z][a-z]\./)
+	let langCode = hostnameVar[langCodeIndex] + hostnameVar[langCodeIndex + 1];
+	
+	window.stop();
+	
+	if (langCodeIndex != -1) {
+		let newURL = window.location.protocol + "//" + wikilessInstances[randomInstance] + window.location.pathname + "?lang=" + langCode + window.location.hash;
+		window.location.replace(newURL);
+	} else {
+		let newURL = window.location.protocol + "//" + wikilessInstances[randomInstance] + window.location.pathname + "?lang=en" + window.location.hash;
+		window.location.replace(newURL);
+	}
+}
+
 var urlHostname = window.location.hostname;
 
 switch (urlHostname) {
@@ -340,4 +372,6 @@ if (urlHostname.includes("medium.com")) {
 	redirectMedium();
 } else if (urlHostname.includes("imgur.com")) {
 	redirectImgur();
+} else if (urlHostname.includes("wikipedia.org")) {
+	redirectWikipedia();
 }
