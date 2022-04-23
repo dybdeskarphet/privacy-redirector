@@ -22,13 +22,6 @@ __Why Bibliogram doesn't load the full profile?__
 
 ## To-do
 - [ ] Fix: Medium stops redirecting to scribe.rip after entering a user page
-- [x] Add [Wikiless](https://codeberg.org/orenom/wikiless) with multiple instances (NSA here, NSA there)
-- [x] Redirect Medium user pages to Medium itself without giving an error
-- [x] Delete `?hl=<langcode>` query when redirecting to Lingva. 
-- [x] Use random instances for Nitter, Reddit, Invidious, Rimgo and Lingva
-- [x] Add [Beatbump](https://github.com/snuffyDev/Beatbump), [hn-search](https://github.com/algolia/hn-search), [Lingva](https://github.com/TheDavidDelta/lingva-translate) and [Neuters](https://github.com/HookedBehemoth/neuters)
-- [x] Add [ProxiTok](https://github.com/pablouser1/ProxiTok), [Rimgo](https://codeberg.org/video-prize-ranch/rimgo#instances), [Scribe](https://sr.ht/~edwardloveall/scribe/) redirections
-- [x] Redirect old.reddit to teddit.net
 
 ### Not possible (?)
 - [ ] ~~Make the previous site after redirecting is the original previous site and not the platform itself.~~
