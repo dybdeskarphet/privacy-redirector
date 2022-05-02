@@ -4,6 +4,7 @@
 - [ ] Add more Bibliogram instance
 - [ ] Rewrite some parts (minimalize)
 - [ ] Reassign variable types properly
+- [ ] Make a list from all the possible URL types (ex. `ig.com/reel/`, `ig.com/p/`, `rdt.com/r/`, `rdt.com/u`)
 
 ### Not possible (?)
 - [ ] ~~Make the previous site after redirecting is the original previous site and not the platform itself.~~
