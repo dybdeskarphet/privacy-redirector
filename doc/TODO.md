@@ -6,6 +6,7 @@
 - [ ] Reassign variable types properly
 - [ ] Make a list from all the possible URL types (ex. `ig.com/reel/`, `ig.com/p/`, `rdt.com/r/`, `rdt.com/u`)
 - [ ] Change multiple replace commands into [one](https://stackoverflow.com/a/16577007).
+- [ ] Don't use variables for regex
 
 ### Not possible (?)
 - [ ] ~~Make the previous site after redirecting is the original previous site and not the platform itself.~~
