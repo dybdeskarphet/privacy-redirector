@@ -9,5 +9,6 @@
 ## Twitter
 
 ## TikTok
+- **AMP:** `https://www.tiktok.com/amp/tag/foss`
 
 ## Medium
