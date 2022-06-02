@@ -1,7 +1,7 @@
 ## To-do
 - [ ] Add Piped as an alternative to Invidious
 - [ ] Fix: Medium stops redirecting to scribe.rip after entering a user page
-- [x] Add Reel and Story redirection for Bibliogram
+- [ ] Add Reel and Story redirection for Bibliogram
 - [ ] Add more Bibliogram instance
 - [ ] Rewrite some parts (minimalize)
 - [ ] Reassign variable types properly
