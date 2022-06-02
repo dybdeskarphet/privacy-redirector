@@ -1,3 +1,5 @@
+> I know that some of the Invidious instances are faulty, I'm going to fix it in a month along with all the to-dos below.
+
 ## To-do
 - [ ] Add Piped as an alternative to Invidious
 - [ ] Fix: Medium stops redirecting to scribe.rip after entering a user page
