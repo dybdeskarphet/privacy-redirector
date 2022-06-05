@@ -60,26 +60,34 @@ function redirectInstagram() {
 
 	window.stop();
 
+	let bibliogramInstances = [
+		'bibliogram.art',
+		'bibliogram.pussthecat.org',
+		'bibliogram.1d4.us',
+		'bibliogram.froth.zone'
+	];
+
+	let randomInstance = Math.floor(Math.random()*bibliogramInstances.length);
+
 	if (window.location.pathname.indexOf("/accounts/login/") != -1) {
 		if (window.location.href.indexOf("/p/") == -1) {
-			let newQuery = window.location.search.replace("?next=", "u")
-			let newPath = window.location.pathname.replace("/accounts/login/", "/")
-			let newURL = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
+			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=", "u") + window.location.hash;
 			window.location.replace(newURL);
 		} else {
-			let newQuery = window.location.search.replace("?next=", "")
-			let newPath = window.location.pathname.replace("/accounts/login/", "")
-			let newURL = window.location.protocol + "//" + "bibliogram.pussthecat.org" + newPath + newQuery + window.location.hash;
+			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + window.location.pathname.replace("/accounts/login/", "") + window.location.search.replace("?next=", "") + window.location.hash;
 			window.location.replace(newURL);
 		}
 	} else {
 		if (window.location.pathname == "/") {
-			location.hostname = "bibliogram.pussthecat.org"
+			location.hostname = randomInstance
+		} else if (window.location.href.indexOf("/reel/") != -1) {
+			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + window.location.pathname.replace("/reel", "/p")  + window.location.hash;
+			window.location.replace(newURL);
 		} else if (window.location.href.indexOf("/p/") == -1) {
-			let newURL = window.location.protocol + "//" + "bibliogram.pussthecat.org" + "/u" + window.location.pathname + window.location.search + window.location.hash;
+			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + "/u" + window.location.pathname + window.location.search + window.location.hash;
 			window.location.replace(newURL);
 		} else {
-			location.hostname = "bibliogram.pussthecat.org"
+			location.hostname = bibliogramInstances[randomInstance] 
 		}
 	}
 }
@@ -114,12 +122,10 @@ function redirectReddit() {
 
 	let tedditInstances = [
 		'teddit.ggc-project.de',
-		'teddit.zaggy.nl',
 		'teddit.namazso.eu',
-		'teddit.alefvanoon.xyz',
 		'teddit.pussthecat.org',
-		'reddit.lol',
-		'teddit.sethforprivacy.com'
+		'teddit.zaggy.nl',
+		'teddit.net'
 	];
 
 	let libredditInstances = [
@@ -127,7 +133,6 @@ function redirectReddit() {
 		'libreddit.spike.codes',
 		'libreddit.dothq.co',
 		'reddit.invak.id',
-		'libreddit.silkky.cloud',
 		'libreddit.strongthany.cc',
 		'libreddit.privacy.com.de'
 	];
@@ -153,10 +158,11 @@ function redirectYoutube() {
 		'invidious.snopyta.org',
 		'yewtu.be',
 		'invidious.kavin.rocks',
-		'vid.puffyan.us',
 		'invidious.osi.kr',
 		'invidio.xamh.de',
-		'tube.cthd.icu'
+		'tube.cthd.icu',
+		'invidious.esmailelbob.xyz',
+		'invidious.lunar.icu'
 	];
 
 	let randomInstance = Math.floor(Math.random()*invidiousInstances.length);
@@ -174,8 +180,7 @@ function redirectTiktok() {
 	let langcodeIndex = window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g);
 
 	if (window.location.pathname.indexOf("/discover") != -1) {
-		let newPath = window.location.pathname.replace("discover", "tag")
-		let newURL = window.location.protocol + "//" + "proxitok.herokuapp.com" + newPath + window.location.hash;
+		let newURL = window.location.protocol + "//" + "proxitok.herokuapp.com" + window.location.pathname.replace("discover", "tag") + window.location.hash;
 		window.location.replace(newURL);
 	} else if (langcodeIndex != -1) {
 		let newURL = window.location.protocol + "//" + "proxitok.pussthecat.org";
@@ -183,12 +188,6 @@ function redirectTiktok() {
 	} else {
 		location.hostname = "proxitok.pussthecat.org";
 	}
-
-	// Add this if language query strings start to break proxitok in the future
-	//    if (window.location.search.includes("?lang") == true) {
-	//      let newURL  = window.location.protocol + "//" + "proxitok.herokuapp.com" + window.location.pathname + window.location.hash;
-	//      window.location.replace(newURL);
-	//    }
 
 }
 
@@ -227,20 +226,16 @@ function redirectYoutubeMusic() {
 	window.stop();
 
 	if (window.location.pathname.indexOf("/playlist") != -1) {
-		let newQuery = window.location.search.replace("?list=", "/VL")
-		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname + newQuery + window.location.hash;
+		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname + window.location.search.replace("?list=", "/VL") + window.location.hash;
 		window.location.replace(newURL);
 	} else if (window.location.pathname.indexOf("/channel") != -1) {
-		let newPath = window.location.pathname.replace("/channel", "/artist")
-		let newURL = window.location.protocol + "//" + "beatbump.ml" + newPath + window.location.search + window.location.hash;
+		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname.replace("/channel", "/artist") + window.location.search + window.location.hash;
 		window.location.replace(newURL);
 	} else if (window.location.pathname.indexOf("/explore") != -1) {
-		let newPath = window.location.pathname.replace("/explore", "/trending")
-		let newURL = window.location.protocol + "//" + "beatbump.ml" + newPath + window.location.search + window.location.hash;
+		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname.replace("/explore", "/trending") + window.location.search + window.location.hash;
 		window.location.replace(newURL);
 	} else if (window.location.pathname.indexOf("/moods_and_genres") != -1) {
-		let newPath = window.location.pathname.replace("/moods_and_genres", "/explore")
-		let newURL = window.location.protocol + "//" + "beatbump.ml" + newPath + window.location.search + window.location.hash;
+		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname.replace("/moods_and_genres", "/explore") + window.location.search + window.location.hash;
 		window.location.replace(newURL);
 	} else {
 		location.hostname = "beatbump.ml";
@@ -274,10 +269,7 @@ function redirectGTranslate() {
 	let randomInstance = Math.floor(Math.random()*lingvaInstances.length);
 
 	if (window.location.search != "") {
-		const hlRegex=/\?hl=tr/
-		const slRegex=/.sl=/
-		let newQuery = window.location.search.replace(hlRegex, "").replace(slRegex, "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "")
-		let newURL = window.location.protocol + "//" + lingvaInstances[randomInstance] + window.location.pathname + newQuery + window.location.hash;
+		let newURL = window.location.protocol + "//" + lingvaInstances[randomInstance] + window.location.pathname + window.location.search.replace(/\?hl=tr/, "").replace(/.sl=/, "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "") + window.location.hash;
 		window.location.replace(newURL);
 	} else {
 		let newURL = window.location.protocol + "//" + lingvaInstances[randomInstance];
@@ -308,9 +300,7 @@ function redirectWikipedia() {
 	];
 
 	let randomInstance = Math.floor(Math.random()*wikilessInstances.length);
-
-	let hostnameVar = window.location.hostname
-	let langCodeIndex = hostnameVar.search(/^[a-z][a-z]\./)
+	let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./)
 	let langCode = hostnameVar[langCodeIndex] + hostnameVar[langCodeIndex + 1];
 	
 	window.stop();
