@@ -3,7 +3,7 @@
 // @name:tr Gizlilik Yönlendiricisi
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.2.2
+// @version 1.2.3
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -53,6 +53,8 @@ var redirect_wikipedia = true;
 
 // // // // // // // // // // // // //
 
+var farsideInstance = "farside.link"
+
 function redirectInstagram() {
 	if (redirect_instagram == false) {
 		return;
@@ -67,27 +69,30 @@ function redirectInstagram() {
 		'bibliogram.froth.zone'
 	];
 
-	let randomInstance = Math.floor(Math.random()*bibliogramInstances.length);
+	let randomInstance = bibliogramInstances[Math.floor(Math.random()*bibliogramInstances.length)];
 
 	if (window.location.pathname.indexOf("/accounts/login/") != -1) {
-		if (window.location.href.indexOf("/p/") == -1) {
-			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=", "u") + window.location.hash;
+		if (window.location.href.indexOf("/reel/") != -1) {
+			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=/reel", "p") + window.location.hash;
+			window.location.replace(newURL);
+		} else if (window.location.href.indexOf("/p/") == -1) {
+			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=", "u") + window.location.hash;
 			window.location.replace(newURL);
 		} else {
-			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + window.location.pathname.replace("/accounts/login/", "") + window.location.search.replace("?next=", "") + window.location.hash;
+			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "") + window.location.search.replace("?next=", "") + window.location.hash;
 			window.location.replace(newURL);
 		}
 	} else {
 		if (window.location.pathname == "/") {
 			location.hostname = randomInstance
 		} else if (window.location.href.indexOf("/reel/") != -1) {
-			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + window.location.pathname.replace("/reel", "/p")  + window.location.hash;
+			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/reel", "/p")  + window.location.hash;
 			window.location.replace(newURL);
 		} else if (window.location.href.indexOf("/p/") == -1) {
-			let newURL = window.location.protocol + "//" + bibliogramInstances[randomInstance] + "/u" + window.location.pathname + window.location.search + window.location.hash;
+			let newURL = window.location.protocol + "//" + randomInstance + "/u" + window.location.pathname + window.location.search + window.location.hash;
 			window.location.replace(newURL);
 		} else {
-			location.hostname = bibliogramInstances[randomInstance] 
+			location.hostname = randomInstance 
 		}
 	}
 }
@@ -99,18 +104,8 @@ function redirectTwitter() {
 
 	window.stop();
 
-	let nitterInstances = [
-		'nitter.42l.fr',
-		'nitter.pussthecat.org',
-		'nitter.fdn.fr',
-		'nitter.unixfox.eu',
-		'nitter.eu',
-		'nitter.namazso.eu',
-		'nitter.hu'
-	];
-
-	let randomInstance = Math.floor(Math.random()*nitterInstances.length);
-	location.hostname = nitterInstances[randomInstance];
+	let newURL = window.location.protocol + "//" + farsideInstance + "/nitter" + window.location.pathname + window.location.search + window.location.hash;
+	window.location.replace(newURL);
 }
 
 function redirectReddit() {
@@ -120,30 +115,15 @@ function redirectReddit() {
 
 	window.stop();
 
-	let tedditInstances = [
-		'teddit.ggc-project.de',
-		'teddit.namazso.eu',
-		'teddit.pussthecat.org',
-		'teddit.zaggy.nl',
-		'teddit.net'
-	];
-
-	let libredditInstances = [
-		'libredd.it',
-		'libreddit.spike.codes',
-		'libreddit.dothq.co',
-		'reddit.invak.id',
-		'libreddit.strongthany.cc',
-		'libreddit.privacy.com.de'
-	];
-
-	let randomInstance = Math.floor(Math.random()*libredditInstances.length);
-	let randomInstanceOld = Math.floor(Math.random()*tedditInstances.length);
+	let farsideLibreddit = farsideInstance + "/libreddit";
+	let farsideTeddit = farsideInstance + "/teddit";
 
 	if (window.location.hostname == "old.reddit.com") {
-		location.hostname = tedditInstances[randomInstanceOld];
+		let newURL = window.location.protocol + "//" + farsideTeddit + window.location.pathname + window.location.search + window.location.hash;
+		window.location.replace(newURL);
 	} else {
-		location.hostname = libredditInstances[randomInstance];
+		let newURL = window.location.protocol + "//" + farsideLibreddit + window.location.pathname + window.location.search + window.location.hash;
+		window.location.replace(newURL);
 	}
 }
 
@@ -154,20 +134,8 @@ function redirectYoutube() {
 
 	window.stop();
 
-	let invidiousInstances = [
-		'invidious.snopyta.org',
-		'yewtu.be',
-		'invidious.kavin.rocks',
-		'invidious.osi.kr',
-		'invidio.xamh.de',
-		'tube.cthd.icu',
-		'invidious.esmailelbob.xyz',
-		'invidious.lunar.icu'
-	];
-
-	let randomInstance = Math.floor(Math.random()*invidiousInstances.length);
-
-	location.hostname = invidiousInstances[randomInstance];
+	let newURL = window.location.protocol + "//" + farsideInstance + "/invidious" + window.location.pathname + window.location.search + window.location.hash;
+	window.location.replace(newURL);
 }
 
 function redirectTiktok() {
@@ -196,17 +164,10 @@ function redirectImgur() {
 		return;
 	}
 
-	let rimgoInstances = [
-		'i.bcow.xyz',
-		'rimgo.pussthecat.org',
-		'rimgo.totaldarkness.net',
-		'rimgo.bus-hit.me'
-	];
-
-	let randomInstance = Math.floor(Math.random()*rimgoInstances.length);
+	let farsideRimgo = farsideInstance + "/rimgo";
 
 	window.stop();
-	location.hostname = rimgoInstances[randomInstance];
+	location.hostname = farsideRimgo;
 }
 
 function redirectMedium() {
@@ -215,7 +176,9 @@ function redirectMedium() {
 	}
 
 	window.stop();
-	location.hostname = "scribe.rip";
+
+	let newURL = window.location.protocol + "//" + farsideInstance + "/scribe" + window.location.pathname + window.location.search + window.location.hash;
+	window.location.replace(newURL);
 }
 
 function redirectYoutubeMusic() {
@@ -249,7 +212,7 @@ function redirectHackerNews() {
 	}
 
 	window.stop();
-	let newURL = window.location.protocol + "//" + "hn.algolia.com"
+	let newURL = window.location.protocol + "//" + "hn.algolia.com";
 	window.location.replace(newURL);
 }
 
@@ -260,19 +223,12 @@ function redirectGTranslate() {
 
 	window.stop();
 
-	let lingvaInstances = [
-		'lingva.pussthecat.org',
-		'translate.datatunnel.xyz',
-		'lingva.ml'
-	];
-
-	let randomInstance = Math.floor(Math.random()*lingvaInstances.length);
 
 	if (window.location.search != "") {
-		let newURL = window.location.protocol + "//" + lingvaInstances[randomInstance] + window.location.pathname + window.location.search.replace(/\?hl=tr/, "").replace(/.sl=/, "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "") + window.location.hash;
+		let newURL = window.location.protocol + "//" + farsideLingva + window.location.pathname + window.location.search.replace(/\?hl=tr/, "").replace(/.sl=/, "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "") + window.location.hash;
 		window.location.replace(newURL);
 	} else {
-		let newURL = window.location.protocol + "//" + lingvaInstances[randomInstance];
+		let newURL = window.location.protocol + "//" + farsideLingva;
 		window.location.replace(newURL);
 	}
 }
@@ -287,7 +243,7 @@ function redirectReuters() {
 }
 
 function redirectWikipedia() {
- 	if (redirect_wikipedia == false) {
+	if (redirect_wikipedia == false) {
 		return;
 	}
 
@@ -299,17 +255,16 @@ function redirectWikipedia() {
 		'wiki.froth.zone'
 	];
 
-	let randomInstance = Math.floor(Math.random()*wikilessInstances.length);
+	let randomInstance = wikilessInstances[Math.floor(Math.random()*wikilessInstances.length)];
 	let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./)
-	let langCode = hostnameVar[langCodeIndex] + hostnameVar[langCodeIndex + 1];
-	
+
 	window.stop();
-	
+
 	if (langCodeIndex != -1) {
-		let newURL = window.location.protocol + "//" + wikilessInstances[randomInstance] + window.location.pathname + "?lang=" + langCode + window.location.hash;
+		let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname + "?lang=" + window.location.hostname[langCodeIndex] + window.location.hostname[langCodeIndex + 1] + window.location.hash;
 		window.location.replace(newURL);
 	} else {
-		let newURL = window.location.protocol + "//" + wikilessInstances[randomInstance] + window.location.pathname + "?lang=en" + window.location.hash;
+		let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname + "?lang=en" + window.location.hash;
 		window.location.replace(newURL);
 	}
 }

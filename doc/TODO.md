@@ -5,11 +5,11 @@
 - [x] Add more Bibliogram instance
 - [x] Make a list from all the possible URL types (ex. `ig.com/reel/`, `ig.com/p/`, `rdt.com/r/`, `rdt.com/u`)
 - [x] Don't use variables for regex
-- [ ] Find a way to redirect to the up instances without releasing a whole new verison. (with farside.link)
+- [x] Find a way to redirect to the up instances without releasing a whole new verison. (with farside.link)
+- [x] Reassign variable types properly
+- [x] Rewrite some parts (minimalize)
 - [ ] Add Piped as an alternative to Invidious
 - [ ] Fix: Medium stops redirecting to scribe.rip after entering a user page
-- [ ] Rewrite some parts (minimalize)
-- [ ] Reassign variable types properly
 - [ ] Change multiple replace commands into [one](https://stackoverflow.com/a/16577007).
 
 ### Not possible (?)
