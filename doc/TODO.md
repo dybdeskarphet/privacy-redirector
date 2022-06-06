@@ -10,7 +10,6 @@
 - [x] Rewrite some parts (minimalize)
 - [ ] Add Piped as an alternative to Invidious
 - [ ] Fix: Medium stops redirecting to scribe.rip after entering a user page
-- [ ] Change multiple replace commands into [one](https://stackoverflow.com/a/16577007).
 
 ### Not possible (?)
 - [ ] ~~Make the previous site after redirecting is the original previous site and not the platform itself.~~
