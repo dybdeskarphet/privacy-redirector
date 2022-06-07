@@ -3,7 +3,7 @@
 // @name:tr Gizlilik Yönlendiricisi
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.2.3
+// @version 1.2.4
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -225,10 +225,10 @@ function redirectGTranslate() {
 
 
 	if (window.location.search != "") {
-		let newURL = window.location.protocol + "//" + farsideLingva + window.location.pathname + window.location.search.replace(/\?hl=tr/, "").replace(/.sl=/, "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "") + window.location.hash;
+		let newURL = window.location.protocol + "//" + farsideInstance + "/lingva" + window.location.pathname + window.location.search.replace(/\?hl=tr/, "").replace(/.sl=/, "").replace("&tl=", "/").replace("&text=", "/").replace("&op=translate", "") + window.location.hash;
 		window.location.replace(newURL);
 	} else {
-		let newURL = window.location.protocol + "//" + farsideLingva;
+		let newURL = window.location.protocol + "//" + farsideInstance + "/lingva";
 		window.location.replace(newURL);
 	}
 }
