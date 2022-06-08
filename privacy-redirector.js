@@ -167,7 +167,8 @@ function redirectImgur() {
 	let farsideRimgo = farsideInstance + "/rimgo";
 
 	window.stop();
-	location.hostname = farsideRimgo;
+	let newURL = window.location.protocol + "//" + farsideRimgo + window.location.pathname + window.location.search + window.location.hash;
+  window.location.replace(newURL);
 }
 
 function redirectMedium() {
