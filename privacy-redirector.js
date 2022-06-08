@@ -72,26 +72,26 @@ function redirectInstagram() {
 	let randomInstance = bibliogramInstances[Math.floor(Math.random()*bibliogramInstances.length)];
 
 	if (window.location.pathname.indexOf("/accounts/login/") != -1) {
-		if (window.location.href.indexOf("/reel/") != -1) {
+		if (window.location.href.indexOf("/reel/") != -1) { // reels
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=/reel", "p") + window.location.hash;
 			window.location.replace(newURL);
-		} else if (window.location.href.indexOf("/p/") == -1) {
+		} else if (window.location.href.indexOf("/p/") == -1) { // user pages - it will break if it's not the second last block
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=", "u") + window.location.hash;
 			window.location.replace(newURL);
-		} else {
+		} else { // probably a post
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "") + window.location.search.replace("?next=", "") + window.location.hash;
 			window.location.replace(newURL);
 		}
 	} else {
-		if (window.location.pathname == "/") {
+		if (window.location.pathname == "/") { // home page
 			location.hostname = randomInstance
-		} else if (window.location.href.indexOf("/reel/") != -1) {
+		} else if (window.location.href.indexOf("/reel/") != -1) { // reel
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/reel", "/p")  + window.location.hash;
 			window.location.replace(newURL);
-		} else if (window.location.href.indexOf("/p/") == -1) {
+		} else if (window.location.href.indexOf("/p/") == -1) { // user page - it will break if it's not the second last block
 			let newURL = window.location.protocol + "//" + randomInstance + "/u" + window.location.pathname + window.location.search + window.location.hash;
 			window.location.replace(newURL);
-		} else {
+		} else { // probably a post
 			location.hostname = randomInstance 
 		}
 	}
