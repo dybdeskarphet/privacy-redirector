@@ -3,7 +3,7 @@
 // @name:tr Gizlilik Yönlendiricisi
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.2.5
+// @version 1.2.6
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -53,7 +53,12 @@ var redirect_wikipedia = true;
 
 // // // // // // // // // // // // //
 
-var farsideInstance = "farside.link"
+var farsideInstance = "farside.link";
+var debug_mode = false;
+
+if (debug_mode == true) {
+	alert("Path: " + window.location.pathname + "\nQuery: " + window.location.search + "\nHash: " + window.location.hash)
+}
 
 function redirectInstagram() {
 	if (redirect_instagram == false) {
@@ -71,11 +76,11 @@ function redirectInstagram() {
 
 	let randomInstance = bibliogramInstances[Math.floor(Math.random()*bibliogramInstances.length)];
 
-	if (window.location.pathname.indexOf("/accounts/login/") != -1) {
-		if (window.location.href.indexOf("/reel/") != -1) { // reels
+	if (window.location.pathname.startsWith("/accounts/login/")) {
+		if (window.location.search.indexOf("/reel/") != -1) { // reels
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=/reel", "p") + window.location.hash;
 			window.location.replace(newURL);
-		} else if (window.location.href.indexOf("/p/") == -1) { // user pages - it will break if it's not the second last block
+		} else if (window.location.search.indexOf("/p/") == -1) { // user pages - it will break if it's not the second last block
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/accounts/login/", "/") + window.location.search.replace("?next=", "u") + window.location.hash;
 			window.location.replace(newURL);
 		} else { // probably a post
@@ -85,10 +90,10 @@ function redirectInstagram() {
 	} else {
 		if (window.location.pathname == "/") { // home page
 			location.hostname = randomInstance
-		} else if (window.location.href.indexOf("/reel/") != -1) { // reel
+		} else if (window.location.pathname.startsWith("/reel/")) { // reel
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/reel", "/p")  + window.location.hash;
 			window.location.replace(newURL);
-		} else if (window.location.href.indexOf("/p/") == -1) { // user page - it will break if it's not the second last block
+		} else if (window.location.pathname.startsWith("/p/")) { // user page - it will break if it's not the second last block
 			let newURL = window.location.protocol + "//" + randomInstance + "/u" + window.location.pathname + window.location.search + window.location.hash;
 			window.location.replace(newURL);
 		} else { // probably a post
@@ -145,12 +150,10 @@ function redirectTiktok() {
 
 	window.stop();
 
-	let langcodeIndex = window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g);
-
-	if (window.location.pathname.indexOf("/discover") != -1) {
+	if (window.location.pathname.startsWith("/discover")) {
 		let newURL = window.location.protocol + "//" + "proxitok.herokuapp.com" + window.location.pathname.replace("discover", "tag") + window.location.hash;
 		window.location.replace(newURL);
-	} else if (langcodeIndex != -1) {
+	} else if (window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) != -1) {
 		let newURL = window.location.protocol + "//" + "proxitok.pussthecat.org";
 		window.location.replace(newURL);
 	} else {
@@ -164,10 +167,9 @@ function redirectImgur() {
 		return;
 	}
 
-	let farsideRimgo = farsideInstance + "/rimgo";
-
 	window.stop();
-	let newURL = window.location.protocol + "//" + farsideRimgo + window.location.pathname + window.location.search + window.location.hash;
+
+	let newURL = window.location.protocol + "//" + farsideInstance + "/rimgo" + window.location.pathname + window.location.search + window.location.hash;
   window.location.replace(newURL);
 }
 
@@ -189,16 +191,16 @@ function redirectYoutubeMusic() {
 
 	window.stop();
 
-	if (window.location.pathname.indexOf("/playlist") != -1) {
+	if (window.location.pathname.startsWith("/playlist")) {
 		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname + window.location.search.replace("?list=", "/VL") + window.location.hash;
 		window.location.replace(newURL);
-	} else if (window.location.pathname.indexOf("/channel") != -1) {
+	} else if (window.location.pathname.startsWith("/channel")) {
 		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname.replace("/channel", "/artist") + window.location.search + window.location.hash;
 		window.location.replace(newURL);
-	} else if (window.location.pathname.indexOf("/explore") != -1) {
+	} else if (window.location.pathname.startsWith("/explore")) {
 		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname.replace("/explore", "/trending") + window.location.search + window.location.hash;
 		window.location.replace(newURL);
-	} else if (window.location.pathname.indexOf("/moods_and_genres") != -1) {
+	} else if (window.location.pathname.startsWith("/moods_and_genres")) {
 		let newURL = window.location.protocol + "//" + "beatbump.ml" + window.location.pathname.replace("/moods_and_genres", "/explore") + window.location.search + window.location.hash;
 		window.location.replace(newURL);
 	} else {
@@ -247,25 +249,16 @@ function redirectWikipedia() {
 	if (redirect_wikipedia == false) {
 		return;
 	}
-
-	let wikilessInstances = [
-		'wikiless.org',
-		'wikiless.alefvanoon.xyz',
-		'wikiless.sethforprivacy.com',
-		'wiki.604kph.xyz',
-		'wiki.froth.zone'
-	];
-
-	let randomInstance = wikilessInstances[Math.floor(Math.random()*wikilessInstances.length)];
+	
 	let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./)
 
 	window.stop();
 
 	if (langCodeIndex != -1) {
-		let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname + "?lang=" + window.location.hostname[langCodeIndex] + window.location.hostname[langCodeIndex + 1] + window.location.hash;
+		let newURL = window.location.protocol + "//" + farsideInstance + "/wikiless" + window.location.pathname + "?lang=" + window.location.hostname[langCodeIndex] + window.location.hostname[langCodeIndex + 1] + window.location.hash;
 		window.location.replace(newURL);
 	} else {
-		let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname + "?lang=en" + window.location.hash;
+		let newURL = window.location.protocol + "//" + farsideInstance + "/wikiless" + window.location.pathname + "?lang=en" + window.location.hash;
 		window.location.replace(newURL);
 	}
 }
