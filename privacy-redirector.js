@@ -3,7 +3,7 @@
 // @name:tr Gizlilik Yönlendiricisi
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.2.6
+// @version 1.2.7
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -93,7 +93,7 @@ function redirectInstagram() {
 		} else if (window.location.pathname.startsWith("/reel/")) { // reel
 			let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("/reel", "/p")  + window.location.hash;
 			window.location.replace(newURL);
-		} else if (window.location.pathname.startsWith("/p/")) { // user page - it will break if it's not the second last block
+		} else if (! window.location.pathname.startsWith("/p/")) { // user page - it will break if it's not the second last block
 			let newURL = window.location.protocol + "//" + randomInstance + "/u" + window.location.pathname + window.location.search + window.location.hash;
 			window.location.replace(newURL);
 		} else { // probably a post
