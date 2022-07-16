@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name Privacy Redirector
 // @name:tr Gizlilik Yönlendiricisi
+// @name:de Datenschutz Umleiter
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
 // @version 1.2.7
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
+// @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
