@@ -4,7 +4,7 @@
 // @name:de Datenschutz Umleiter
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.2.7
+// @version 1.2.8
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
@@ -42,7 +42,7 @@ CHANGE THE RELEVANT VALUE TO "false" TO
 DISABLE THE REDIRECTION FOR THAT
 PARTICULAR SITE */
 var redirect_youtube = true;
-var redirect_instagram = true;
+var redirect_instagram = false;
 var redirect_twitter = true;
 var redirect_reddit = true;
 var redirect_tiktok = true;
@@ -68,6 +68,8 @@ function redirectInstagram() {
 	}
 
 	window.stop();
+
+	alert("Bibliogram Instances are broken, you may want to disable the redirection for Instagram")
 
 	let bibliogramInstances = [
 		'bibliogram.art',
@@ -153,13 +155,14 @@ function redirectTiktok() {
 	window.stop();
 
 	if (window.location.pathname.startsWith("/discover")) {
-		let newURL = window.location.protocol + "//" + "proxitok.herokuapp.com" + window.location.pathname.replace("discover", "tag") + window.location.hash;
+		let newURL = window.location.protocol + "//" + farsideInstance + "/proxitok" + window.location.pathname.replace("discover", "tag") + window.location.hash;
 		window.location.replace(newURL);
 	} else if (window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) != -1) {
-		let newURL = window.location.protocol + "//" + "proxitok.pussthecat.org";
+		let newURL = window.location.protocol + "//" + farsideInstance + "/proxitok";
 		window.location.replace(newURL);
 	} else {
-		location.hostname = "proxitok.pussthecat.org";
+		let newURL = window.location.protocol + "//" + farsideInstance + "/proxitok";
+		window.location.replace(newURL);
 	}
 
 }
@@ -265,7 +268,7 @@ function redirectWikipedia() {
 	}
 }
 
-var urlHostname = window.location.hostname;
+let urlHostname = window.location.hostname;
 
 switch (urlHostname) {
 
