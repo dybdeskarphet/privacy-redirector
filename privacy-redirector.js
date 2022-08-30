@@ -4,7 +4,7 @@
 // @name:de Datenschutz Umleiter
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.2.8
+// @version 1.2.9
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
@@ -152,16 +152,25 @@ function redirectTiktok() {
 		return;
 	}
 
+	let proxitokInstances = [
+		'proxitok.herokuapp.com',
+		'proxitok.pussthecat.org',
+		'tok.habedieeh.re',
+		'proxitok.esmailelbob.xyz'
+	];
+
+	let randomInstance = proxitokInstances[Math.floor(Math.random()*proxitokInstances.length)];
+
 	window.stop();
 
 	if (window.location.pathname.startsWith("/discover")) {
-		let newURL = window.location.protocol + "//" + farsideInstance + "/proxitok" + window.location.pathname.replace("discover", "tag") + window.location.hash;
+		let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname.replace("discover", "tag") + window.location.hash;
 		window.location.replace(newURL);
 	} else if (window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) != -1) {
-		let newURL = window.location.protocol + "//" + farsideInstance + "/proxitok";
+		let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname + window.location.search + window.location.hash;
 		window.location.replace(newURL);
 	} else {
-		let newURL = window.location.protocol + "//" + farsideInstance + "/proxitok";
+		let newURL = window.location.protocol + "//" + randomInstance + window.location.pathname + window.location.search + window.location.hash;
 		window.location.replace(newURL);
 	}
 
