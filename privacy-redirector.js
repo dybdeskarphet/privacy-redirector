@@ -12,23 +12,25 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @run-at document-start
-// @match *://instagram.com/*
-// @match *://*.instagram.com/*
-// @match *://twitter.com/*
-// @match *://*.twitter.com/*
-// @match *://reddit.com/*
-// @match *://*.reddit.com/*
-// @match *://youtube.com/*
-// @match *://*.youtube.com/*
-// @match *://*.tiktok.com/*
-// @match *://imgur.com/*
+// @match *://*.imdb.com/*
 // @match *://*.imgur.com/*
-// @match *://medium.com/*
+// @match *://*.instagram.com/*
 // @match *://*.medium.com/*
-// @match *://translate.google.com/*
-// @match *://news.ycombinator.com/*
+// @match *://*.quora.com/*
+// @match *://*.reddit.com/*
 // @match *://*.reuters.com/*
+// @match *://*.tiktok.com/*
+// @match *://*.twitter.com/*
 // @match *://*.wikipedia.org/*
+// @match *://*.youtube.com/*
+// @match *://imgur.com/*
+// @match *://instagram.com/*
+// @match *://medium.com/*
+// @match *://news.ycombinator.com/*
+// @match *://reddit.com/*
+// @match *://translate.google.com/*
+// @match *://twitter.com/*
+// @match *://youtube.com/*
 // ==/UserScript==
 
 /*
@@ -47,7 +49,7 @@ var redirect_imdb = true;
 var redirect_imgur = true;
 var redirect_instagram = false;
 var redirect_medium = true;
-var redirect_quora = true;
+var redirect_quora = false;
 var redirect_reddit = true;
 var redirect_reuters = true;
 var redirect_tiktok = true;
@@ -468,6 +470,10 @@ switch (urlHostname) {
 
 	case "www.imdb.com":
 		redirectImdb();
+		break;
+
+	case "www.quora.com":
+		redirectQuora();
 		break;
 }
 
