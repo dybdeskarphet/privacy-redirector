@@ -1,5 +1,5 @@
 ## To-do
-- [ ] Add [Quetre](https://github.com/zyachel/quetre)
+- [x] Add [Quetre](https://github.com/zyachel/quetre)
 - [ ] Fix: Medium stops redirecting to scribe.rip after entering a user page
 
 ### Not possible (?)
