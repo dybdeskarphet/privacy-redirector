@@ -523,6 +523,7 @@ function redirectFandom() {
     window.location.protocol +
     "//" +
     "breezewiki" +
+    randomInstance +
     subdomain[0] +
     window.location.pathname +
     window.location.search +
