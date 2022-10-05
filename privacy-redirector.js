@@ -507,7 +507,7 @@ function redirectFandom() {
     "breezewiki.com",
     "breezewiki.pussthecat.org",
     "bw.odyssey346.dev",
-    "https://bw.vern.cc",
+    "bw.vern.cc",
     "breezewiki.esmailelbob.xyz",
   ];
 
@@ -522,7 +522,6 @@ function redirectFandom() {
   let newURL =
     window.location.protocol +
     "//" +
-    "breezewiki" +
     randomInstance +
     subdomain[0] +
     window.location.pathname +
