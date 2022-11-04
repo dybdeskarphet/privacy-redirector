@@ -202,7 +202,7 @@ function redirectTiktok() {
 	}
 
 	let proxitokInstances = [
-		'proxitok.herokuapp.com',
+		'proxitok.pabloferreiro.es',
 		'proxitok.pussthecat.org',
 		'tok.habedieeh.re',
 		'proxitok.esmailelbob.xyz'
