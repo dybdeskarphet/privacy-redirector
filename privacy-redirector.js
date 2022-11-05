@@ -4,7 +4,7 @@
 // @name:de Datenschutz Umleiter
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.3.0
+// @version 1.3.1
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
@@ -12,6 +12,7 @@
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @run-at document-start
+// @match *://*.fandom.com/*
 // @match *://*.imdb.com/*
 // @match *://*.imgur.com/*
 // @match *://*.instagram.com/*
@@ -43,6 +44,7 @@
 CHANGE THE RELEVANT VALUE TO "false" TO
 DISABLE THE REDIRECTION FOR THAT
 PARTICULAR SITE */
+var redirect_fandom = true;
 var redirect_gtranslate = true;
 var redirect_hackernews = true;
 var redirect_imdb = true;
@@ -63,7 +65,7 @@ var farsideInstance = "farside.link";
 var debug_mode = false;
 
 if (debug_mode == true) {
-	alert("Path: " + window.location.pathname + "\nQuery: " + window.location.search + "\nHash: " + window.location.hash)
+	alert("Hostname: " + window.location.hostname + "\nPath: " + window.location.pathname + "\nQuery: " + window.location.search + "\nHash: " + window.location.hash)
 }
 
 function redirectInstagram() {
@@ -93,7 +95,7 @@ function redirectInstagram() {
 				window.location.hash;
 
 			window.location.replace(newURL);
-		} else if (window.location.search.indexOf("/p/") == -1) { // user pages - it will break if it's not the second last block
+		} else if (window.location.search.indexOf("/p/") == -1) { // user pages - it will crash if it's not the second last block
 			let newURL = window.location.protocol +
 				"//" + randomInstance +
 				window.location.pathname.replace("/accounts/login/", "/") +
@@ -121,7 +123,7 @@ function redirectInstagram() {
 
 			window.location.replace(newURL);
 
-		} else if (! window.location.pathname.startsWith("/p/")) { // user page - it will break if it's not the second last block
+		} else if (! window.location.pathname.startsWith("/p/")) { // user page - it will crash if it's not the second last block
 			let newURL = window.location.protocol +
 				"//" + randomInstance +
 				"/u" + window.location.pathname +
@@ -424,6 +426,36 @@ function redirectQuora() {
 	window.location.replace(newURL);
 }
 
+function redirectFandom() {
+	if (redirect_fandom == false) {
+		return;
+	}
+
+	let breezewikiInstances = [
+		'breezewiki.com',
+		'breezewiki.pussthecat.org',
+		'breezewiki.esmailelbob.xyz',
+	];
+
+	let randomInstance = breezewikiInstances[Math.floor(Math.random()*breezewikiInstances.length)];
+	let fandomName = window.location.hostname.replace(/\..*/, "")
+	let newURL = ""
+
+	window.stop();
+
+	if(fandomName !== "www") {
+		newURL =
+			window.location.protocol +
+			"//" + randomInstance + `/${fandomName}`  +
+			window.location.pathname +
+			window.location.search +
+			window.location.hash;
+	} else {
+		newURL = window.location.protocol + "//" + randomInstance
+	}
+
+	window.location.replace(newURL);
+}
 
 let urlHostname = window.location.hostname;
 
@@ -483,4 +515,6 @@ if (urlHostname.includes("medium.com")) {
 	redirectImgur();
 } else if (urlHostname.includes("wikipedia.org")) {
 	redirectWikipedia();
+} else if (urlHostname.includes("fandom.com")) {
+	redirectFandom();
 }
