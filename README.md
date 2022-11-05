@@ -12,5 +12,8 @@ __Why scribe.rip doesn't redirect to user pages?__
 > "It's intentional that there is no way to browse content from a user, see popular posts, consume via an RSS feed, or further engage with an article via comments or "claps". I want to spend my time encouraging writers to move to worthy platforms, not making a bad platform worthy."
 > ~ [edwardloveall](https://sr.ht/~edwardloveall/scribe/#project-goals)
 
-__Why Bibliogram doesn't load the full profile?__
+__Why Bibliogram redirection is disabled?__
 > [Future of Bibliogram by Cadence Ember](https://proxy.vulpes.one/gemini/cadence.moe/gemlog/2020-12-17-future-of-bibliogram.bliz)
+
+## Credits 
+* [Farside.link](https://github.com/benbusby/farside)

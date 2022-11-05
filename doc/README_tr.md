@@ -11,6 +11,8 @@ Bu betiği [![GreasyFork](https://img.shields.io/badge/dynamic/json?color=990000
 __Neden scribe.rip kullanıcı sayfalarına yönlendirmiyor?__
 > Projenin yazarı Medium'u daha değerli hale getirmek yerine yazarları kötü platformlardan daha güzel platformlara yönlendirmek istiyor. Bu sebeple Medium'u eksiksiz bir şekilde gezinmeyi sağlayan bir önyüz yerine sadece makalelerin kendisine erişmeyi sağlayacak şekilde kalmasını istiyor. Asıl yazı için: [Project Goals](https://sr.ht/~edwardloveall/scribe/#project-goals)
 
-__Neden Bibliogram tüm profili yüklemiyor?__
-> Kısaca Instagram'ın uyguladığı ekstrem kısıtlamalar bu soruna yol açmaktadır, ayrıntılı bilgi için: [Future of Bibliogram by Cadence Ember](https://proxy.vulpes.one/gemini/cadence.moe/gemlog/2020-12-17-future-of-bibliogram.bliz)
+__Bibliogram yönlendirmesi neden kapalı?__
+> Instagram'ın uyguladığı ekstrem kısıtlamalar sebebiyle Bibliogram yönlendirmeleri çalışmamaktadır, ayrıntılı bilgi için: [Future of Bibliogram by Cadence Ember](https://proxy.vulpes.one/gemini/cadence.moe/gemlog/2020-12-17-future-of-bibliogram.bliz)
 
+## Teşekkürler
+* [Farside.link](https://github.com/benbusby/farside)
