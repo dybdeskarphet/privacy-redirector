@@ -4,7 +4,7 @@
 // @name:de Datenschutz Umleiter
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @license GPLv3
-// @version 1.3.1
+// @version 1.3.2
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
@@ -61,7 +61,7 @@ var redirect_youtube = true;
 
 // // // // // // // // // // // // //
 
-var farsideInstance = "farside.link";
+var farsideInstance = "cf.farside.link";
 var debug_mode = false;
 
 if (debug_mode == true) {
