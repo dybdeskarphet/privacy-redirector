@@ -12,7 +12,7 @@ __Neden scribe.rip kullanıcı sayfalarına yönlendirmiyor?__
 > Projenin yazarı Medium'u daha değerli hale getirmek yerine yazarları kötü platformlardan daha güzel platformlara yönlendirmek istiyor. Bu sebeple Medium'u eksiksiz bir şekilde gezinmeyi sağlayan bir önyüz yerine sadece makalelerin kendisine erişmeyi sağlayacak şekilde kalmasını istiyor. Asıl yazı için: [Project Goals](https://sr.ht/~edwardloveall/scribe/#project-goals)
 
 __Bibliogram yönlendirmesi neden kapalı?__
-> Instagram'ın uyguladığı ekstrem kısıtlamalar sebebiyle Bibliogram yönlendirmeleri çalışmamaktadır, ayrıntılı bilgi için: [Future of Bibliogram by Cadence Ember](https://proxy.vulpes.one/gemini/cadence.moe/gemlog/2020-12-17-future-of-bibliogram.bliz)
+> Instagram'ın uyguladığı ekstrem kısıtlamalar sebebiyle Bibliogram projesi sonlandırılmıştır, ayrıntılı bilgi için: [Discontinuing Bibliogram](https://cadence.moe/blog/2022-09-01-discontinuing-bibliogram)
 
 ## Teşekkürler
 * [Farside.link](https://github.com/benbusby/farside)

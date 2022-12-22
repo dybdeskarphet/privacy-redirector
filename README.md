@@ -13,7 +13,7 @@ __Why scribe.rip doesn't redirect to user pages?__
 > ~ [edwardloveall](https://sr.ht/~edwardloveall/scribe/#project-goals)
 
 __Why Bibliogram redirection is disabled?__
-> [Future of Bibliogram by Cadence Ember](https://proxy.vulpes.one/gemini/cadence.moe/gemlog/2020-12-17-future-of-bibliogram.bliz)
+> [Discontinuing Bibliogram](https://cadence.moe/blog/2022-09-01-discontinuing-bibliogram)
 
 ## Credits 
 * [Farside.link](https://github.com/benbusby/farside)
