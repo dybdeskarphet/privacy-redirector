@@ -2,7 +2,6 @@
 // @name Privacy Redirector
 // @name:bg Пренасочване на поверителността
 // @name:br Rediretor de privacidade
-// @name:cn 隐私重定向器
 // @name:cz Přesměrování soukromí
 // @name:de Datenschutz Umleiter
 // @name:dk Omdirigeringsenhed for privatlivets fred
@@ -27,10 +26,12 @@
 // @name:sk Presmerovanie súkromia
 // @name:tr Gizlilik Yönlendiricisi
 // @name:ua Редиректор конфіденційності
+// @name:zh 隐私重定向器
+// @name:zh-CN 隐私重定向器
+// @name:zh-TW 隐私重定向器
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:bg Пренасочване на платформите за социални медии към заглавните им страници, съобразени с поверителността
 // @description:br Redirecionando as plataformas de mídia social para suas primeiras páginas de privacidade
-// @description:cn 将社交媒体平台重定向到其隐私友好的首页
 // @description:cz Přesměrování platforem sociálních médií na jejich titulní stránky šetrné k soukromí
 // @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
 // @description:dk Omdirigering af sociale medieplatforme til deres privatlivsvenlige forsider
@@ -55,6 +56,9 @@
 // @description:sk Presmerovanie platforiem sociálnych médií na ich úvodné stránky, ktoré chránia súkromie
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
 // @description:ua Перенаправлення соціальних медіа-платформ на їхні головні сторінки, дружні до приватності
+// @description:zh 将社交媒体平台重定向到其隐私友好的首页
+// @description:zh-CN 将社交媒体平台重定向到其隐私友好的首页
+// @description:zh-TW 将社交媒体平台重定向到其隐私友好的首页
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
