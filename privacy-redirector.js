@@ -2,18 +2,18 @@
 // @name Privacy Redirector
 // @name:bg Пренасочване на поверителността
 // @name:br Rediretor de privacidade
-// @name:cz Přesměrování soukromí
+// @name:cs Přesměrování soukromí
 // @name:de Datenschutz Umleiter
-// @name:dk Omdirigeringsenhed for privatlivets fred
-// @name:ee Privaatsuse ümbersuunaja
+// @name:da Omdirigeringsenhed for privatlivets fred
+// @name:et Privaatsuse ümbersuunaja
 // @name:es Redirección de privacidad
 // @name:fi Yksityisyydensuojan uudelleenohjaus
 // @name:fr Redirecteur de confidentialité
-// @name:gr Επανακατευθυντής απορρήτου
+// @name:el Επανακατευθυντής απορρήτου
 // @name:hu Adatvédelmi átirányító
 // @name:id Pengarah Privasi
 // @name:it Reindirizzatore di privacy
-// @name:jp プライバシーリダイレクト
+// @name:ja プライバシーリダイレクト
 // @name:lt Privatumo nukreipiklis
 // @name:lv Konfidencialitātes pāradresētājs
 // @name:nl Privacy-omleiding
@@ -21,29 +21,28 @@
 // @name:pt Redirector de Privacidade
 // @name:ro Redirector de confidențialitate
 // @name:ru Перенаправление конфиденциальности
-// @name:se Omdirigering av sekretess
-// @name:si Preusmerjevalnik zasebnosti
+// @name:sv Omdirigering av sekretess
+// @name:sl Preusmerjevalnik zasebnosti
 // @name:sk Presmerovanie súkromia
 // @name:tr Gizlilik Yönlendiricisi
-// @name:ua Редиректор конфіденційності
+// @name:uk Редиректор конфіденційності
 // @name:zh 隐私重定向器
 // @name:zh-CN 隐私重定向器
-// @name:zh-TW 隐私重定向器
 // @description	Redirect social media platforms to their privacy respecting frontends
 // @description:bg Пренасочване на платформите за социални медии към заглавните им страници, съобразени с поверителността
 // @description:br Redirecionando as plataformas de mídia social para suas primeiras páginas de privacidade
-// @description:cz Přesměrování platforem sociálních médií na jejich titulní stránky šetrné k soukromí
+// @description:cs Přesměrování platforem sociálních médií na jejich titulní stránky šetrné k soukromí
 // @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
-// @description:dk Omdirigering af sociale medieplatforme til deres privatlivsvenlige forsider
-// @description:ee Sotsiaalmeediaplatvormide ümbersuunamine nende privaatsussõbralikele esilehtedele
+// @description:da Omdirigering af sociale medieplatforme til deres privatlivsvenlige forsider
+// @description:et Sotsiaalmeediaplatvormide ümbersuunamine nende privaatsussõbralikele esilehtedele
 // @description:es Redirigir las plataformas de medios sociales a sus portadas respetuosas con la privacidad
 // @description:fi Sosiaalisen median alustojen ohjaaminen yksityisyyden suojaa edistäville etusivuille.
 // @description:fr Rediriger les plateformes de médias sociaux vers leurs pages d'accueil respectueuses de la vie privée
-// @description:gr Αναπροσανατολισμός των πλατφορμών κοινωνικής δικτύωσης στις μπροστινές σελίδες τους που είναι φιλικές προς το απόρρητο
+// @description:el Αναπροσανατολισμός των πλατφορμών κοινωνικής δικτύωσης στις μπροστινές σελίδες τους που είναι φιλικές προς το απόρρητο
 // @description:hu A közösségi médiaplatformok átirányítása az adatvédelem-barát kezdőlapokra
 // @description:id Mengarahkan platform media sosial ke halaman depan yang ramah privasi
 // @description:it Reindirizzare le piattaforme di social media verso le loro pagine frontali che rispettano la privacy
-// @description:jp ソーシャルメディアプラットフォームをプライバシーに配慮したフロントページにリダイレクトする
+// @description:ja ソーシャルメディアプラットフォームをプライバシーに配慮したフロントページにリダイレクトする
 // @description:lt Socialinės žiniasklaidos platformų nukreipimas į privatumą užtikrinančius pirmuosius puslapius
 // @description:lv Sociālo plašsaziņas līdzekļu platformu pāradresēšana uz to privātumam draudzīgajām pirmajām lapām.
 // @description:nl Sociale-mediaplatforms omleiden naar hun privacyvriendelijke voorpagina's
@@ -51,14 +50,13 @@
 // @description:pt Redireccionar as plataformas de redes sociais para as suas primeiras páginas amigas da privacidade
 // @description:ro Redirecționarea platformelor de socializare către paginile lor de început care respectă viața privată
 // @description:ru Перенаправление платформ социальных сетей на их главные страницы, дружественные к конфиденциальности
-// @description:se Omdirigera sociala medieplattformar till deras integritetsvänliga förstasidor.
-// @description:si preusmeritev platform družabnih medijev na njihove naslovne strani, ki so prijazne do zasebnosti.
+// @description:sv Omdirigera sociala medieplattformar till deras integritetsvänliga förstasidor.
+// @description:sl preusmeritev platform družabnih medijev na njihove naslovne strani, ki so prijazne do zasebnosti.
 // @description:sk Presmerovanie platforiem sociálnych médií na ich úvodné stránky, ktoré chránia súkromie
 // @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
-// @description:ua Перенаправлення соціальних медіа-платформ на їхні головні сторінки, дружні до приватності
+// @description:uk Перенаправлення соціальних медіа-платформ на їхні головні сторінки, дружні до приватності
 // @description:zh 将社交媒体平台重定向到其隐私友好的首页
 // @description:zh-CN 将社交媒体平台重定向到其隐私友好的首页
-// @description:zh-TW 将社交媒体平台重定向到其隐私友好的首页
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
