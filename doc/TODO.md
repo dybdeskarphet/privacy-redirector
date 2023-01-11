@@ -1,4 +1,5 @@
 ## To-do
+- [ ] Move the last if-else to "case *"
 - [ ] Fix: Medium stops redirecting to scribe.rip after entering a user page
 
 ### Not possible (?)
