@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.3.4
+// @version 1.3.5
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -78,6 +78,7 @@
 // @match *://*.twitter.com/*
 // @match *://*.wikipedia.org/*
 // @match *://*.youtube.com/*
+// @match *://*.youtube-nocookie.com/*
 // @match *://imgur.com/*
 // @match *://instagram.com/*
 // @match *://medium.com/*
@@ -263,385 +264,103 @@ if (debug_mode == true) {
 }
 
 function redirectInstagram() {
-  if (instagram[0] == false) {
-    return;
-  }
+  if (instagram[0] == true) {
+    window.stop();
 
-  window.stop();
+    alert(
+      "Bibliogram is discontinued, you may want to disable the redirection."
+    );
 
-  alert("Bibliogram is discontinued, you may want to disable the redirection.");
+    var selectedInstance = "";
 
-  var selectedInstance = "";
-
-  if (instagram[1] == false) {
-    selectedInstance =
-      bibliogramInstances[
-        Math.floor(Math.random() * bibliogramInstances.length)
-      ];
-  } else {
-    selectedInstance = `${farsideInstance}/bibliogram`;
-  }
-
-  if (window.location.pathname.startsWith("/accounts/login/")) {
-    if (window.location.search.indexOf("/reel/") != -1) {
-      // reels
-      let newURL =
-        window.location.protocol +
-        "//" +
-        selectedInstance +
-        window.location.pathname.replace("/accounts/login/", "/") +
-        window.location.search.replace("?next=/reel", "p") +
-        window.location.hash;
-
-      window.location.replace(newURL);
-    } else if (window.location.search.indexOf("/p/") == -1) {
-      // user pages - it will crash if it's not the second last block
-      let newURL =
-        window.location.protocol +
-        "//" +
-        selectedInstance +
-        window.location.pathname.replace("/accounts/login/", "/") +
-        window.location.search.replace("?next=", "u") +
-        window.location.hash;
-
-      window.location.replace(newURL);
+    if (instagram[1] == false) {
+      selectedInstance =
+        bibliogramInstances[
+          Math.floor(Math.random() * bibliogramInstances.length)
+        ];
     } else {
-      // probably a post
-      let newURL =
-        window.location.protocol +
-        "//" +
-        selectedInstance +
-        window.location.pathname.replace("/accounts/login/", "") +
-        window.location.search.replace("?next=", "") +
-        window.location.hash;
-
-      window.location.replace(newURL);
+      selectedInstance = `${farsideInstance}/bibliogram`;
     }
-  } else {
-    if (window.location.pathname == "/") {
-      // home page
-      location.hostname = selectedInstance;
-    } else if (window.location.pathname.startsWith("/reel/")) {
-      // reel
-      let newURL =
-        window.location.protocol +
-        "//" +
-        selectedInstance +
-        window.location.pathname.replace("/reel", "/p") +
-        window.location.hash;
 
-      window.location.replace(newURL);
-    } else if (!window.location.pathname.startsWith("/p/")) {
-      // user page - it will crash if it's not the second last block
-      let newURL =
-        window.location.protocol +
-        "//" +
-        selectedInstance +
-        "/u" +
-        window.location.pathname +
-        window.location.search +
-        indow.location.hash;
+    if (window.location.pathname.startsWith("/accounts/login/")) {
+      if (window.location.search.indexOf("/reel/") != -1) {
+        // reels
+        let newURL =
+          window.location.protocol +
+          "//" +
+          selectedInstance +
+          window.location.pathname.replace("/accounts/login/", "/") +
+          window.location.search.replace("?next=/reel", "p") +
+          window.location.hash;
 
-      window.location.replace(newURL);
+        window.location.replace(newURL);
+      } else if (window.location.search.indexOf("/p/") == -1) {
+        // user pages - it will crash if it's not the second last block
+        let newURL =
+          window.location.protocol +
+          "//" +
+          selectedInstance +
+          window.location.pathname.replace("/accounts/login/", "/") +
+          window.location.search.replace("?next=", "u") +
+          window.location.hash;
+
+        window.location.replace(newURL);
+      } else {
+        // probably a post
+        let newURL =
+          window.location.protocol +
+          "//" +
+          selectedInstance +
+          window.location.pathname.replace("/accounts/login/", "") +
+          window.location.search.replace("?next=", "") +
+          window.location.hash;
+
+        window.location.replace(newURL);
+      }
     } else {
-      // probably a post
-      location.hostname = selectedInstance;
+      if (window.location.pathname == "/") {
+        // home page
+        location.hostname = selectedInstance;
+      } else if (window.location.pathname.startsWith("/reel/")) {
+        // reel
+        let newURL =
+          window.location.protocol +
+          "//" +
+          selectedInstance +
+          window.location.pathname.replace("/reel", "/p") +
+          window.location.hash;
+
+        window.location.replace(newURL);
+      } else if (!window.location.pathname.startsWith("/p/")) {
+        // user page - it will crash if it's not the second last block
+        let newURL =
+          window.location.protocol +
+          "//" +
+          selectedInstance +
+          "/u" +
+          window.location.pathname +
+          window.location.search +
+          indow.location.hash;
+
+        window.location.replace(newURL);
+      } else {
+        // probably a post
+        location.hostname = selectedInstance;
+      }
     }
   }
 }
 
 function redirectTwitter() {
-  if (twitter[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  var selectedInstance = "";
-
-  if (twitter[1] == false) {
-    selectedInstance =
-      nitterInstances[Math.floor(Math.random() * nitterInstances.length)];
-  } else {
-    selectedInstance = `${farsideInstance}/nitter`;
-  }
-
-  let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-  window.location.replace(newURL);
-}
-
-function redirectReddit() {
-  if (reddit[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  var selectedTeddit = "";
-  var selectedLibreddit = "";
-
-  if (reddit[1] == false) {
-    selectedInstance = eval(redditFrontend + "Instances")[
-      Math.floor(Math.random() * eval(redditFrontend + "Instances.length"))
-    ];
-  } else {
-    selectedInstance = `${farsideInstance}/${redditFrontend}`;
-  }
-
-  let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-  window.location.replace(newURL);
-}
-
-function redirectYoutube() {
-  if (youtube[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  var selectedInstance = "";
-
-  if (youtube[1] == false) {
-    selectedInstance = eval(youtubeFrontend + "Instances")[
-      Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
-    ];
-  } else {
-    selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
-  }
-
-  let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-  window.location.replace(newURL);
-}
-
-function redirectTiktok() {
-  if (tiktok[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  var selectedInstance = "";
-
-  if (tiktok[1] == false) {
-    selectedInstance =
-      proxitokInstances[Math.floor(Math.random() * proxitokInstances.length)];
-  } else {
-    selectedInstance = `${farsideInstance}/proxitok`;
-  }
-
-  if (window.location.pathname.startsWith("/discover")) {
-    let newURL = `${
-      window.location.protocol
-    }//${selectedInstance}${window.location.pathname.replace(
-      "discover",
-      "tag"
-    )}${window.location.hash}`;
-
-    window.location.replace(newURL);
-  } else if (window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) != -1) {
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-    window.location.replace(newURL);
-  } else {
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-    window.location.replace(newURL);
-  }
-}
-
-function redirectImgur() {
-  if (imgur[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  var selectedInstance = "";
-
-  if (imgur[1] == false) {
-    selectedInstance =
-      rimgoInstances[Math.floor(Math.random() * rimgoInstances.length)];
-  } else {
-    selectedInstance = `${farsideInstance}/rimgo`;
-  }
-
-  let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-  window.location.replace(newURL);
-}
-
-function redirectMedium() {
-  if (medium[0] == false || window.location.pathname == "/") {
-    return;
-  }
-
-  window.stop();
-
-  var selectedInstance = "";
-
-  if (medium[1] == false) {
-    selectedInstance =
-      scribeInstances[Math.floor(Math.random() * scribeInstances.length)];
-  } else {
-    selectedInstance = `${farsideInstance}/scribe`;
-  }
-
-  let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-  window.location.replace(newURL);
-}
-
-function redirectYoutubeMusic() {
-  if (youtube[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  if (window.location.pathname.startsWith("/playlist")) {
-    let newURL = `${window.location.protocol}//beatbump.ml${
-      window.location.pathname
-    }${window.location.search.replace("?list=", "/VL")}${window.location.hash}`;
-
-    window.location.replace(newURL);
-  } else if (window.location.pathname.startsWith("/channel")) {
-    let newURL = `${
-      window.location.protocol
-    }//beatbump.ml${window.location.pathname.replace("/channel", "/artist")}${
-      window.location.search
-    }${window.location.hash}`;
-
-    window.location.replace(newURL);
-  } else if (window.location.pathname.startsWith("/explore")) {
-    let newURL = `${
-      window.location.protocol
-    }//beatbump.ml${window.location.pathname.replace("/explore", "/trending")}${
-      window.location.search
-    }${window.location.hash}`;
-
-    window.location.replace(newURL);
-  } else if (window.location.pathname.startsWith("/moods_and_genres")) {
-    let newURL = `${
-      window.location.protocol
-    }//beatbump.ml${window.location.pathname.replace(
-      "/moods_and_genres",
-      "/explore"
-    )}${window.location.search}${window.location.hash}`;
-
-    window.location.replace(newURL);
-  } else {
-    location.hostname = "beatbump.ml";
-  }
-}
-
-function redirectHackerNews() {
-  if (hackernews[0] == false) {
-    return;
-  }
-
-  window.stop();
-  let newURL = `${window.location.protocol}//hn.algolia.com`;
-  window.location.replace(newURL);
-}
-
-function redirectGTranslate() {
-  if (gtranslate[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  var selectedInstance = "";
-
-  if (gtranslate[1] == false) {
-    selectedInstance =
-      lingvaInstances[Math.floor(Math.random() * lingvaInstances.length)];
-  } else {
-    selectedInstance = `${farsideInstance}/lingva`;
-  }
-
-  if (window.location.search != "") {
-    let newURL =
-      window.location.protocol +
-      "//" +
-      selectedInstance +
-      window.location.pathname +
-      window.location.search
-        .replace(/\?hl=tr/, "")
-        .replace(/.sl=/, "")
-        .replace("&tl=", "/")
-        .replace("&text=", "/")
-        .replace("&op=translate", "") +
-      window.location.hash;
-
-    window.location.replace(newURL);
-  } else {
-    let newURL = window.location.protocol + "//" + selectedInstance;
-    window.location.replace(newURL);
-  }
-}
-
-function redirectReuters() {
-  if (reuters[0] == false) {
-    return;
-  }
-
-  window.stop();
-  location.hostname = "neuters.de";
-}
-
-function redirectWikipedia() {
-  if (wikipedia[0] == false) {
-    return;
-  }
-
-  window.stop();
-
-  let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
-  var selectedInstance = "";
-
-  if (wikipedia[1] == false) {
-    selectedInstance =
-      wikilessInstances[Math.floor(Math.random() * wikilessInstances.length)];
-  } else {
-    selectedInstance = `${farsideInstance}/wikiless`;
-  }
-
-  if (langCodeIndex != -1) {
-    let newURL =
-      window.location.protocol +
-      "//" +
-      selectedInstance +
-      window.location.pathname +
-      "?lang=" +
-      window.location.hostname[langCodeIndex] +
-      window.location.hostname[langCodeIndex + 1] +
-      window.location.hash;
-    window.location.replace(newURL);
-  } else {
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}?lang=en${window.location.hash}`;
-    window.location.replace(newURL);
-  }
-}
-
-function redirectImdb() {
-  if (imdb[0] == false) {
-    return;
-  }
-
-  if (window.location.pathname.startsWith("/title/")) {
+  if (twitter[0] == true) {
     window.stop();
-
     var selectedInstance = "";
 
-    if (imdb[1] == false) {
+    if (twitter[1] == false) {
       selectedInstance =
-        libremdbInstances[Math.floor(Math.random() * libremdbInstances.length)];
+        nitterInstances[Math.floor(Math.random() * nitterInstances.length)];
     } else {
-      selectedInstance = `${farsideInstance}/libremdb`;
+      selectedInstance = `${farsideInstance}/nitter`;
     }
 
     let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
@@ -650,52 +369,312 @@ function redirectImdb() {
   }
 }
 
+function redirectReddit() {
+  if (reddit[0] == true) {
+    window.stop();
+
+    var selectedTeddit = "";
+    var selectedLibreddit = "";
+
+    if (reddit[1] == false) {
+      selectedInstance = eval(redditFrontend + "Instances")[
+        Math.floor(Math.random() * eval(redditFrontend + "Instances.length"))
+      ];
+    } else {
+      selectedInstance = `${farsideInstance}/${redditFrontend}`;
+    }
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    window.location.replace(newURL);
+  }
+}
+
+function redirectYoutube() {
+  if (youtube[0] == true) {
+    window.stop();
+
+    var selectedInstance = "";
+
+    if (youtube[1] == false) {
+      selectedInstance = eval(youtubeFrontend + "Instances")[
+        Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
+      ];
+    } else {
+      selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
+    }
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    window.location.replace(newURL);
+  }
+}
+
+function redirectTiktok() {
+  if (tiktok[0] == true) {
+    window.stop();
+
+    var selectedInstance = "";
+
+    if (tiktok[1] == false) {
+      selectedInstance =
+        proxitokInstances[Math.floor(Math.random() * proxitokInstances.length)];
+    } else {
+      selectedInstance = `${farsideInstance}/proxitok`;
+    }
+
+    if (window.location.pathname.startsWith("/discover")) {
+      let newURL = `${
+        window.location.protocol
+      }//${selectedInstance}${window.location.pathname.replace(
+        "discover",
+        "tag"
+      )}${window.location.hash}`;
+
+      window.location.replace(newURL);
+    } else if (
+      window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) != -1
+    ) {
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+      window.location.replace(newURL);
+    } else {
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+      window.location.replace(newURL);
+    }
+  }
+}
+
+function redirectImgur() {
+  if (imgur[0] == true) {
+    window.stop();
+
+    var selectedInstance = "";
+
+    if (imgur[1] == false) {
+      selectedInstance =
+        rimgoInstances[Math.floor(Math.random() * rimgoInstances.length)];
+    } else {
+      selectedInstance = `${farsideInstance}/rimgo`;
+    }
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    window.location.replace(newURL);
+  }
+}
+
+function redirectMedium() {
+  if (medium[0] == true || window.location.pathname != "/") {
+    window.stop();
+
+    var selectedInstance = "";
+
+    if (medium[1] == false) {
+      selectedInstance =
+        scribeInstances[Math.floor(Math.random() * scribeInstances.length)];
+    } else {
+      selectedInstance = `${farsideInstance}/scribe`;
+    }
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    window.location.replace(newURL);
+  }
+}
+
+function redirectYoutubeMusic() {
+  if (youtube[0] == true) {
+    window.stop();
+
+    if (window.location.pathname.startsWith("/playlist")) {
+      let newURL = `${window.location.protocol}//beatbump.ml${
+        window.location.pathname
+      }${window.location.search.replace("?list=", "/VL")}${
+        window.location.hash
+      }`;
+
+      window.location.replace(newURL);
+    } else if (window.location.pathname.startsWith("/channel")) {
+      let newURL = `${
+        window.location.protocol
+      }//beatbump.ml${window.location.pathname.replace("/channel", "/artist")}${
+        window.location.search
+      }${window.location.hash}`;
+
+      window.location.replace(newURL);
+    } else if (window.location.pathname.startsWith("/explore")) {
+      let newURL = `${
+        window.location.protocol
+      }//beatbump.ml${window.location.pathname.replace(
+        "/explore",
+        "/trending"
+      )}${window.location.search}${window.location.hash}`;
+
+      window.location.replace(newURL);
+    } else if (window.location.pathname.startsWith("/moods_and_genres")) {
+      let newURL = `${
+        window.location.protocol
+      }//beatbump.ml${window.location.pathname.replace(
+        "/moods_and_genres",
+        "/explore"
+      )}${window.location.search}${window.location.hash}`;
+
+      window.location.replace(newURL);
+    } else {
+      location.hostname = "beatbump.ml";
+    }
+  }
+}
+
+function redirectHackerNews() {
+  if (hackernews[0] == true) {
+    window.stop();
+    let newURL = `${window.location.protocol}//hn.algolia.com`;
+    window.location.replace(newURL);
+  }
+}
+
+function redirectGTranslate() {
+  if (gtranslate[0] == true) {
+    window.stop();
+
+    var selectedInstance = "";
+
+    if (gtranslate[1] == false) {
+      selectedInstance =
+        lingvaInstances[Math.floor(Math.random() * lingvaInstances.length)];
+    } else {
+      selectedInstance = `${farsideInstance}/lingva`;
+    }
+
+    if (window.location.search != "") {
+      let newURL =
+        window.location.protocol +
+        "//" +
+        selectedInstance +
+        window.location.pathname +
+        window.location.search
+          .replace(/\?hl=tr/, "")
+          .replace(/.sl=/, "")
+          .replace("&tl=", "/")
+          .replace("&text=", "/")
+          .replace("&op=translate", "") +
+        window.location.hash;
+
+      window.location.replace(newURL);
+    } else {
+      let newURL = window.location.protocol + "//" + selectedInstance;
+      window.location.replace(newURL);
+    }
+  }
+}
+
+function redirectReuters() {
+  if (reuters[0] == true) {
+    window.stop();
+    location.hostname = "neuters.de";
+  }
+}
+
+function redirectWikipedia() {
+  if (wikipedia[0] == false) {
+    window.stop();
+
+    let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
+    var selectedInstance = "";
+
+    if (wikipedia[1] == false) {
+      selectedInstance =
+        wikilessInstances[Math.floor(Math.random() * wikilessInstances.length)];
+    } else {
+      selectedInstance = `${farsideInstance}/wikiless`;
+    }
+
+    if (langCodeIndex != -1) {
+      let newURL =
+        window.location.protocol +
+        "//" +
+        selectedInstance +
+        window.location.pathname +
+        "?lang=" +
+        window.location.hostname[langCodeIndex] +
+        window.location.hostname[langCodeIndex + 1] +
+        window.location.hash;
+      window.location.replace(newURL);
+    } else {
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}?lang=en${window.location.hash}`;
+      window.location.replace(newURL);
+    }
+  }
+}
+
+function redirectImdb() {
+  if (imdb[0] == true) {
+    if (window.location.pathname.startsWith("/title/")) {
+      window.stop();
+
+      var selectedInstance = "";
+
+      if (imdb[1] == false) {
+        selectedInstance =
+          libremdbInstances[
+            Math.floor(Math.random() * libremdbInstances.length)
+          ];
+      } else {
+        selectedInstance = `${farsideInstance}/libremdb`;
+      }
+
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+      window.location.replace(newURL);
+    }
+  }
+}
+
 function redirectQuora() {
-  if (quora[0] == false) {
-    return;
+  if (quora[0] == true) {
+    window.stop();
+
+    var selectedInstance = "";
+
+    if (quora[1] == false) {
+      selectedInstance =
+        quetreInstances[Math.floor(Math.random() * quetreInstances.length)];
+    } else {
+      selectedInstance = `${farsideInstance}/quetre`;
+    }
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    window.location.replace(newURL);
   }
-
-  window.stop();
-
-  var selectedInstance = "";
-
-  if (quora[1] == false) {
-    selectedInstance =
-      quetreInstances[Math.floor(Math.random() * quetreInstances.length)];
-  } else {
-    selectedInstance = `${farsideInstance}/quetre`;
-  }
-
-  let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-  window.location.replace(newURL);
 }
 
 function redirectFandom() {
-  if (fandom[0] == false) {
-    return;
+  if (fandom[0] == true) {
+    let randomInstance =
+      breezewikiInstances[
+        Math.floor(Math.random() * breezewikiInstances.length)
+      ];
+    let fandomName = window.location.hostname.replace(/\..*/, "");
+    let newURL = "";
+
+    window.stop();
+
+    if (fandomName !== "www") {
+      newURL = `${window.location.protocol}//${randomInstance}/${fandomName}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    } else {
+      newURL = `${window.location.protocol}//${randomInstance}`;
+    }
+
+    window.location.replace(newURL);
   }
-
-  let randomInstance =
-    breezewikiInstances[Math.floor(Math.random() * breezewikiInstances.length)];
-  let fandomName = window.location.hostname.replace(/\..*/, "");
-  let newURL = "";
-
-  window.stop();
-
-  if (fandomName !== "www") {
-    newURL = `${window.location.protocol}//${randomInstance}/${fandomName}${window.location.pathname}${window.location.search}${window.location.hash}`;
-  } else {
-    newURL = `${window.location.protocol}//${randomInstance}`;
-  }
-
-  window.location.replace(newURL);
 }
 
 function redirectGoogle() {
-  if (google[0] == false) {
-    return;
-  }
+  if (google[0] == true) {
 
   window.stop();
 
@@ -719,6 +698,7 @@ function redirectGoogle() {
     window.location.replace(newURL);
   }
 }
+  }
 
 let urlHostname = window.location.hostname;
 
@@ -739,6 +719,7 @@ switch (urlHostname) {
 
   case "www.youtube.com":
   case "m.youtube.com":
+  case "www.youtube-nocookie.com":
     redirectYoutube();
     break;
 
