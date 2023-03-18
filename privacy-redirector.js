@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.3.5
+// @version 1.3.6
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -579,7 +579,7 @@ function redirectReuters() {
 }
 
 function redirectWikipedia() {
-  if (wikipedia[0] == false) {
+  if (wikipedia[0] == true) {
     window.stop();
 
     let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
@@ -674,7 +674,7 @@ function redirectFandom() {
 }
 
 function redirectGoogle() {
-  if (google[0] == true) {
+  if (google[0] == true && window.location.hostname.startsWith("www") && window.location.pathname.startsWith("/search")) {
 
   window.stop();
 
