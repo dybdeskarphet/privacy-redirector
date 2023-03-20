@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.3.6
+// @version 1.3.7
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -529,7 +529,7 @@ function redirectYoutubeMusic() {
 }
 
 function redirectHackerNews() {
-  if (hackernews[0] == true) {
+  if (hackernews[0] == true && window.location.pathname != "/user" && window.location.pathname != "/item" ) {
     window.stop();
     let newURL = `${window.location.protocol}//hn.algolia.com`;
     window.location.replace(newURL);
