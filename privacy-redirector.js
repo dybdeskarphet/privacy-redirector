@@ -77,8 +77,8 @@
 // @match *://*.tiktok.com/*
 // @match *://*.twitter.com/*
 // @match *://*.wikipedia.org/*
-// @match *://*.youtube.com/*
 // @match *://*.youtube-nocookie.com/*
+// @match *://*.youtube.com/*
 // @match *://imgur.com/*
 // @match *://instagram.com/*
 // @match *://medium.com/*
@@ -86,6 +86,7 @@
 // @match *://reddit.com/*
 // @match *://translate.google.com/*
 // @match *://twitter.com/*
+// @match *://www.goodreads.com/*
 // @match *://youtube.com/*
 // ==/UserScript==
 
@@ -116,9 +117,11 @@ let tiktok = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, true];
 let youtube = [true, true];
+let goodreads = [true, false];
 
 // PREFERRED FRONTEND
 let youtubeFrontend = "piped"; // accepts "invidious", "piped"
+let youtubeMusicFrontend = "beatbump"; // accepts "beatbump", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "searxng"; // accepts "searx", "searxng"
 
@@ -139,11 +142,11 @@ let bibliogramInstances = [
   "ig.tokhmi.xyz"
 ];
 
-let breezewikiInstances = [
-  "breezewiki.com",
-  "breezewiki.pussthecat.org",
-  "breezewiki.esmailelbob.xyz",
-  "bw.vern.cc",
+let biblioreadsInstances = [
+  "biblioreads.ml",
+  "biblioreads.ga",
+  "biblioreads.netlify.app",
+  "biblioreads.esmailelbob.xyz",
 ];
 
 let invidiousInstances = [
@@ -248,7 +251,7 @@ let farsideInstance = "farside.link";
 
 // // // // // // // // // // // // //
 
-let debug_mode = false;
+let debug_mode = true;
 
 if (debug_mode == true) {
   alert(
@@ -372,9 +375,7 @@ function redirectTwitter() {
 function redirectReddit() {
   if (reddit[0] == true) {
     window.stop();
-
-    var selectedTeddit = "";
-    var selectedLibreddit = "";
+    var selectedInstance = "";
 
     if (reddit[1] == false) {
       selectedInstance = eval(redditFrontend + "Instances")[
@@ -393,7 +394,6 @@ function redirectReddit() {
 function redirectYoutube() {
   if (youtube[0] == true) {
     window.stop();
-
     var selectedInstance = "";
 
     if (youtube[1] == false) {
@@ -413,7 +413,6 @@ function redirectYoutube() {
 function redirectTiktok() {
   if (tiktok[0] == true) {
     window.stop();
-
     var selectedInstance = "";
 
     if (tiktok[1] == false) {
@@ -468,7 +467,6 @@ function redirectImgur() {
 function redirectMedium() {
   if (medium[0] == true || window.location.pathname != "/") {
     window.stop();
-
     var selectedInstance = "";
 
     if (medium[1] == false) {
@@ -488,7 +486,19 @@ function redirectYoutubeMusic() {
   if (youtube[0] == true) {
     window.stop();
 
-    if (window.location.pathname.startsWith("/playlist")) {
+    if (window.location.pathname.startsWith("/watch")) {
+      if (youtube[1] == false) {
+        selectedInstance = eval(youtubeFrontend + "Instances")[
+          Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
+        ];
+      } else {
+        selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
+      }
+
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+      window.location.replace(newURL);
+    } else if (window.location.pathname.startsWith("/playlist")) {
       let newURL = `${window.location.protocol}//beatbump.ml${
         window.location.pathname
       }${window.location.search.replace("?list=", "/VL")}${
@@ -529,7 +539,11 @@ function redirectYoutubeMusic() {
 }
 
 function redirectHackerNews() {
-  if (hackernews[0] == true && window.location.pathname != "/user" && window.location.pathname != "/item" ) {
+  if (
+    hackernews[0] == true &&
+    window.location.pathname != "/user" &&
+    window.location.pathname != "/item"
+  ) {
     window.stop();
     let newURL = `${window.location.protocol}//hn.algolia.com`;
     window.location.replace(newURL);
@@ -539,7 +553,6 @@ function redirectHackerNews() {
 function redirectGTranslate() {
   if (gtranslate[0] == true) {
     window.stop();
-
     var selectedInstance = "";
 
     if (gtranslate[1] == false) {
@@ -581,7 +594,6 @@ function redirectReuters() {
 function redirectWikipedia() {
   if (wikipedia[0] == true) {
     window.stop();
-
     let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
     var selectedInstance = "";
 
@@ -614,7 +626,6 @@ function redirectImdb() {
   if (imdb[0] == true) {
     if (window.location.pathname.startsWith("/title/")) {
       window.stop();
-
       var selectedInstance = "";
 
       if (imdb[1] == false) {
@@ -636,7 +647,6 @@ function redirectImdb() {
 function redirectQuora() {
   if (quora[0] == true) {
     window.stop();
-
     var selectedInstance = "";
 
     if (quora[1] == false) {
@@ -660,7 +670,6 @@ function redirectFandom() {
       ];
     let fandomName = window.location.hostname.replace(/\..*/, "");
     let newURL = "";
-
     window.stop();
 
     if (fandomName !== "www") {
@@ -674,31 +683,55 @@ function redirectFandom() {
 }
 
 function redirectGoogle() {
-  if (google[0] == true && window.location.hostname.startsWith("www") && window.location.pathname.startsWith("/search")) {
+  if (
+    google[0] == true &&
+    window.location.hostname.startsWith("www") &&
+    window.location.pathname.startsWith("/search")
+  ) {
+    window.stop();
+    var selectedInstance = "";
 
-  window.stop();
+    if (google[1] == false) {
+      selectedInstance = eval(googleFrontend + "Instances")[
+        Math.floor(Math.random() * eval(googleFrontend + "Instances.length"))
+      ];
+    } else {
+      selectedInstance = `${farsideInstance}/${googleFrontend}`;
+    }
 
-  var selectedInstance = "";
-
-  if (google[1] == false) {
-    selectedInstance = eval(googleFrontend + "Instances")[
-      Math.floor(Math.random() * eval(googleFrontend + "Instances.length"))
-    ];
-  } else {
-    selectedInstance = `${farsideInstance}/${googleFrontend}`;
-  }
-
-  if (window.location.pathname.match("/")) {
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-    window.location.replace(newURL);
-  } else {
-    let newURL = `${window.location.protocol}//${selectedInstance}${
-      window.location.pathname
-    }${window.location.search.match(/\?q.+?(?=\&)/)}`;
-    window.location.replace(newURL);
+    if (window.location.pathname.match("/")) {
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      window.location.replace(newURL);
+    } else {
+      let newURL = `${window.location.protocol}//${selectedInstance}${
+        window.location.pathname
+      }${window.location.search.match(/\?q.+?(?=\&)/)}`;
+      window.location.replace(newURL);
+    }
   }
 }
+
+function redirectGoodreads() {
+  if (goodreads[0] == true) {
+    window.stop();
+
+    var selectedInstance =
+      biblioreadsInstances[
+        Math.floor(Math.random() * biblioreadsInstances.length)
+      ];
+
+    if (window.location.pathname.startsWith("/search")) {
+      let newURL =
+        `${window.location.protocol}//${selectedInstance}${window.location.pathname}` +
+        window.location.search.replace(/.*.q\=/, "/") +
+        `${window.location.hash}`;
+      window.location.replace(newURL);
+    } else {
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      window.location.replace(newURL);
+    }
   }
+}
 
 let urlHostname = window.location.hostname;
 
@@ -728,7 +761,11 @@ switch (urlHostname) {
     break;
 
   case "music.youtube.com":
-    redirectYoutubeMusic();
+    if (youtubeMusicFrontend == "beatbump") {
+      redirectYoutubeMusic();
+    } else {
+      redirectYoutube();
+    }
     break;
 
   case "news.ycombinator.com":
@@ -753,6 +790,10 @@ switch (urlHostname) {
 
   case "www.google.com":
     redirectGoogle();
+    break;
+
+  case "www.goodreads.com":
+    redirectGoodreads();
     break;
 
   default:
