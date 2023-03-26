@@ -262,7 +262,12 @@ let debug_mode = false;
 
 if (debug_mode == true) {
   alert(
-    "Hostname: " +
+      "\n== DEBUG MODE IS ON ==" + 
+      "\nIf you're seeing this" + 
+      "\nset the debug_mode value to" + 
+      "\nfalse for Privacy Redirctor." + 
+      "\n======================" + 
+      "\n\nHostname: " +
       window.location.hostname +
       "\nPath: " +
       window.location.pathname +
