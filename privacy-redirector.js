@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.3.8
+// @version 1.3.9
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -103,6 +103,7 @@ PARTICULAR PLATFORM */
 
 //           REDIRECTON / FARSIDE
 let fandom = [true, true];
+let goodreads = [true, false];
 let google = [true, true];
 let gtranslate = [true, true];
 let hackernews = [true, true];
@@ -117,7 +118,6 @@ let tiktok = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, true];
 let youtube = [true, true];
-let goodreads = [true, false];
 
 // PREFERRED FRONTEND
 let youtubeFrontend = "piped"; // accepts "invidious", "piped"
@@ -139,7 +139,7 @@ LIST OF INSTANCES TO USE IF FARSIDE IS NOT ENABLED
 
 let bibliogramInstances = [
   "bibliogram.1d4.us",
-  "ig.tokhmi.xyz"
+  "ig.tokhmi.xyz",
 ];
 
 let biblioreadsInstances = [
@@ -147,6 +147,13 @@ let biblioreadsInstances = [
   "biblioreads.ga",
   "biblioreads.netlify.app",
   "biblioreads.esmailelbob.xyz",
+];
+
+let breezewikiInstances = [
+  "breezewiki.com",
+  "breezewiki.pussthecat.org",
+  "breezewiki.esmailelbob.xyz",
+  "bw.vern.cc",
 ];
 
 let invidiousInstances = [
@@ -251,7 +258,7 @@ let farsideInstance = "farside.link";
 
 // // // // // // // // // // // // //
 
-let debug_mode = true;
+let debug_mode = false;
 
 if (debug_mode == true) {
   alert(
