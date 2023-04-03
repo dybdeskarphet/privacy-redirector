@@ -137,9 +137,14 @@ let googleFrontend = "searxng"; // accepts "searx", "searxng"
 LIST OF INSTANCES TO USE IF FARSIDE IS NOT ENABLED
 */
 
+let beatbumpInstances = [
+  "beatbump.ml",
+  "bb.eu.projectsegfau.lt"
+];
+
 let bibliogramInstances = [
   "bibliogram.1d4.us",
-  "ig.tokhmi.xyz",
+  "ig.tokhmi.xyz"
 ];
 
 let biblioreadsInstances = [
@@ -262,11 +267,11 @@ let debug_mode = false;
 
 if (debug_mode == true) {
   alert(
-      "\n== DEBUG MODE IS ON ==" + 
-      "\nIf you're seeing this" + 
-      "\nset the debug_mode value to" + 
-      "\nfalse for Privacy Redirctor." + 
-      "\n======================" + 
+    "\n== DEBUG MODE IS ON ==" +
+      "\nIf you're seeing this" +
+      "\nset the debug_mode value to" +
+      "\nfalse for Privacy Redirctor." +
+      "\n======================" +
       "\n\nHostname: " +
       window.location.hostname +
       "\nPath: " +
@@ -498,6 +503,9 @@ function redirectYoutubeMusic() {
   if (youtube[0] == true) {
     window.stop();
 
+    var beatbumpInstance =
+      beatbumpInstances[Math.floor(Math.random() * beatbumpInstances.length)];
+
     if (window.location.pathname.startsWith("/watch")) {
       if (youtube[1] == false) {
         selectedInstance = eval(youtubeFrontend + "Instances")[
@@ -511,7 +519,7 @@ function redirectYoutubeMusic() {
 
       window.location.replace(newURL);
     } else if (window.location.pathname.startsWith("/playlist")) {
-      let newURL = `${window.location.protocol}//beatbump.ml${
+      let newURL = `${window.location.protocol}//${beatbumpInstance}${
         window.location.pathname
       }${window.location.search.replace("?list=", "/VL")}${
         window.location.hash
@@ -521,7 +529,7 @@ function redirectYoutubeMusic() {
     } else if (window.location.pathname.startsWith("/channel")) {
       let newURL = `${
         window.location.protocol
-      }//beatbump.ml${window.location.pathname.replace("/channel", "/artist")}${
+      }//${beatbumpInstance}${window.location.pathname.replace("/channel", "/artist")}${
         window.location.search
       }${window.location.hash}`;
 
@@ -529,7 +537,7 @@ function redirectYoutubeMusic() {
     } else if (window.location.pathname.startsWith("/explore")) {
       let newURL = `${
         window.location.protocol
-      }//beatbump.ml${window.location.pathname.replace(
+      }//${beatbumpInstance}${window.location.pathname.replace(
         "/explore",
         "/trending"
       )}${window.location.search}${window.location.hash}`;
@@ -538,14 +546,15 @@ function redirectYoutubeMusic() {
     } else if (window.location.pathname.startsWith("/moods_and_genres")) {
       let newURL = `${
         window.location.protocol
-      }//beatbump.ml${window.location.pathname.replace(
+      }//${beatbumpInstance}${window.location.pathname.replace(
         "/moods_and_genres",
         "/explore"
       )}${window.location.search}${window.location.hash}`;
 
       window.location.replace(newURL);
     } else {
-      location.hostname = "beatbump.ml";
+      let newURL = `${window.location.protocol}//${beatbumpInstance}${window.location.pathname}${window.location.search}${window.location.hash}`
+      window.location.replace(newURL);
     }
   }
 }
