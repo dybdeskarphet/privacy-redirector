@@ -109,7 +109,6 @@ let gtranslate = [true, true];
 let hackernews = [true, true];
 let imdb = [true, true];
 let imgur = [true, true];
-let instagram = [false, true];
 let medium = [true, true];
 let quora = [true, true];
 let reddit = [true, true];
@@ -118,6 +117,9 @@ let tiktok = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, true];
 let youtube = [true, true];
+
+//       REDIRECTON / FARSIDE / WARNING
+let instagram = [true, false, true];
 
 // PREFERRED FRONTEND
 let youtubeFrontend = "piped"; // accepts "invidious", "piped"
@@ -137,15 +139,9 @@ let googleFrontend = "searxng"; // accepts "searx", "searxng"
 LIST OF INSTANCES TO USE IF FARSIDE IS NOT ENABLED
 */
 
-let beatbumpInstances = [
-  "beatbump.ml",
-  "bb.eu.projectsegfau.lt"
-];
+let beatbumpInstances = ["beatbump.ml", "bb.eu.projectsegfau.lt"];
 
-let bibliogramInstances = [
-  "bibliogram.1d4.us",
-  "ig.tokhmi.xyz"
-];
+let bibliogramInstances = ["ig.tokhmi.xyz", "bibliogram.froth.zone"];
 
 let biblioreadsInstances = [
   "biblioreads.ml",
@@ -285,13 +281,18 @@ if (debug_mode == true) {
 
 function redirectInstagram() {
   if (instagram[0] == true) {
-    window.stop();
-
-    alert(
-      "Bibliogram is discontinued, you may want to disable the redirection."
-    );
-
     var selectedInstance = "";
+    var newPathName = "";
+    var newQuery = "";
+    var tempURL = "";
+
+    function displayWarning() {
+      if (instagram[2] == true) {
+        alert(
+          "Bibliogram is discontinued, you may want to disable the redirection.\n\n If you don't want to see this warning, set Instagram's 'WARNING' to 'false' or set 'REDIRETON' to 'false' to turn off the Instagram redirect completely."
+        );
+      }
+    }
 
     if (instagram[1] == false) {
       selectedInstance =
@@ -303,70 +304,23 @@ function redirectInstagram() {
     }
 
     if (window.location.pathname.startsWith("/accounts/login/")) {
-      if (window.location.search.indexOf("/reel/") != -1) {
-        // reels
-        let newURL =
-          window.location.protocol +
-          "//" +
-          selectedInstance +
-          window.location.pathname.replace("/accounts/login/", "/") +
-          window.location.search.replace("?next=/reel", "p") +
-          window.location.hash;
-
-        window.location.replace(newURL);
-      } else if (window.location.search.indexOf("/p/") == -1) {
-        // user pages - it will crash if it's not the second last block
-        let newURL =
-          window.location.protocol +
-          "//" +
-          selectedInstance +
-          window.location.pathname.replace("/accounts/login/", "/") +
-          window.location.search.replace("?next=", "u") +
-          window.location.hash;
-
-        window.location.replace(newURL);
-      } else {
-        // probably a post
-        let newURL =
-          window.location.protocol +
-          "//" +
-          selectedInstance +
-          window.location.pathname.replace("/accounts/login/", "") +
-          window.location.search.replace("?next=", "") +
-          window.location.hash;
-
-        window.location.replace(newURL);
-      }
+      newPathName = window.location.pathname.replace("/accounts/login/", "");
+      newQuery = window.location.search.replace("?next=", "");
+      tempURL = `${window.location.protocol}//${selectedInstance}${newPathName}${newQuery}${window.location.hash}`;
     } else {
-      if (window.location.pathname == "/") {
-        // home page
-        location.hostname = selectedInstance;
-      } else if (window.location.pathname.startsWith("/reel/")) {
-        // reel
-        let newURL =
-          window.location.protocol +
-          "//" +
-          selectedInstance +
-          window.location.pathname.replace("/reel", "/p") +
-          window.location.hash;
+      tempURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    }
 
-        window.location.replace(newURL);
-      } else if (!window.location.pathname.startsWith("/p/")) {
-        // user page - it will crash if it's not the second last block
-        let newURL =
-          window.location.protocol +
-          "//" +
-          selectedInstance +
-          "/u" +
-          window.location.pathname +
-          window.location.search +
-          indow.location.hash;
-
-        window.location.replace(newURL);
-      } else {
-        // probably a post
-        location.hostname = selectedInstance;
-      }
+    if (tempURL.includes("/p/")) {
+      displayWarning();
+      window.stop();
+      let newURL = `${tempURL}`;
+      window.location.replace(newURL);
+    } else if (tempURL.includes("/reels/")) {
+      displayWarning();
+      window.stop();
+      let newURL = tempURL.replace("/reels/", "/p/");
+      window.location.replace(newURL);
     }
   }
 }
@@ -529,9 +483,10 @@ function redirectYoutubeMusic() {
     } else if (window.location.pathname.startsWith("/channel")) {
       let newURL = `${
         window.location.protocol
-      }//${beatbumpInstance}${window.location.pathname.replace("/channel", "/artist")}${
-        window.location.search
-      }${window.location.hash}`;
+      }//${beatbumpInstance}${window.location.pathname.replace(
+        "/channel",
+        "/artist"
+      )}${window.location.search}${window.location.hash}`;
 
       window.location.replace(newURL);
     } else if (window.location.pathname.startsWith("/explore")) {
@@ -553,7 +508,7 @@ function redirectYoutubeMusic() {
 
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${beatbumpInstance}${window.location.pathname}${window.location.search}${window.location.hash}`
+      let newURL = `${window.location.protocol}//${beatbumpInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
       window.location.replace(newURL);
     }
   }
