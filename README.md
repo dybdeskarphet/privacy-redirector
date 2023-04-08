@@ -28,7 +28,7 @@ posts, consume via an RSS feed, or further engage with an article via comments o
 not making a bad platform worthy."
 > ~ [edwardloveall](https://sr.ht/~edwardloveall/Scribe/#project-goals)
 
-__Why Bibliogram redirection is disabled?__
+__Why is there a warning for Bibliogram?__
 > [Discontinuing Bibliogram](https://cadence.moe/blog/2022-09-01-discontinuing-bibliogram)
 
 ## 🫂 Credits
