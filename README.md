@@ -15,6 +15,12 @@ Bu belgeyi Türkçe okumak için
 
 ## ❓ FAQ
 
+__How can I disable some redirections?__
+> You have to edit the values of the userscript. Change the `REDIRECTION` value to
+`false` for the redirections you want. You can also disable [farside.link](https://github.com/benbusby/farside)
+and add your custom instances. A little familiarity with JavaScript syntax should
+be enough.
+
 __Why scribe.rip doesn't redirect to user pages?__
 > "It's intentional that there is no way to browse content from a user, see popular
 posts, consume via an RSS feed, or further engage with an article via comments or

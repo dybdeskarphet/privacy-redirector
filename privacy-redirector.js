@@ -289,7 +289,8 @@ function redirectInstagram() {
     function displayWarning() {
       if (instagram[2] == true) {
         alert(
-          "Bibliogram is discontinued, you may want to disable the redirection.\n\n If you don't want to see this warning, set Instagram's 'WARNING' to 'false' or set 'REDIRETON' to 'false' to turn off the Instagram redirect completely."
+          "Bibliogram is discontinued, you may want to disable the redirection." +
+            "\n\nIf you don't want to see this warning, set Instagram's 'WARNING' to 'false' or set 'REDIRETON' to 'false' to turn off the Instagram redirect completely."
         );
       }
     }
