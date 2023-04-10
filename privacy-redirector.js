@@ -161,7 +161,6 @@ let invidiousInstances = [
   "invidious.snopyta.org",
   "yewtu.be",
   "vid.puffyan.us",
-  "invidious.namazso.eu",
 ];
 
 let pipedInstances = [
