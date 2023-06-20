@@ -60,12 +60,14 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.4.0
+// @version 1.4.1
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @run-at document-start
+// @match *://*.bandcamp.com/*
 // @match *://*.fandom.com/*
+// @match *://*.genius.com/*
 // @match *://*.google.com/*
 // @match *://*.imdb.com/*
 // @match *://*.imgur.com/*
@@ -79,11 +81,15 @@
 // @match *://*.wikipedia.org/*
 // @match *://*.youtube-nocookie.com/*
 // @match *://*.youtube.com/*
+// @match *://f4.bcbits.com/*
+// @match *://genius.com/*
 // @match *://imgur.com/*
 // @match *://instagram.com/*
 // @match *://medium.com/*
 // @match *://news.ycombinator.com/*
 // @match *://reddit.com/*
+// @match *://stackoverflow.com/*
+// @match *://t4.bcbits.com/*
 // @match *://translate.google.com/*
 // @match *://twitter.com/*
 // @match *://www.goodreads.com/*
@@ -102,7 +108,9 @@ DISABLE THE REDIRECTION/FARSIDE FOR THAT
 PARTICULAR PLATFORM */
 
 //           REDIRECTON / FARSIDE
+let bandcamp = [true, true];
 let fandom = [true, true];
+let genius = [true, true];
 let goodreads = [true, false];
 let google = [true, true];
 let gtranslate = [true, true];
@@ -113,6 +121,7 @@ let medium = [true, true];
 let quora = [true, true];
 let reddit = [true, true];
 let reuters = [true, true];
+let stackoverflow = [true, true];
 let tiktok = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, true];
@@ -139,49 +148,69 @@ let googleFrontend = "searxng"; // accepts "searx", "searxng"
 LIST OF INSTANCES TO USE IF FARSIDE IS NOT ENABLED
 */
 
-let beatbumpInstances = ["beatbump.ml", "bb.eu.projectsegfau.lt"];
+let anonymousoverflowInstances = [
+  "code.whatever.social",
+  "ao.vern.cc",
+  "overflow.smnz.de",
+  "overflow.lunar.icu",
+];
 
-let bibliogramInstances = ["ig.tokhmi.xyz", "bibliogram.froth.zone"];
+let beatbumpInstances = [
+  "beatbump.ml",
+  "bb.eu.projectsegfau.lt",
+];
+
+let bibliogramInstances = [
+  "ig.tokhmi.xyz",
+  "bibliogram.froth.zone"
+];
 
 let biblioreadsInstances = [
   "biblioreads.ml",
   "biblioreads.ga",
   "biblioreads.netlify.app",
-  "biblioreads.esmailelbob.xyz",
 ];
 
 let breezewikiInstances = [
   "breezewiki.com",
   "breezewiki.pussthecat.org",
-  "breezewiki.esmailelbob.xyz",
-  "bw.vern.cc",
+  "antifandom.com",
+  "bw.hamstro.dev",
+];
+
+let dumbInstances = [
+  "dm.vern.cc",
+  "sing.whatever.social",
+  "dumb.lunar.icu",
+  "dumb.privacydev.net",
 ];
 
 let invidiousInstances = [
-  "invidious.snopyta.org",
   "yewtu.be",
   "vid.puffyan.us",
+  "yt.artemislena.eu",
+  "invidious.projectsegfau.lt",
 ];
 
 let pipedInstances = [
-  "piped.video",
-  "piped.moomoo.me",
-  "piped.syncpundit.io",
-  "piped.mha.fi",
+  "pipedapi.video",
+  "pipedapi.tokhmi.xyz",
+  "piped.projectsegfau.lt",
+  "piped.privacydev.net",
 ];
 
 let libredditInstances = [
-  "libreddit.spike.codes",
-  "libreddit.org",
+  "libreddit.invak.id",
+  "libreddit.de",
   "libreddit.kavin.rocks",
-  "reddit.invak.id",
+  "libreddit.kutay.dev",
 ];
 
 let libremdbInstances = [
-  "libremdb.iket.me",
   "libremdb.pussthecat.org",
-  "libremdbeu.herokuapp.com",
-  "lmdb.tokhmi.xyz",
+  "libremdb.iket.me",
+  "libremdb.lunar.icu",
+  "binge.whatever.social",
 ];
 
 let lingvaInstances = [
@@ -192,17 +221,16 @@ let lingvaInstances = [
 ];
 
 let nitterInstances = [
-  "nitter.net",
-  "nitter.pussthecat.org",
+  "nitter.lacontrevoie.fr",
   "nitter.fdn.fr",
   "nitter.1d4.us",
+  "nitter.kavin.rocks",
 ];
 
 let proxitokInstances = [
   "proxitok.pabloferreiro.es",
+  "proxitok.privacydev.net",
   "proxitok.pussthecat.org",
-  "tok.habedieeh.re",
-  "proxitok.esmailelbob.xyz",
 ];
 
 let quetreInstances = [
@@ -213,10 +241,10 @@ let quetreInstances = [
 ];
 
 let rimgoInstances = [
-  "i.bcow.xyz",
   "rimgo.pussthecat.org",
   "rimgo.totaldarkness.net",
   "rimgo.bus-hit.me",
+  "imgur.artemislena.eu",
 ];
 
 let scribeInstances = [
@@ -233,11 +261,17 @@ let tedditInstances = [
   "teddit.zaggy.nl",
 ];
 
+let tentInstances = [
+  "tent.sny.sh",
+  "tent.bloatcat.tk",
+  "tn.vern.cc"
+];
+
 let wikilessInstances = [
   "wikiless.org",
-  "wikiless.sethforprivacy.com",
-  "wiki.604kph.xyz",
-  "wikiless.lunar.icu",
+  "wikiless.tiekoetter.com",
+  "wikiless.funami.tech",
+  "wl.vern.cc",
 ];
 
 let searxInstances = [
@@ -472,41 +506,6 @@ function redirectYoutubeMusic() {
       let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
 
       window.location.replace(newURL);
-    } else if (window.location.pathname.startsWith("/playlist")) {
-      let newURL = `${window.location.protocol}//${beatbumpInstance}${
-        window.location.pathname
-      }${window.location.search.replace("?list=", "/VL")}${
-        window.location.hash
-      }`;
-
-      window.location.replace(newURL);
-    } else if (window.location.pathname.startsWith("/channel")) {
-      let newURL = `${
-        window.location.protocol
-      }//${beatbumpInstance}${window.location.pathname.replace(
-        "/channel",
-        "/artist"
-      )}${window.location.search}${window.location.hash}`;
-
-      window.location.replace(newURL);
-    } else if (window.location.pathname.startsWith("/explore")) {
-      let newURL = `${
-        window.location.protocol
-      }//${beatbumpInstance}${window.location.pathname.replace(
-        "/explore",
-        "/trending"
-      )}${window.location.search}${window.location.hash}`;
-
-      window.location.replace(newURL);
-    } else if (window.location.pathname.startsWith("/moods_and_genres")) {
-      let newURL = `${
-        window.location.protocol
-      }//${beatbumpInstance}${window.location.pathname.replace(
-        "/moods_and_genres",
-        "/explore"
-      )}${window.location.search}${window.location.hash}`;
-
-      window.location.replace(newURL);
     } else {
       let newURL = `${window.location.protocol}//${beatbumpInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
       window.location.replace(newURL);
@@ -709,6 +708,104 @@ function redirectGoodreads() {
   }
 }
 
+function redirectStackoverflow() {
+  if (
+    stackoverflow[0] == true &&
+    window.location.pathname.startsWith("/questions") &&
+    window.location.pathname == "/questions"
+  ) {
+    window.stop();
+    if (stackoverflow[1] == false) {
+      selectedInstance =
+        anonymousoverflowInstances[
+          Math.floor(Math.random() * anonymousoverflowInstances.length)
+        ];
+    } else {
+      selectedInstance = `${farsideInstance}/anonymousoverflow`;
+    }
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    window.location.replace(newURL);
+  }
+}
+
+function redirectBandcamp() {
+  if (bandcamp[0] == true) {
+    // thanks to libredirect
+
+    var selectedInstance =
+      tentInstances[Math.floor(Math.random() * tentInstances.length)];
+
+    if (
+      window.location.hostname == "bandcamp.com" &&
+      window.location.pathname == "/search"
+    ) {
+      console.log("entered search path");
+      const query = window.location.searchParams.get("q");
+      let newURL = `${
+        window.location.protocol
+      }//${selectedInstance}/search.php?query=${encodeURIComponent(query)}`;
+      window.location.replace(newURL);
+      console.log("search path end");
+    }
+
+    if (window.location.hostname.endsWith("bandcamp.com")) {
+      console.log("hostname ends with bandcamp");
+      const regex = /^(.*)\.bandcamp\.com/.exec(window.location.hostname);
+      const artist = regex[1];
+      if (window.location.pathname == "/") {
+        console.log("only artist page");
+        let newURL = `${window.location.protocol}//${selectedInstance}/artist.php?name=${artist}`;
+        window.location.replace(newURL);
+      } else {
+        console.log("type and name is needed");
+        const regex = /^\/(.*)\/(.*)/.exec(window.location.pathname);
+        if (regex) {
+          const type = regex[1];
+          const name = regex[2];
+          console.log("type and name is entered");
+          let newURL = `${window.location.protocol}//${selectedInstance}/release.php?artist=${artist}&type=${type}&name=${name}`;
+          window.location.replace(newURL);
+        }
+      }
+    }
+
+    if (window.location.hostname == "f4.bcbits.com") {
+      const regex = /\/img\/(.*)/.exec(window.location.pathname);
+      const image = regex[1];
+      let newURL = `${window.location.protocol}//${selectedInstance}/image.php?file=${image}`;
+      window.location.replace(newURL);
+    }
+
+    if (window.location.hostname == "t4.bcbits.com") {
+      const regex = /\/stream\/(.*)\/(.*)\/(.*)/.exec(window.location.pathname);
+      if (regex) {
+        const directory = regex[1];
+        const format = regex[2];
+        const file = regex[3];
+        const token = window.location.searchParams.get("token");
+        let newURL = `${
+          window.location.protocol
+        }//${selectedInstance}/audio.php/?directory=${directory}&format=${format}&file=${file}&token=${encodeURIComponent(
+          token
+        )}`;
+        window.location.replace(newURL);
+      }
+    }
+  }
+}
+
+function redirectGenius() {
+  if (genius[0] == true && window.location.pathname.endsWith("-lyrics")) {
+    window.stop();
+    selectedInstance =
+      dumbInstances[Math.floor(Math.random() * dumbInstances.length)];
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    window.location.replace(newURL);
+  }
+}
+
 let urlHostname = window.location.hostname;
 
 switch (urlHostname) {
@@ -772,6 +869,19 @@ switch (urlHostname) {
     redirectGoodreads();
     break;
 
+  case "genius.com":
+    redirectGenius();
+    break;
+
+  case "stackoverflow.com":
+    redirectStackoverflow();
+    break;
+
+  case "f4.bcbits.com":
+  case "t4.bcbits.com":
+    redirectBandcamp();
+    break;
+
   default:
     if (urlHostname.includes("medium.com")) {
       redirectMedium();
@@ -781,6 +891,8 @@ switch (urlHostname) {
       redirectWikipedia();
     } else if (urlHostname.includes("fandom.com")) {
       redirectFandom();
+    } else if (urlHostname.includes("bandcamp.com")) {
+      redirectBandcamp();
     }
     break;
 }
