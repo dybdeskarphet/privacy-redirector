@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.4.1
+// @version 1.4.2
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -155,15 +155,9 @@ let anonymousoverflowInstances = [
   "overflow.lunar.icu",
 ];
 
-let beatbumpInstances = [
-  "beatbump.ml",
-  "bb.eu.projectsegfau.lt",
-];
+let beatbumpInstances = ["beatbump.ml", "bb.eu.projectsegfau.lt"];
 
-let bibliogramInstances = [
-  "ig.tokhmi.xyz",
-  "bibliogram.froth.zone"
-];
+let bibliogramInstances = ["ig.tokhmi.xyz", "bibliogram.froth.zone"];
 
 let biblioreadsInstances = [
   "biblioreads.ml",
@@ -261,11 +255,7 @@ let tedditInstances = [
   "teddit.zaggy.nl",
 ];
 
-let tentInstances = [
-  "tent.sny.sh",
-  "tent.bloatcat.tk",
-  "tn.vern.cc"
-];
+let tentInstances = ["tent.sny.sh", "tent.bloatcat.tk", "tn.vern.cc"];
 
 let wikilessInstances = [
   "wikiless.org",
@@ -599,23 +589,19 @@ function redirectWikipedia() {
 
 function redirectImdb() {
   if (imdb[0] == true) {
-    if (window.location.pathname.startsWith("/title/")) {
-      window.stop();
-      var selectedInstance = "";
+    window.stop();
+    var selectedInstance = "";
 
-      if (imdb[1] == false) {
-        selectedInstance =
-          libremdbInstances[
-            Math.floor(Math.random() * libremdbInstances.length)
-          ];
-      } else {
-        selectedInstance = `${farsideInstance}/libremdb`;
-      }
-
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-      window.location.replace(newURL);
+    if (imdb[1] == false) {
+      selectedInstance =
+        libremdbInstances[Math.floor(Math.random() * libremdbInstances.length)];
+    } else {
+      selectedInstance = `${farsideInstance}/libremdb`;
     }
+
+    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    window.location.replace(newURL);
   }
 }
 
