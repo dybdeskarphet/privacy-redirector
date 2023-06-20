@@ -33,4 +33,6 @@ __Why is there a warning for Bibliogram?__
 
 ## 🫂 Credits
 
-* [Farside.link](https://github.com/benbusby/farside)
+- [Farside.link](https://github.com/benbusby/farside)
+- [Libredirect](https://github.com/libredirect/browser_extension) for
+  Bandcamp redirection
