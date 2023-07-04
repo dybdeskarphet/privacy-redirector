@@ -135,6 +135,10 @@ let youtubeFrontend = "piped"; // accepts "invidious", "piped"
 let youtubeMusicFrontend = "beatbump"; // accepts "beatbump", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "searxng"; // accepts "searx", "searxng"
+let geniusFrontend = "intellectual"; // accept dumb, intellectual
+
+// OTHER SETTINGS
+let keepHistory = false; // keeps farside.link in the browser history
 
 // // // // // // // // // // // // //
 
@@ -178,6 +182,8 @@ let dumbInstances = [
   "dumb.lunar.icu",
   "dumb.privacydev.net",
 ];
+
+let intellectualInstances = ["intellectual.insprill.net"];
 
 let invidiousInstances = [
   "yewtu.be",
@@ -301,6 +307,8 @@ if (debug_mode == true) {
       window.location.hash
   );
 }
+
+if (keepHistory == true) farsideInstance = farsideInstance + "/_";
 
 function redirectInstagram() {
   if (instagram[0] == true) {
@@ -726,30 +734,24 @@ function redirectBandcamp() {
       window.location.hostname == "bandcamp.com" &&
       window.location.pathname == "/search"
     ) {
-      console.log("entered search path");
       const query = window.location.searchParams.get("q");
       let newURL = `${
         window.location.protocol
       }//${selectedInstance}/search.php?query=${encodeURIComponent(query)}`;
       window.location.replace(newURL);
-      console.log("search path end");
     }
 
     if (window.location.hostname.endsWith("bandcamp.com")) {
-      console.log("hostname ends with bandcamp");
       const regex = /^(.*)\.bandcamp\.com/.exec(window.location.hostname);
       const artist = regex[1];
       if (window.location.pathname == "/") {
-        console.log("only artist page");
         let newURL = `${window.location.protocol}//${selectedInstance}/artist.php?name=${artist}`;
         window.location.replace(newURL);
       } else {
-        console.log("type and name is needed");
         const regex = /^\/(.*)\/(.*)/.exec(window.location.pathname);
         if (regex) {
           const type = regex[1];
           const name = regex[2];
-          console.log("type and name is entered");
           let newURL = `${window.location.protocol}//${selectedInstance}/release.php?artist=${artist}&type=${type}&name=${name}`;
           window.location.replace(newURL);
         }
@@ -782,13 +784,50 @@ function redirectBandcamp() {
 }
 
 function redirectGenius() {
-  if (genius[0] == true && window.location.pathname.endsWith("-lyrics")) {
-    window.stop();
-    selectedInstance =
-      dumbInstances[Math.floor(Math.random() * dumbInstances.length)];
+  if (genius[0] == true) {
+    switch (geniusFrontend) {
+      case "dumb":
+        window.stop();
+        var selectedInstance =
+          dumbInstances[Math.floor(Math.random() * dumbInstances.length)];
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-    window.location.replace(newURL);
+        let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+        window.location.replace(newURL);
+        break;
+      case "intellectual":
+        var selectedInstance =
+          intellectualInstances[
+            Math.floor(Math.random() * intellectualInstances.length)
+          ];
+
+        if (window.location.pathname.endsWith("-lyrics")) {
+          window.stop();
+          selectedInstance = selectedInstance + "/lyrics?path=";
+          let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+          window.location.replace(newURL);
+        } else if (window.location.pathname.startsWith("/albums")) {
+          window.stop();
+          let newURL =
+            `${window.location.protocol}//${selectedInstance}` +
+            `${window.location.pathname}${window.location.search}`.replace(
+              "/albums",
+              "/album?path=albums"
+            ) +
+            `${window.location.hash}`;
+          window.location.replace(newURL);
+        } else if (window.location.pathname.startsWith("/artists")) {
+          window.stop();
+          let newURL =
+            `${window.location.protocol}//${selectedInstance}` +
+            `${window.location.pathname}${window.location.search}`.replace(
+              "/artists",
+              "/artist?path=artists"
+            ) +
+            `${window.location.hash}`;
+          window.location.replace(newURL);
+        }
+        break;
+    }
   }
 }
 
