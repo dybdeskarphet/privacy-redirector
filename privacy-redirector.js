@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.4.3
+// @version 1.4.4
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -360,7 +360,10 @@ function redirectInstagram() {
 function redirectTwitter() {
   if (twitter[0] == true) {
     window.stop();
+
     var selectedInstance = "";
+    var newPathName = "";
+    var newQuery = "";
 
     if (twitter[1] == false) {
       selectedInstance =
@@ -369,9 +372,18 @@ function redirectTwitter() {
       selectedInstance = `${farsideInstance}/nitter`;
     }
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-    window.location.replace(newURL);
+    if (window.location.pathname.startsWith("/i/flow/login")) {
+      newPathName = window.location.pathname.replace("/i/flow/login", "");
+      newQuery = window.location.search.replace(
+        "?redirect_after_login=%2F",
+        "/"
+      );
+      let newURL = `${window.location.protocol}//${selectedInstance}${newPathName}${newQuery}${window.location.hash}`;
+      window.location.replace(newURL);
+    } else {
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      window.location.replace(newURL);
+    }
   }
 }
 
