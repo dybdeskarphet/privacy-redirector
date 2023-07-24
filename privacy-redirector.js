@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.4.4
+// @version 1.4.5
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.js
@@ -73,6 +73,8 @@
 // @match *://*.imgur.com/*
 // @match *://*.instagram.com/*
 // @match *://*.medium.com/*
+// @match *://*.pinterest.com/*
+// @match *://i.pinimg.com/*
 // @match *://*.quora.com/*
 // @match *://*.reddit.com/*
 // @match *://*.reuters.com/*
@@ -118,6 +120,7 @@ let hackernews = [true, true];
 let imdb = [true, true];
 let imgur = [true, true];
 let medium = [true, true];
+let pinterest = [true, true];
 let quora = [true, true];
 let reddit = [true, true];
 let reuters = [true, true];
@@ -167,6 +170,14 @@ let biblioreadsInstances = [
   "biblioreads.ml",
   "biblioreads.ga",
   "biblioreads.netlify.app",
+];
+
+let binternetInstances = [
+  "binternet.ahwx.org",
+  "binternet.revvy.de",
+  "binternet.bloatcat.tk",
+  "bn.vern.cc",
+  "pinterest.foxhaven.cyou",
 ];
 
 let breezewikiInstances = [
@@ -843,6 +854,33 @@ function redirectGenius() {
   }
 }
 
+function redirectPinterest() {
+  if (pinterest[0] == true) {
+    window.stop();
+
+    var selectedInstance =
+      binternetInstances[Math.floor(Math.random() * binternetInstances.length)];
+
+    if (window.location.hostname == "i.pinimg.com") {
+      let newURL = `${window.location.protocol}//${selectedInstance}/image_proxy.php?url=${window.location.href}`;
+      window.location.replace(newURL);
+    } else if (window.location.pathname.startsWith("/search")) {
+      let newURL =
+        `${window.location.protocol}//${selectedInstance}` +
+        window.location.pathname
+          .replace("search", "search.php")
+          .replace("/pins/", "") +
+        `${window.location.search}${window.location.hash}`;
+      window.location.replace(newURL);
+    } else if (window.location.pathname.startsWith("/pin")) {
+      return;
+    } else {
+      let newURL = `${window.location.protocol}//${selectedInstance}/`;
+      window.location.replace(newURL);
+    }
+  }
+}
+
 let urlHostname = window.location.hostname;
 
 switch (urlHostname) {
@@ -919,6 +957,10 @@ switch (urlHostname) {
     redirectBandcamp();
     break;
 
+  case "i.pinimg.com":
+    redirectPinterest();
+    break;
+
   default:
     if (urlHostname.includes("medium.com")) {
       redirectMedium();
@@ -930,6 +972,9 @@ switch (urlHostname) {
       redirectFandom();
     } else if (urlHostname.includes("bandcamp.com")) {
       redirectBandcamp();
+    } else if (urlHostname.includes("pinterest.com")) {
+      redirectPinterest();
     }
+
     break;
 }
