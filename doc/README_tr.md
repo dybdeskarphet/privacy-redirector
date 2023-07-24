@@ -1,8 +1,8 @@
 # 🔀 Gizlilik Yönlendiricisi
 
-![Greasy Fork](https://img.shields.io/greasyfork/v/436359-privacy-redirector?style=flat-square)
-![Greasy Fork](https://img.shields.io/greasyfork/dt/436359-privacy-redirector?style=flat-square)
-![GitHub](https://img.shields.io/github/license/dybdeskarphet/privacy-redirector?style=flat-square)
+[![Greasy Fork](https://img.shields.io/greasyfork/v/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
+[![Greasy Fork](https://img.shields.io/greasyfork/dt/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
+![GitHub](https://img.shields.io/github/license/dybdeskarphet/privacy-redirector?style=flat-square) 
 
 Bu kullanıcı betiği popüler sosyal medya platformlarını gizliliğe saygı duyan
 önyüzlerine yönlendirir. Betiği [GreasyFork](https://greasyfork.org/scripts/436359-privacy-redirector)
@@ -35,3 +35,5 @@ ayrıntılı bilgi için: [Discontinuing Bibliogram](https://cadence.moe/blog/20
 ## 🫂 Teşekkürler
 
 * [Farside.link](https://github.com/benbusby/farside)
+* Bandcamp yönlendirmesi için
+ [Libredirect](https://github.com/libredirect/browser_extension)'e
