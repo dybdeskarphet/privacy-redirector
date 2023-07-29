@@ -2,12 +2,12 @@
 
 [![Greasy Fork](https://img.shields.io/greasyfork/v/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
 [![Greasy Fork](https://img.shields.io/greasyfork/dt/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
-![GitHub](https://img.shields.io/github/license/dybdeskarphet/privacy-redirector?style=flat-square) 
+![GitHub](https://img.shields.io/github/license/dybdeskarphet/privacy-redirector?style=flat-square)
 
 This userscript redirects popular social media platforms to their privacy
 respecting frontends. You can add this script from
 [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector) or
-you can [add it manually](https://violentmonkey.github.io/guide/creating-a-userscript/)
+you can [add it manually](https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js)
 to your userscript manager.
 
 Bu belgeyi Türkçe okumak için
@@ -15,20 +15,23 @@ Bu belgeyi Türkçe okumak için
 
 ## ❓ FAQ
 
-__How can I disable some redirections?__
-> You have to edit the values of the userscript. Change the `REDIRECTION` value to
-`false` for the redirections you want. You can also disable [farside.link](https://github.com/benbusby/farside)
-and add your custom instances. A little familiarity with JavaScript syntax should
-be enough.
+**How can I disable some redirections?**
 
-__Why scribe.rip doesn't redirect to user pages?__
+> You have to edit the values of the userscript. Change the `REDIRECTION` value to
+> `false` for the redirections you want. You can also disable [farside.link](https://github.com/benbusby/farside)
+> and add your custom instances. A little familiarity with JavaScript syntax should
+> be enough.
+
+**Why scribe.rip doesn't redirect to user pages?**
+
 > "It's intentional that there is no way to browse content from a user, see popular
-posts, consume via an RSS feed, or further engage with an article via comments or
-"claps".I want to spend my time encouraging writers to move to worthy platforms,
-not making a bad platform worthy."
+> posts, consume via an RSS feed, or further engage with an article via comments or
+> "claps".I want to spend my time encouraging writers to move to worthy platforms,
+> not making a bad platform worthy."
 > ~ [edwardloveall](https://sr.ht/~edwardloveall/Scribe/#project-goals)
 
-__Why is there a warning for Bibliogram?__
+**Why is there a warning for Bibliogram?**
+
 > [Discontinuing Bibliogram](https://cadence.moe/blog/2022-09-01-discontinuing-bibliogram)
 
 ## 🫂 Credits
