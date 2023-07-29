@@ -5,10 +5,10 @@
 ![GitHub](https://img.shields.io/github/license/dybdeskarphet/privacy-redirector?style=flat-square) 
 
 This userscript redirects popular social media platforms to their privacy
-respecting frontends. You can add the script from
+respecting frontends. You can add this script from
 [Greasyfork](https://greasyfork.org/scripts/436359-privacy-redirector) or
-you can clone this repo and add it
-[manually](https://violentmonkey.github.io/guide/creating-a-userscript/).
+you can [add it manually](https://violentmonkey.github.io/guide/creating-a-userscript/)
+to your userscript manager.
 
 Bu belgeyi Türkçe okumak için
 <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/doc/README_tr.md">tıklayın</a>.
