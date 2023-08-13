@@ -748,8 +748,7 @@ function redirectGoodreads() {
 function redirectStackoverflow() {
   if (
     stackoverflow[0] == true &&
-    window.location.pathname.startsWith("/questions") &&
-    window.location.pathname == "/questions"
+    window.location.pathname.startsWith("/questions")
   ) {
     window.stop();
     if (stackoverflow[1] == false) {
