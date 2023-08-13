@@ -441,8 +441,17 @@ function redirectYoutube() {
     } else {
       selectedInstance =
         tuboInstances[Math.floor(Math.random() * tuboInstances.length)];
-      let newURL = `${window.location.protocol}//${selectedInstance}/stream?url=${window.location.href}`;
-      window.location.replace(newURL);
+
+      if (
+        window.location.pathname.startsWith("/@") ||
+        window.location.pathname.startsWith("/channel")
+      ) {
+        let newURL = `${window.location.protocol}//${selectedInstance}/channel?url=${window.location.href}`;
+        window.location.replace(newURL);
+      } else {
+        let newURL = `${window.location.protocol}//${selectedInstance}/stream?url=${window.location.href}`;
+        window.location.replace(newURL);
+      }
     }
   }
 }
@@ -898,7 +907,7 @@ function redirectSoundcloud() {
     var selectedInstance =
       tuboInstances[Math.floor(Math.random() * tuboInstances.length)];
 
-    if(window.location.pathname != "/"){
+    if (window.location.pathname != "/") {
       let newURL = `${window.location.protocol}//${selectedInstance}/stream?url=${window.location.href}`;
       window.location.replace(newURL);
     } else {
