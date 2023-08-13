@@ -83,6 +83,7 @@
 // @match *://*.wikipedia.org/*
 // @match *://*.youtube-nocookie.com/*
 // @match *://*.youtube.com/*
+// @match *://*.soundcloud.com/*
 // @match *://f4.bcbits.com/*
 // @match *://genius.com/*
 // @match *://imgur.com/*
@@ -110,6 +111,7 @@ DISABLE THE REDIRECTION/FARSIDE FOR THAT
 PARTICULAR PLATFORM */
 
 //           REDIRECTON / FARSIDE
+
 let bandcamp = [true, true];
 let fandom = [true, true];
 let genius = [true, true];
@@ -124,17 +126,17 @@ let pinterest = [true, true];
 let quora = [true, true];
 let reddit = [true, true];
 let reuters = [true, true];
+let soundcloud = [true, true];
 let stackoverflow = [true, true];
 let tiktok = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, true];
 let youtube = [true, true];
-
 //       REDIRECTON / FARSIDE / WARNING
 let instagram = [true, false, true];
 
 // PREFERRED FRONTEND
-let youtubeFrontend = "piped"; // accepts "invidious", "piped"
+let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
 let youtubeMusicFrontend = "beatbump"; // accepts "beatbump", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "searxng"; // accepts "searx", "searxng"
@@ -273,6 +275,8 @@ let tedditInstances = [
 ];
 
 let tentInstances = ["tent.sny.sh", "tent.bloatcat.tk", "tn.vern.cc"];
+
+let tuboInstances = ["tubo.migalmoreno.com"];
 
 let wikilessInstances = [
   "wikiless.org",
@@ -422,17 +426,24 @@ function redirectYoutube() {
     window.stop();
     var selectedInstance = "";
 
-    if (youtube[1] == false) {
-      selectedInstance = eval(youtubeFrontend + "Instances")[
-        Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
-      ];
+    if (youtubeFrontend != "tubo") {
+      if (youtube[1] == false) {
+        selectedInstance = eval(youtubeFrontend + "Instances")[
+          Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
+        ];
+      } else {
+        selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
+      }
+
+      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+      window.location.replace(newURL);
     } else {
-      selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
+      selectedInstance =
+        tuboInstances[Math.floor(Math.random() * tuboInstances.length)];
+      let newURL = `${window.location.protocol}//${selectedInstance}/stream?url=${window.location.href}`;
+      window.location.replace(newURL);
     }
-
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
-
-    window.location.replace(newURL);
   }
 }
 
@@ -881,6 +892,22 @@ function redirectPinterest() {
   }
 }
 
+function redirectSoundcloud() {
+  if (soundcloud[0] == true) {
+    window.stop();
+    var selectedInstance =
+      tuboInstances[Math.floor(Math.random() * tuboInstances.length)];
+
+    if(window.location.pathname != "/"){
+      let newURL = `${window.location.protocol}//${selectedInstance}/stream?url=${window.location.href}`;
+      window.location.replace(newURL);
+    } else {
+      let newURL = `${window.location.protocol}//${selectedInstance}/kiosk?serviceId=1`;
+      window.location.replace(newURL);
+    }
+  }
+}
+
 let urlHostname = window.location.hostname;
 
 switch (urlHostname) {
@@ -959,6 +986,10 @@ switch (urlHostname) {
 
   case "i.pinimg.com":
     redirectPinterest();
+    break;
+
+  case "soundcloud.com":
+    redirectSoundcloud();
     break;
 
   default:
