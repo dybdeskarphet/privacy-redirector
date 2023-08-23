@@ -964,6 +964,7 @@ switch (urlHostname) {
     break;
 
   case "www.imdb.com":
+  case "m.imdb.com":
     redirectImdb();
     break;
 
