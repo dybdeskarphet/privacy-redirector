@@ -30,10 +30,6 @@ Bu belgeyi Türkçe okumak için
 > not making a bad platform worthy."
 > ~ [edwardloveall](https://sr.ht/~edwardloveall/Scribe/#project-goals)
 
-**Why is there a warning for Bibliogram?**
-
-> [Discontinuing Bibliogram](https://cadence.moe/blog/2022-09-01-discontinuing-bibliogram)
-
 ## 🫂 Credits
 
 - [Farside.link](https://github.com/benbusby/farside)
