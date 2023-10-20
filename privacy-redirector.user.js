@@ -132,8 +132,7 @@ let tiktok = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, true];
 let youtube = [true, true];
-//       REDIRECTON / FARSIDE / WARNING
-let instagram = [true, false, true];
+let instagram = [true, true];
 
 // PREFERRED FRONTEND
 let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
@@ -166,7 +165,13 @@ let anonymousoverflowInstances = [
 
 let beatbumpInstances = ["beatbump.ml", "bb.eu.projectsegfau.lt"];
 
-let bibliogramInstances = ["ig.tokhmi.xyz", "bibliogram.froth.zone"];
+let proxigramInstances = [
+  "proxigram.privacyfrontends.repl.co",
+  "proxigram.protokolla.fi",
+  "proxigram.kyun.li",
+  "proxigram.drgns.space",
+  "ig.opnxng.com",
+];
 
 let biblioreadsInstances = [
   "biblioreads.ml",
@@ -327,28 +332,13 @@ if (keepHistory == true) farsideInstance = farsideInstance + "/_";
 
 function redirectInstagram() {
   if (instagram[0] == true) {
-    var selectedInstance = "";
-    var newPathName = "";
-    var newQuery = "";
-    var tempURL = "";
+    let selectedInstance = "";
+    let newPathName = "";
+    let newQuery = "";
+    let tempURL = "";
 
-    function displayWarning() {
-      if (instagram[2] == true) {
-        alert(
-          "Bibliogram is discontinued, you may want to disable the redirection." +
-            "\n\nIf you don't want to see this warning, set Instagram's 'WARNING' to 'false' or set 'REDIRETON' to 'false' to turn off the Instagram redirect completely."
-        );
-      }
-    }
-
-    if (instagram[1] == false) {
-      selectedInstance =
-        bibliogramInstances[
-          Math.floor(Math.random() * bibliogramInstances.length)
-        ];
-    } else {
-      selectedInstance = `${farsideInstance}/bibliogram`;
-    }
+    selectedInstance =
+      proxigramInstances[Math.floor(Math.random() * proxigramInstances.length)];
 
     if (window.location.pathname.startsWith("/accounts/login/")) {
       newPathName = window.location.pathname.replace("/accounts/login/", "");
@@ -359,14 +349,16 @@ function redirectInstagram() {
     }
 
     if (tempURL.includes("/p/")) {
-      displayWarning();
       window.stop();
       let newURL = `${tempURL}`;
       window.location.replace(newURL);
     } else if (tempURL.includes("/reels/")) {
-      displayWarning();
       window.stop();
       let newURL = tempURL.replace("/reels/", "/p/");
+      window.location.replace(newURL);
+    } else {
+      window.stop();
+      let newURL = `${tempURL}`;
       window.location.replace(newURL);
     }
   }
