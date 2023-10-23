@@ -156,16 +156,16 @@ let keepHistory = false; // keeps farside.link in the browser history
 LIST OF INSTANCES TO USE IF FARSIDE IS NOT ENABLED
 */
 
-let anonymousoverflowInstances = [
+const anonymousoverflowInstances = [
   "code.whatever.social",
   "ao.vern.cc",
   "overflow.smnz.de",
   "overflow.lunar.icu",
 ];
 
-let beatbumpInstances = ["beatbump.ml", "bb.eu.projectsegfau.lt"];
+const beatbumpInstances = ["beatbump.ml", "bb.eu.projectsegfau.lt"];
 
-let proxigramInstances = [
+const proxigramInstances = [
   "proxigram.privacyfrontends.repl.co",
   "proxigram.protokolla.fi",
   "proxigram.kyun.li",
@@ -173,13 +173,13 @@ let proxigramInstances = [
   "ig.opnxng.com",
 ];
 
-let biblioreadsInstances = [
+const biblioreadsInstances = [
   "biblioreads.ml",
   "biblioreads.ga",
   "biblioreads.netlify.app",
 ];
 
-let binternetInstances = [
+const binternetInstances = [
   "binternet.ahwx.org",
   "binternet.revvy.de",
   "binternet.bloatcat.tk",
@@ -187,130 +187,132 @@ let binternetInstances = [
   "pinterest.foxhaven.cyou",
 ];
 
-let breezewikiInstances = [
+const breezewikiInstances = [
   "breezewiki.com",
   "breezewiki.pussthecat.org",
   "antifandom.com",
   "bw.hamstro.dev",
 ];
 
-let dumbInstances = [
+const dumbInstances = [
   "dm.vern.cc",
   "sing.whatever.social",
   "dumb.lunar.icu",
   "dumb.privacydev.net",
 ];
 
-let intellectualInstances = ["intellectual.insprill.net"];
+const intellectualInstances = ["intellectual.insprill.net"];
 
-let invidiousInstances = [
+const invidiousInstances = [
   "yewtu.be",
   "vid.puffyan.us",
   "yt.artemislena.eu",
   "invidious.projectsegfau.lt",
 ];
 
-let pipedInstances = [
+const pipedInstances = [
   "pipedapi.video",
   "pipedapi.tokhmi.xyz",
   "piped.projectsegfau.lt",
   "piped.privacydev.net",
 ];
 
-let libredditInstances = [
+const libredditInstances = [
   "libreddit.invak.id",
   "libreddit.de",
   "libreddit.kavin.rocks",
   "libreddit.kutay.dev",
 ];
 
-let libremdbInstances = [
+const libremdbInstances = [
   "libremdb.pussthecat.org",
   "libremdb.iket.me",
   "libremdb.lunar.icu",
   "binge.whatever.social",
 ];
 
-let lingvaInstances = [
+const lingvaInstances = [
   "lingva.ml",
   "translate.igna.wtf",
   "translate.plausibility.cloud",
   "translate.projectsegfau.lt",
 ];
 
-let nitterInstances = [
+const nitterInstances = [
   "nitter.lacontrevoie.fr",
   "nitter.fdn.fr",
   "nitter.1d4.us",
   "nitter.kavin.rocks",
 ];
 
-let proxitokInstances = [
+const proxitokInstances = [
   "proxitok.pabloferreiro.es",
   "proxitok.privacydev.net",
   "proxitok.pussthecat.org",
 ];
 
-let quetreInstances = [
+const quetreInstances = [
   "quetre.iket.me",
   "quora.vern.cc",
   "quetre.pussthecat.org",
   "quetre.tokhmi.xyz",
 ];
 
-let rimgoInstances = [
+const rimgoInstances = [
   "rimgo.pussthecat.org",
   "rimgo.totaldarkness.net",
   "rimgo.bus-hit.me",
   "imgur.artemislena.eu",
 ];
 
-let scribeInstances = [
+const scribeInstances = [
   "scribe.rip",
   "scribe.nixnet.services",
   "scribe.citizen4.eu",
   "scribe.bus-hit.me",
 ];
 
-let tedditInstances = [
+const tedditInstances = [
   "teddit.pussthecat.org",
   "teddit.ggc-project.de",
   "teddit.domain.glass",
   "teddit.zaggy.nl",
 ];
 
-let tentInstances = ["tent.sny.sh", "tent.bloatcat.tk", "tn.vern.cc"];
+const tentInstances = ["tent.sny.sh", "tent.bloatcat.tk", "tn.vern.cc"];
 
-let tuboInstances = ["tubo.migalmoreno.com"];
+const tuboInstances = ["tubo.migalmoreno.com"];
 
-let wikilessInstances = [
+const wikilessInstances = [
   "wikiless.org",
   "wikiless.tiekoetter.com",
   "wikiless.funami.tech",
   "wl.vern.cc",
 ];
 
-let searxInstances = [
+const searxInstances = [
   "search.bus-hit.me",
   "search.projectsegfau.lt",
   "northboot.xyz",
   "opnxng.com",
 ];
 
-let searxngInstances = [
+const searxngInstances = [
   "baresearch.org",
   "dynabyte.ca",
   "search.bus-hit.me",
   "search.leptons.xyz",
 ];
 
-let farsideInstance = "farside.link";
+let farsideInstance = keepHistory === true ? "farside.link/_" : "farside.link";
 
 // // // // // // // // // // // // //
 
+const hash = window.location.hash, scheme = `${window.location.protocol}//`;
+
 let debug_mode = false;
 
-if (debug_mode == true) {
+if (debug_mode === true) {
   alert(
     "\n== DEBUG MODE IS ON ==" +
       "\nIf you're seeing this" +
@@ -324,15 +326,14 @@ if (debug_mode == true) {
       "\nQuery: " +
       window.location.search +
       "\nHash: " +
-      window.location.hash
+      hash
   );
 }
 
-if (keepHistory == true) farsideInstance = farsideInstance + "/_";
+let selectedInstance = "", newURL = "";
 
 function redirectInstagram() {
-  if (instagram[0] == true) {
-    let selectedInstance = "";
+  if (instagram[0] === true) {
     let newPathName = "";
     let newQuery = "";
     let tempURL = "";
@@ -343,36 +344,35 @@ function redirectInstagram() {
     if (window.location.pathname.startsWith("/accounts/login/")) {
       newPathName = window.location.pathname.replace("/accounts/login/", "");
       newQuery = window.location.search.replace("?next=", "");
-      tempURL = `${window.location.protocol}//${selectedInstance}${newPathName}${newQuery}${window.location.hash}`;
+      tempURL = `${scheme}${selectedInstance}${newPathName}${newQuery}${hash}`;
     } else {
-      tempURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      tempURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     }
 
     if (tempURL.includes("/p/")) {
       window.stop();
-      let newURL = `${tempURL}`;
+      newURL = `${tempURL}`;
       window.location.replace(newURL);
     } else if (tempURL.includes("/reels/")) {
       window.stop();
-      let newURL = tempURL.replace("/reels/", "/p/");
+      newURL = tempURL.replace("/reels/", "/p/");
       window.location.replace(newURL);
     } else {
       window.stop();
-      let newURL = `${tempURL}`;
+      newURL = `${tempURL}`;
       window.location.replace(newURL);
     }
   }
 }
 
 function redirectTwitter() {
-  if (twitter[0] == true) {
+  if (twitter[0] === true) {
     window.stop();
 
-    var selectedInstance = "";
-    var newPathName = "";
-    var newQuery = "";
+    let newPathName = "";
+    let newQuery = "";
 
-    if (twitter[1] == false) {
+    if (twitter[1] === false) {
       selectedInstance =
         nitterInstances[Math.floor(Math.random() * nitterInstances.length)];
     } else {
@@ -385,21 +385,20 @@ function redirectTwitter() {
         "?redirect_after_login=%2F",
         "/"
       );
-      let newURL = `${window.location.protocol}//${selectedInstance}${newPathName}${newQuery}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${newPathName}${newQuery}${hash}`;
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
       window.location.replace(newURL);
     }
   }
 }
 
 function redirectReddit() {
-  if (reddit[0] == true) {
+  if (reddit[0] === true) {
     window.stop();
-    var selectedInstance = "";
 
-    if (reddit[1] == false) {
+    if (reddit[1] === false) {
       selectedInstance = eval(redditFrontend + "Instances")[
         Math.floor(Math.random() * eval(redditFrontend + "Instances.length"))
       ];
@@ -407,19 +406,18 @@ function redirectReddit() {
       selectedInstance = `${farsideInstance}/${redditFrontend}`;
     }
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
     window.location.replace(newURL);
   }
 }
 
 function redirectYoutube() {
-  if (youtube[0] == true) {
+  if (youtube[0] === true) {
     window.stop();
-    var selectedInstance = "";
 
-    if (youtubeFrontend != "tubo") {
-      if (youtube[1] == false) {
+    if (youtubeFrontend !== "tubo") {
+      if (youtube[1] === false) {
         selectedInstance = eval(youtubeFrontend + "Instances")[
           Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
         ];
@@ -427,7 +425,7 @@ function redirectYoutube() {
         selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
       }
 
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
       window.location.replace(newURL);
     } else {
@@ -438,10 +436,10 @@ function redirectYoutube() {
         window.location.pathname.startsWith("/@") ||
         window.location.pathname.startsWith("/channel")
       ) {
-        let newURL = `${window.location.protocol}//${selectedInstance}/channel?url=${window.location.href}`;
+        newURL = `${scheme}${selectedInstance}/channel?url=${window.location.href}`;
         window.location.replace(newURL);
       } else {
-        let newURL = `${window.location.protocol}//${selectedInstance}/stream?url=${window.location.href}`;
+        newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
         window.location.replace(newURL);
       }
     }
@@ -449,11 +447,10 @@ function redirectYoutube() {
 }
 
 function redirectTiktok() {
-  if (tiktok[0] == true) {
+  if (tiktok[0] === true) {
     window.stop();
-    var selectedInstance = "";
 
-    if (tiktok[1] == false) {
+    if (tiktok[1] === false) {
       selectedInstance =
         proxitokInstances[Math.floor(Math.random() * proxitokInstances.length)];
     } else {
@@ -461,22 +458,20 @@ function redirectTiktok() {
     }
 
     if (window.location.pathname.startsWith("/discover")) {
-      let newURL = `${
-        window.location.protocol
-      }//${selectedInstance}${window.location.pathname.replace(
+      newURL = `${scheme}${selectedInstance}${window.location.pathname.replace(
         "discover",
         "tag"
-      )}${window.location.hash}`;
+      )}${hash}`;
 
       window.location.replace(newURL);
     } else if (
-      window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) != -1
+      window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) !== -1
     ) {
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
       window.location.replace(newURL);
     }
@@ -484,51 +479,48 @@ function redirectTiktok() {
 }
 
 function redirectImgur() {
-  if (imgur[0] == true) {
+  if (imgur[0] === true) {
     window.stop();
 
-    var selectedInstance = "";
-
-    if (imgur[1] == false) {
+    if (imgur[1] === false) {
       selectedInstance =
         rimgoInstances[Math.floor(Math.random() * rimgoInstances.length)];
     } else {
       selectedInstance = `${farsideInstance}/rimgo`;
     }
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
     window.location.replace(newURL);
   }
 }
 
 function redirectMedium() {
-  if (medium[0] == true || window.location.pathname != "/") {
+  if (medium[0] === true || window.location.pathname !== "/") {
     window.stop();
-    var selectedInstance = "";
 
-    if (medium[1] == false) {
+    if (medium[1] === false) {
       selectedInstance =
         scribeInstances[Math.floor(Math.random() * scribeInstances.length)];
     } else {
       selectedInstance = `${farsideInstance}/scribe`;
     }
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
     window.location.replace(newURL);
   }
 }
 
 function redirectYoutubeMusic() {
-  if (youtube[0] == true) {
+  if (youtube[0] === true) {
     window.stop();
 
-    var beatbumpInstance =
+    let beatbumpInstance =
       beatbumpInstances[Math.floor(Math.random() * beatbumpInstances.length)];
 
     if (window.location.pathname.startsWith("/watch")) {
-      if (youtube[1] == false) {
+      if (youtube[1] === false) {
         selectedInstance = eval(youtubeFrontend + "Instances")[
           Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
         ];
@@ -536,11 +528,11 @@ function redirectYoutubeMusic() {
         selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
       }
 
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${beatbumpInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${beatbumpInstance}${window.location.pathname}${window.location.search}${hash}`;
       window.location.replace(newURL);
     }
   }
@@ -548,32 +540,30 @@ function redirectYoutubeMusic() {
 
 function redirectHackerNews() {
   if (
-    hackernews[0] == true &&
-    window.location.pathname != "/user" &&
-    window.location.pathname != "/item"
+    hackernews[0] === true &&
+    window.location.pathname !== "/user" &&
+    window.location.pathname !== "/item"
   ) {
     window.stop();
-    let newURL = `${window.location.protocol}//hn.algolia.com`;
+    newURL = `${scheme}hn.algolia.com`;
     window.location.replace(newURL);
   }
 }
 
 function redirectGTranslate() {
-  if (gtranslate[0] == true) {
+  if (gtranslate[0] === true) {
     window.stop();
-    var selectedInstance = "";
 
-    if (gtranslate[1] == false) {
+    if (gtranslate[1] === false) {
       selectedInstance =
         lingvaInstances[Math.floor(Math.random() * lingvaInstances.length)];
     } else {
       selectedInstance = `${farsideInstance}/lingva`;
     }
 
-    if (window.location.search != "") {
-      let newURL =
-        window.location.protocol +
-        "//" +
+    if (window.location.search !== "") {
+      newURL =
+        scheme +
         selectedInstance +
         window.location.pathname +
         window.location.search
@@ -582,104 +572,99 @@ function redirectGTranslate() {
           .replace("&tl=", "/")
           .replace("&text=", "/")
           .replace("&op=translate", "") +
-        window.location.hash;
+        hash;
 
       window.location.replace(newURL);
     } else {
-      let newURL = window.location.protocol + "//" + selectedInstance;
+      newURL = scheme + selectedInstance;
       window.location.replace(newURL);
     }
   }
 }
 
 function redirectReuters() {
-  if (reuters[0] == true) {
+  if (reuters[0] === true) {
     window.stop();
     location.hostname = "neuters.de";
   }
 }
 
 function redirectWikipedia() {
-  if (wikipedia[0] == true) {
+  if (wikipedia[0] === true) {
     window.stop();
-    let langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
-    var selectedInstance = "";
+    const langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
 
-    if (wikipedia[1] == false) {
+    if (wikipedia[1] === false) {
       selectedInstance =
         wikilessInstances[Math.floor(Math.random() * wikilessInstances.length)];
     } else {
       selectedInstance = `${farsideInstance}/wikiless`;
     }
 
-    if (langCodeIndex != -1) {
-      let newURL =
-        window.location.protocol +
-        "//" +
+    if (langCodeIndex !== -1) {
+      newURL =
+        scheme +
         selectedInstance +
         window.location.pathname +
         "?lang=" +
         window.location.hostname[langCodeIndex] +
         window.location.hostname[langCodeIndex + 1] +
-        window.location.hash;
+        hash;
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}?lang=en${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=en${hash}`;
       window.location.replace(newURL);
     }
   }
 }
 
 function redirectImdb() {
-  if (imdb[0] == true) {
+  if (imdb[0] === true) {
     window.stop();
-    var selectedInstance = "";
 
-    if (imdb[1] == false) {
+    if (imdb[1] === false) {
       selectedInstance =
         libremdbInstances[Math.floor(Math.random() * libremdbInstances.length)];
     } else {
       selectedInstance = `${farsideInstance}/libremdb`;
     }
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
     window.location.replace(newURL);
   }
 }
 
 function redirectQuora() {
-  if (quora[0] == true) {
+  if (quora[0] === true) {
     window.stop();
-    var selectedInstance = "";
 
-    if (quora[1] == false) {
+    if (quora[1] === false) {
       selectedInstance =
         quetreInstances[Math.floor(Math.random() * quetreInstances.length)];
     } else {
       selectedInstance = `${farsideInstance}/quetre`;
     }
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
     window.location.replace(newURL);
   }
 }
 
 function redirectFandom() {
-  if (fandom[0] == true) {
+  if (fandom[0] === true) {
     let randomInstance =
       breezewikiInstances[
         Math.floor(Math.random() * breezewikiInstances.length)
       ];
-    let fandomName = window.location.hostname.replace(/\..*/, "");
-    let newURL = "";
+    const fandomName = window.location.hostname.replace(/\..*/, "");
     window.stop();
 
     if (fandomName !== "www") {
-      newURL = `${window.location.protocol}//${randomInstance}/${fandomName}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${randomInstance}/${fandomName}${window.location.pathname}${window.location.search}${hash}`;
     } else {
-      newURL = `${window.location.protocol}//${randomInstance}`;
+      newURL = `${scheme}${randomInstance}`;
     }
 
     window.location.replace(newURL);
@@ -688,14 +673,13 @@ function redirectFandom() {
 
 function redirectGoogle() {
   if (
-    google[0] == true &&
+    google[0] === true &&
     window.location.hostname.startsWith("www") &&
     window.location.pathname.startsWith("/search")
   ) {
     window.stop();
-    var selectedInstance = "";
 
-    if (google[1] == false) {
+    if (google[1] === false) {
       selectedInstance = eval(googleFrontend + "Instances")[
         Math.floor(Math.random() * eval(googleFrontend + "Instances.length"))
       ];
@@ -704,10 +688,10 @@ function redirectGoogle() {
     }
 
     if (window.location.pathname.match("/")) {
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${selectedInstance}${
+      newURL = `${scheme}${selectedInstance}${
         window.location.pathname
       }${window.location.search.match(/\?q.+?(?=\&)/)}`;
       window.location.replace(newURL);
@@ -716,22 +700,22 @@ function redirectGoogle() {
 }
 
 function redirectGoodreads() {
-  if (goodreads[0] == true) {
+  if (goodreads[0] === true) {
     window.stop();
 
-    var selectedInstance =
+    selectedInstance =
       biblioreadsInstances[
         Math.floor(Math.random() * biblioreadsInstances.length)
       ];
 
     if (window.location.pathname.startsWith("/search")) {
-      let newURL =
-        `${window.location.protocol}//${selectedInstance}${window.location.pathname}` +
+      newURL =
+        `${scheme}${selectedInstance}${window.location.pathname}` +
         window.location.search.replace(/.*.q\=/, "/") +
-        `${window.location.hash}`;
+        `${hash}`;
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
       window.location.replace(newURL);
     }
   }
@@ -739,11 +723,11 @@ function redirectGoodreads() {
 
 function redirectStackoverflow() {
   if (
-    stackoverflow[0] == true &&
+    stackoverflow[0] === true &&
     window.location.pathname.startsWith("/questions")
   ) {
     window.stop();
-    if (stackoverflow[1] == false) {
+    if (stackoverflow[1] === false) {
       selectedInstance =
         anonymousoverflowInstances[
           Math.floor(Math.random() * anonymousoverflowInstances.length)
@@ -752,63 +736,59 @@ function redirectStackoverflow() {
       selectedInstance = `${farsideInstance}/anonymousoverflow`;
     }
 
-    let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     window.location.replace(newURL);
   }
 }
 
 function redirectBandcamp() {
-  if (bandcamp[0] == true) {
+  if (bandcamp[0] === true) {
     // thanks to libredirect
 
-    var selectedInstance =
+    selectedInstance =
       tentInstances[Math.floor(Math.random() * tentInstances.length)];
 
     if (
-      window.location.hostname == "bandcamp.com" &&
-      window.location.pathname == "/search"
+      window.location.hostname === "bandcamp.com" &&
+      window.location.pathname === "/search"
     ) {
       const query = window.location.searchParams.get("q");
-      let newURL = `${
-        window.location.protocol
-      }//${selectedInstance}/search.php?query=${encodeURIComponent(query)}`;
+      newURL = `${scheme}${selectedInstance}/search.php?query=${encodeURIComponent(query)}`;
       window.location.replace(newURL);
     }
 
     if (window.location.hostname.endsWith("bandcamp.com")) {
       const regex = /^(.*)\.bandcamp\.com/.exec(window.location.hostname);
       const artist = regex[1];
-      if (window.location.pathname == "/") {
-        let newURL = `${window.location.protocol}//${selectedInstance}/artist.php?name=${artist}`;
+      if (window.location.pathname === "/") {
+        newURL = `${scheme}${selectedInstance}/artist.php?name=${artist}`;
         window.location.replace(newURL);
       } else {
         const regex = /^\/(.*)\/(.*)/.exec(window.location.pathname);
         if (regex) {
           const type = regex[1];
           const name = regex[2];
-          let newURL = `${window.location.protocol}//${selectedInstance}/release.php?artist=${artist}&type=${type}&name=${name}`;
+          newURL = `${scheme}${selectedInstance}/release.php?artist=${artist}&type=${type}&name=${name}`;
           window.location.replace(newURL);
         }
       }
     }
 
-    if (window.location.hostname == "f4.bcbits.com") {
+    if (window.location.hostname === "f4.bcbits.com") {
       const regex = /\/img\/(.*)/.exec(window.location.pathname);
       const image = regex[1];
-      let newURL = `${window.location.protocol}//${selectedInstance}/image.php?file=${image}`;
+      newURL = `${scheme}${selectedInstance}/image.php?file=${image}`;
       window.location.replace(newURL);
     }
 
-    if (window.location.hostname == "t4.bcbits.com") {
+    if (window.location.hostname === "t4.bcbits.com") {
       const regex = /\/stream\/(.*)\/(.*)\/(.*)/.exec(window.location.pathname);
       if (regex) {
         const directory = regex[1];
         const format = regex[2];
         const file = regex[3];
         const token = window.location.searchParams.get("token");
-        let newURL = `${
-          window.location.protocol
-        }//${selectedInstance}/audio.php/?directory=${directory}&format=${format}&file=${file}&token=${encodeURIComponent(
+        newURL = `${scheme}${selectedInstance}/audio.php/?directory=${directory}&format=${format}&file=${file}&token=${encodeURIComponent(
           token
         )}`;
         window.location.replace(newURL);
@@ -818,18 +798,18 @@ function redirectBandcamp() {
 }
 
 function redirectGenius() {
-  if (genius[0] == true) {
+  if (genius[0] === true) {
     switch (geniusFrontend) {
       case "dumb":
         window.stop();
-        var selectedInstance =
+        selectedInstance =
           dumbInstances[Math.floor(Math.random() * dumbInstances.length)];
 
-        let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+        newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
         window.location.replace(newURL);
         break;
       case "intellectual":
-        var selectedInstance =
+        selectedInstance =
           intellectualInstances[
             Math.floor(Math.random() * intellectualInstances.length)
           ];
@@ -837,27 +817,27 @@ function redirectGenius() {
         if (window.location.pathname.endsWith("-lyrics")) {
           window.stop();
           selectedInstance = selectedInstance + "/lyrics?path=";
-          let newURL = `${window.location.protocol}//${selectedInstance}${window.location.pathname}${window.location.search}${window.location.hash}`;
+          newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
           window.location.replace(newURL);
         } else if (window.location.pathname.startsWith("/albums")) {
           window.stop();
-          let newURL =
-            `${window.location.protocol}//${selectedInstance}` +
+          newURL =
+            `${scheme}${selectedInstance}` +
             `${window.location.pathname}${window.location.search}`.replace(
               "/albums",
               "/album?path=albums"
             ) +
-            `${window.location.hash}`;
+            `${hash}`;
           window.location.replace(newURL);
         } else if (window.location.pathname.startsWith("/artists")) {
           window.stop();
-          let newURL =
-            `${window.location.protocol}//${selectedInstance}` +
+          newURL =
+            `${scheme}${selectedInstance}` +
             `${window.location.pathname}${window.location.search}`.replace(
               "/artists",
               "/artist?path=artists"
             ) +
-            `${window.location.hash}`;
+            `${hash}`;
           window.location.replace(newURL);
         }
         break;
@@ -866,49 +846,49 @@ function redirectGenius() {
 }
 
 function redirectPinterest() {
-  if (pinterest[0] == true) {
+  if (pinterest[0] === true) {
     window.stop();
 
-    var selectedInstance =
+    selectedInstance =
       binternetInstances[Math.floor(Math.random() * binternetInstances.length)];
 
-    if (window.location.hostname == "i.pinimg.com") {
-      let newURL = `${window.location.protocol}//${selectedInstance}/image_proxy.php?url=${window.location.href}`;
+    if (window.location.hostname === "i.pinimg.com") {
+      newURL = `${scheme}${selectedInstance}/image_proxy.php?url=${window.location.href}`;
       window.location.replace(newURL);
     } else if (window.location.pathname.startsWith("/search")) {
-      let newURL =
-        `${window.location.protocol}//${selectedInstance}` +
+      newURL =
+        `${scheme}${selectedInstance}` +
         window.location.pathname
           .replace("search", "search.php")
           .replace("/pins/", "") +
-        `${window.location.search}${window.location.hash}`;
+        `${window.location.search}${hash}`;
       window.location.replace(newURL);
     } else if (window.location.pathname.startsWith("/pin")) {
       return;
     } else {
-      let newURL = `${window.location.protocol}//${selectedInstance}/`;
+      newURL = `${scheme}${selectedInstance}/`;
       window.location.replace(newURL);
     }
   }
 }
 
 function redirectSoundcloud() {
-  if (soundcloud[0] == true) {
+  if (soundcloud[0] === true) {
     window.stop();
-    var selectedInstance =
+    selectedInstance =
       tuboInstances[Math.floor(Math.random() * tuboInstances.length)];
 
-    if (window.location.pathname != "/") {
-      let newURL = `${window.location.protocol}//${selectedInstance}/stream?url=${window.location.href}`;
+    if (window.location.pathname !== "/") {
+      newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
       window.location.replace(newURL);
     } else {
-      let newURL = `${window.location.protocol}//${selectedInstance}/kiosk?serviceId=1`;
+      newURL = `${scheme}${selectedInstance}/kiosk?serviceId=1`;
       window.location.replace(newURL);
     }
   }
 }
 
-let urlHostname = window.location.hostname;
+const urlHostname = window.location.hostname;
 
 switch (urlHostname) {
   case "www.instagram.com":
@@ -936,7 +916,7 @@ switch (urlHostname) {
     break;
 
   case "music.youtube.com":
-    if (youtubeMusicFrontend == "beatbump") {
+    if (youtubeMusicFrontend === "beatbump") {
       redirectYoutubeMusic();
     } else {
       redirectYoutube();
