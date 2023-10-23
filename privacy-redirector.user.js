@@ -100,11 +100,11 @@
 // ==/UserScript==
 
 /*
-  ___  _   _        ___  _____ _____ 
+  ___  _   _        ___  _____ _____
  / _ \| \ | |      / _ \|  ___|  ___|
-| | | |  \| |_____| | | | |_  | |_   
-| |_| | |\  |_____| |_| |  _| |  _|  
- \___/|_| \_|      \___/|_|   |_|    
+| | | |  \| |_____| | | | |_  | |_
+| |_| | |\  |_____| |_| |  _| |  _|
+ \___/|_| \_|      \___/|_|   |_|
 
 CHANGE THE RELEVANT VALUE TO "false" TO
 DISABLE THE REDIRECTION/FARSIDE FOR THAT
@@ -139,7 +139,7 @@ let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
 let youtubeMusicFrontend = "beatbump"; // accepts "beatbump", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "searxng"; // accepts "searx", "searxng"
-let geniusFrontend = "intellectual"; // accept dumb, intellectual
+let geniusFrontend = "intellectual"; // accepts dumb, intellectual
 
 // OTHER SETTINGS
 let keepHistory = false; // keeps farside.link in the browser history
@@ -147,8 +147,8 @@ let keepHistory = false; // keeps farside.link in the browser history
 // // // // // // // // // // // // //
 
 /*
- ___           _                            
-|_ _|_ __  ___| |_ __ _ _ __   ___ ___  ___ 
+ ___           _
+|_ _|_ __  ___| |_ __ _ _ __   ___ ___  ___
  | || '_ \/ __| __/ _` | '_ \ / __/ _ \/ __|
  | || | | \__ \ || (_| | | | | (_|  __/\__ \
 |___|_| |_|___/\__\__,_|_| |_|\___\___||___/
@@ -315,7 +315,7 @@ if (debug_mode == true) {
     "\n== DEBUG MODE IS ON ==" +
       "\nIf you're seeing this" +
       "\nset the debug_mode value to" +
-      "\nfalse for Privacy Redirctor." +
+      "\nfalse for Privacy Redirector." +
       "\n======================" +
       "\n\nHostname: " +
       window.location.hostname +
