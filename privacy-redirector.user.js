@@ -332,14 +332,15 @@ if (debug_mode === true) {
 
 let selectedInstance = "", newURL = "";
 
-function redirectInstagram() {
+const getrandom = async(instances) => instances[Math.floor(Math.random() * instances.length)];
+
+async function redirectInstagram() {
   if (instagram[0] === true) {
     let newPathName = "";
     let newQuery = "";
     let tempURL = "";
 
-    selectedInstance =
-      proxigramInstances[Math.floor(Math.random() * proxigramInstances.length)];
+    selectedInstance = await getrandom(proxigramInstances);
 
     if (window.location.pathname.startsWith("/accounts/login/")) {
       newPathName = window.location.pathname.replace("/accounts/login/", "");
@@ -365,7 +366,7 @@ function redirectInstagram() {
   }
 }
 
-function redirectTwitter() {
+async function redirectTwitter() {
   if (twitter[0] === true) {
     window.stop();
 
@@ -373,8 +374,7 @@ function redirectTwitter() {
     let newQuery = "";
 
     if (twitter[1] === false) {
-      selectedInstance =
-        nitterInstances[Math.floor(Math.random() * nitterInstances.length)];
+      selectedInstance = await getrandom(nitterInstances);
     } else {
       selectedInstance = `${farsideInstance}/nitter`;
     }
@@ -394,14 +394,12 @@ function redirectTwitter() {
   }
 }
 
-function redirectReddit() {
+async function redirectReddit() {
   if (reddit[0] === true) {
     window.stop();
 
     if (reddit[1] === false) {
-      selectedInstance = eval(redditFrontend + "Instances")[
-        Math.floor(Math.random() * eval(redditFrontend + "Instances.length"))
-      ];
+      selectedInstance = await getrandom(eval(redditFrontend + "Instances"));
     } else {
       selectedInstance = `${farsideInstance}/${redditFrontend}`;
     }
@@ -412,15 +410,13 @@ function redirectReddit() {
   }
 }
 
-function redirectYoutube() {
+async function redirectYoutube() {
   if (youtube[0] === true) {
     window.stop();
 
     if (youtubeFrontend !== "tubo") {
       if (youtube[1] === false) {
-        selectedInstance = eval(youtubeFrontend + "Instances")[
-          Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
-        ];
+        selectedInstance = await getrandom(eval(youtubeFrontend + "Instances"));
       } else {
         selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
       }
@@ -429,8 +425,7 @@ function redirectYoutube() {
 
       window.location.replace(newURL);
     } else {
-      selectedInstance =
-        tuboInstances[Math.floor(Math.random() * tuboInstances.length)];
+      selectedInstance = await getrandom(tuboInstances);
 
       if (
         window.location.pathname.startsWith("/@") ||
@@ -446,13 +441,12 @@ function redirectYoutube() {
   }
 }
 
-function redirectTiktok() {
+async function redirectTiktok() {
   if (tiktok[0] === true) {
     window.stop();
 
     if (tiktok[1] === false) {
-      selectedInstance =
-        proxitokInstances[Math.floor(Math.random() * proxitokInstances.length)];
+      selectedInstance = await getrandom(proxitokInstances);
     } else {
       selectedInstance = `${farsideInstance}/proxitok`;
     }
@@ -478,13 +472,12 @@ function redirectTiktok() {
   }
 }
 
-function redirectImgur() {
+async function redirectImgur() {
   if (imgur[0] === true) {
     window.stop();
 
     if (imgur[1] === false) {
-      selectedInstance =
-        rimgoInstances[Math.floor(Math.random() * rimgoInstances.length)];
+      selectedInstance = await getrandom(rimgoInstances);
     } else {
       selectedInstance = `${farsideInstance}/rimgo`;
     }
@@ -495,13 +488,12 @@ function redirectImgur() {
   }
 }
 
-function redirectMedium() {
+async function redirectMedium() {
   if (medium[0] === true || window.location.pathname !== "/") {
     window.stop();
 
     if (medium[1] === false) {
-      selectedInstance =
-        scribeInstances[Math.floor(Math.random() * scribeInstances.length)];
+      selectedInstance = await getrandom(scribeInstances);
     } else {
       selectedInstance = `${farsideInstance}/scribe`;
     }
@@ -512,18 +504,15 @@ function redirectMedium() {
   }
 }
 
-function redirectYoutubeMusic() {
+async function redirectYoutubeMusic() {
   if (youtube[0] === true) {
     window.stop();
 
-    let beatbumpInstance =
-      beatbumpInstances[Math.floor(Math.random() * beatbumpInstances.length)];
+    let beatbumpInstance = await getrandom(beatbumpInstances);
 
     if (window.location.pathname.startsWith("/watch")) {
       if (youtube[1] === false) {
-        selectedInstance = eval(youtubeFrontend + "Instances")[
-          Math.floor(Math.random() * eval(youtubeFrontend + "Instances.length"))
-        ];
+        selectedInstance = await getrandom(eval(youtubeFrontend + "Instances"));
       } else {
         selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
       }
@@ -538,7 +527,7 @@ function redirectYoutubeMusic() {
   }
 }
 
-function redirectHackerNews() {
+async function redirectHackerNews() {
   if (
     hackernews[0] === true &&
     window.location.pathname !== "/user" &&
@@ -550,13 +539,12 @@ function redirectHackerNews() {
   }
 }
 
-function redirectGTranslate() {
+async function redirectGTranslate() {
   if (gtranslate[0] === true) {
     window.stop();
 
     if (gtranslate[1] === false) {
-      selectedInstance =
-        lingvaInstances[Math.floor(Math.random() * lingvaInstances.length)];
+      selectedInstance = await getrandom(lingvaInstances);
     } else {
       selectedInstance = `${farsideInstance}/lingva`;
     }
@@ -582,21 +570,20 @@ function redirectGTranslate() {
   }
 }
 
-function redirectReuters() {
+async function redirectReuters() {
   if (reuters[0] === true) {
     window.stop();
     location.hostname = "neuters.de";
   }
 }
 
-function redirectWikipedia() {
+async function redirectWikipedia() {
   if (wikipedia[0] === true) {
     window.stop();
     const langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
 
     if (wikipedia[1] === false) {
-      selectedInstance =
-        wikilessInstances[Math.floor(Math.random() * wikilessInstances.length)];
+      selectedInstance = await getrandom(wikilessInstances);
     } else {
       selectedInstance = `${farsideInstance}/wikiless`;
     }
@@ -618,13 +605,12 @@ function redirectWikipedia() {
   }
 }
 
-function redirectImdb() {
+async function redirectImdb() {
   if (imdb[0] === true) {
     window.stop();
 
     if (imdb[1] === false) {
-      selectedInstance =
-        libremdbInstances[Math.floor(Math.random() * libremdbInstances.length)];
+      selectedInstance = await getrandom(libremdbInstances);
     } else {
       selectedInstance = `${farsideInstance}/libremdb`;
     }
@@ -635,13 +621,12 @@ function redirectImdb() {
   }
 }
 
-function redirectQuora() {
+async function redirectQuora() {
   if (quora[0] === true) {
     window.stop();
 
     if (quora[1] === false) {
-      selectedInstance =
-        quetreInstances[Math.floor(Math.random() * quetreInstances.length)];
+      selectedInstance = await getrandom(quetreInstances);
     } else {
       selectedInstance = `${farsideInstance}/quetre`;
     }
@@ -652,12 +637,9 @@ function redirectQuora() {
   }
 }
 
-function redirectFandom() {
+async function redirectFandom() {
   if (fandom[0] === true) {
-    let randomInstance =
-      breezewikiInstances[
-        Math.floor(Math.random() * breezewikiInstances.length)
-      ];
+    let randomInstance = await getrandom(breezewikiInstances);
     const fandomName = window.location.hostname.replace(/\..*/, "");
     window.stop();
 
@@ -671,7 +653,7 @@ function redirectFandom() {
   }
 }
 
-function redirectGoogle() {
+async function redirectGoogle() {
   if (
     google[0] === true &&
     window.location.hostname.startsWith("www") &&
@@ -680,9 +662,7 @@ function redirectGoogle() {
     window.stop();
 
     if (google[1] === false) {
-      selectedInstance = eval(googleFrontend + "Instances")[
-        Math.floor(Math.random() * eval(googleFrontend + "Instances.length"))
-      ];
+      selectedInstance = await getrandom(eval(googleFrontend + "Instances"));
     } else {
       selectedInstance = `${farsideInstance}/${googleFrontend}`;
     }
@@ -699,14 +679,11 @@ function redirectGoogle() {
   }
 }
 
-function redirectGoodreads() {
+async function redirectGoodreads() {
   if (goodreads[0] === true) {
     window.stop();
 
-    selectedInstance =
-      biblioreadsInstances[
-        Math.floor(Math.random() * biblioreadsInstances.length)
-      ];
+    selectedInstance = await getrandom(biblioreadsInstances);
 
     if (window.location.pathname.startsWith("/search")) {
       newURL =
@@ -721,17 +698,14 @@ function redirectGoodreads() {
   }
 }
 
-function redirectStackoverflow() {
+async function redirectStackoverflow() {
   if (
     stackoverflow[0] === true &&
     window.location.pathname.startsWith("/questions")
   ) {
     window.stop();
     if (stackoverflow[1] === false) {
-      selectedInstance =
-        anonymousoverflowInstances[
-          Math.floor(Math.random() * anonymousoverflowInstances.length)
-        ];
+      selectedInstance = await getrandom(anonymousoverflowInstances);
     } else {
       selectedInstance = `${farsideInstance}/anonymousoverflow`;
     }
@@ -741,12 +715,11 @@ function redirectStackoverflow() {
   }
 }
 
-function redirectBandcamp() {
+async function redirectBandcamp() {
   if (bandcamp[0] === true) {
     // thanks to libredirect
 
-    selectedInstance =
-      tentInstances[Math.floor(Math.random() * tentInstances.length)];
+    selectedInstance = await getrandom(tentInstances);
 
     if (
       window.location.hostname === "bandcamp.com" &&
@@ -797,22 +770,18 @@ function redirectBandcamp() {
   }
 }
 
-function redirectGenius() {
+async function redirectGenius() {
   if (genius[0] === true) {
     switch (geniusFrontend) {
       case "dumb":
         window.stop();
-        selectedInstance =
-          dumbInstances[Math.floor(Math.random() * dumbInstances.length)];
+        selectedInstance = await getrandom(dumbInstances);
 
         newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
         window.location.replace(newURL);
         break;
       case "intellectual":
-        selectedInstance =
-          intellectualInstances[
-            Math.floor(Math.random() * intellectualInstances.length)
-          ];
+        selectedInstance = await getrandom(intellectualInstances);
 
         if (window.location.pathname.endsWith("-lyrics")) {
           window.stop();
@@ -845,12 +814,11 @@ function redirectGenius() {
   }
 }
 
-function redirectPinterest() {
+async function redirectPinterest() {
   if (pinterest[0] === true) {
     window.stop();
 
-    selectedInstance =
-      binternetInstances[Math.floor(Math.random() * binternetInstances.length)];
+    selectedInstance = await getrandom(binternetInstances);
 
     if (window.location.hostname === "i.pinimg.com") {
       newURL = `${scheme}${selectedInstance}/image_proxy.php?url=${window.location.href}`;
@@ -872,11 +840,10 @@ function redirectPinterest() {
   }
 }
 
-function redirectSoundcloud() {
+async function redirectSoundcloud() {
   if (soundcloud[0] === true) {
     window.stop();
-    selectedInstance =
-      tuboInstances[Math.floor(Math.random() * tuboInstances.length)];
+    selectedInstance = await getrandom(tuboInstances);
 
     if (window.location.pathname !== "/") {
       newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
