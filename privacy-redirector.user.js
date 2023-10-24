@@ -71,6 +71,7 @@
 // @match *://*.google.com/*
 // @match *://*.imdb.com/*
 // @match *://*.imgur.com/*
+// @match *://*.imgur.io/*
 // @match *://*.instagram.com/*
 // @match *://*.medium.com/*
 // @match *://*.pinterest.com/*
@@ -97,6 +98,8 @@
 // @match *://twitter.com/*
 // @match *://www.goodreads.com/*
 // @match *://youtube.com/*
+// @exclude *://*.youtube.com/redirect*
+// @exclude *://youtube.com/redirect*
 // ==/UserScript==
 
 /*
@@ -867,11 +870,6 @@ switch (urlHostname) {
     redirectTwitter();
     break;
 
-  case "www.reddit.com":
-  case "old.reddit.com":
-    redirectReddit();
-    break;
-
   case "www.youtube.com":
   case "m.youtube.com":
   case "www.youtube-nocookie.com":
@@ -940,20 +938,32 @@ switch (urlHostname) {
     redirectSoundcloud();
     break;
 
-  default:
-    if (urlHostname.includes("medium.com")) {
-      redirectMedium();
-    } else if (urlHostname.includes("imgur.com")) {
-      redirectImgur();
-    } else if (urlHostname.includes("wikipedia.org")) {
-      redirectWikipedia();
-    } else if (urlHostname.includes("fandom.com")) {
-      redirectFandom();
-    } else if (urlHostname.includes("bandcamp.com")) {
-      redirectBandcamp();
-    } else if (urlHostname.includes("pinterest.com")) {
-      redirectPinterest();
-    }
+  case urlHostname.includes("reddit.com") ? urlHostname : false:
+    redirectReddit();
+    break;
 
+  case urlHostname.includes("medium.com") ? urlHostname : false:
+    redirectMedium();
+    break;
+
+  case urlHostname.includes("imgur.com") ? urlHostname : false:
+  case urlHostname.includes("imgur.io") ? urlHostname : false:
+    redirectImgur();
+    break;
+
+  case urlHostname.includes("wikipedia.org") ? urlHostname : false:
+    redirectWikipedia();
+    break;
+
+  case urlHostname.includes("fandom.com") ? urlHostname : false:
+    redirectFandom();
+    break;
+
+  case urlHostname.includes("bandcamp.com") ? urlHostname : false:
+    redirectBandcamp();
+    break;
+
+  case urlHostname.includes("pinterest.com") ? urlHostname : false:
+    redirectPinterest();
     break;
 }
