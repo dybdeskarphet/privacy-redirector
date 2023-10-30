@@ -119,22 +119,22 @@ let bandcamp = [true, true];
 let fandom = [true, true];
 let genius = [true, true];
 let goodreads = [true, false];
-let google = [true, true];
+let google = [true, false];
 let gtranslate = [true, true];
 let hackernews = [true, true];
 let imdb = [true, true];
-let imgur = [true, true];
+let imgur = [true, false];
 let medium = [true, true];
 let pinterest = [true, true];
-let quora = [true, true];
-let reddit = [true, true];
+let quora = [true, false];
+let reddit = [true, false];
 let reuters = [true, true];
 let soundcloud = [true, true];
 let stackoverflow = [true, true];
-let tiktok = [true, true];
+let tiktok = [true, false];
 let twitter = [true, true];
-let wikipedia = [true, true];
-let youtube = [true, true];
+let wikipedia = [true, false];
+let youtube = [true, false];
 let instagram = [true, true];
 
 // PREFERRED FRONTEND
@@ -159,153 +159,274 @@ let keepHistory = false; // keeps farside.link in the browser history
 LIST OF INSTANCES TO USE IF FARSIDE IS NOT ENABLED
 */
 
-const anonymousoverflowInstances = [
-  "code.whatever.social",
-  "ao.vern.cc",
-  "overflow.smnz.de",
-  "overflow.lunar.icu",
-];
-
-const beatbumpInstances = ["beatbump.ml", "bb.eu.projectsegfau.lt"];
-
-const proxigramInstances = [
-  "proxigram.privacyfrontends.repl.co",
-  "proxigram.protokolla.fi",
-  "proxigram.kyun.li",
-  "proxigram.drgns.space",
-  "ig.opnxng.com",
-];
-
-const biblioreadsInstances = [
-  "biblioreads.ml",
-  "biblioreads.ga",
-  "biblioreads.netlify.app",
-];
-
-const binternetInstances = [
-  "binternet.ahwx.org",
-  "binternet.revvy.de",
-  "binternet.bloatcat.tk",
-  "bn.vern.cc",
-  "pinterest.foxhaven.cyou",
-];
-
-const breezewikiInstances = [
-  "breezewiki.com",
-  "breezewiki.pussthecat.org",
-  "antifandom.com",
-  "bw.hamstro.dev",
-];
-
-const dumbInstances = [
-  "dm.vern.cc",
-  "sing.whatever.social",
-  "dumb.lunar.icu",
-  "dumb.privacydev.net",
-];
-
-const intellectualInstances = ["intellectual.insprill.net"];
-
-const invidiousInstances = [
-  "yewtu.be",
-  "vid.puffyan.us",
-  "yt.artemislena.eu",
-  "invidious.projectsegfau.lt",
-];
-
-const pipedInstances = [
-  "pipedapi.video",
-  "pipedapi.tokhmi.xyz",
-  "piped.projectsegfau.lt",
-  "piped.privacydev.net",
-];
-
-const libredditInstances = [
-  "libreddit.invak.id",
-  "libreddit.de",
-  "libreddit.kavin.rocks",
-  "libreddit.kutay.dev",
-];
-
-const libremdbInstances = [
-  "libremdb.pussthecat.org",
-  "libremdb.iket.me",
-  "libremdb.lunar.icu",
-  "binge.whatever.social",
-];
-
-const lingvaInstances = [
-  "lingva.ml",
-  "translate.igna.wtf",
-  "translate.plausibility.cloud",
-  "translate.projectsegfau.lt",
-];
-
-const nitterInstances = [
-  "nitter.lacontrevoie.fr",
-  "nitter.fdn.fr",
-  "nitter.1d4.us",
-  "nitter.kavin.rocks",
-];
-
-const proxitokInstances = [
-  "proxitok.pabloferreiro.es",
-  "proxitok.privacydev.net",
-  "proxitok.pussthecat.org",
-];
-
-const quetreInstances = [
-  "quetre.iket.me",
-  "quora.vern.cc",
-  "quetre.pussthecat.org",
-  "quetre.tokhmi.xyz",
-];
-
-const rimgoInstances = [
-  "rimgo.pussthecat.org",
-  "rimgo.totaldarkness.net",
-  "rimgo.bus-hit.me",
-  "imgur.artemislena.eu",
-];
-
-const scribeInstances = [
-  "scribe.rip",
-  "scribe.nixnet.services",
-  "scribe.citizen4.eu",
-  "scribe.bus-hit.me",
-];
-
-const tedditInstances = [
-  "teddit.pussthecat.org",
-  "teddit.ggc-project.de",
-  "teddit.domain.glass",
-  "teddit.zaggy.nl",
-];
-
-const tentInstances = ["tent.sny.sh", "tent.bloatcat.tk", "tn.vern.cc"];
-
-const tuboInstances = ["tubo.migalmoreno.com"];
-
-const wikilessInstances = [
-  "wikiless.org",
-  "wikiless.tiekoetter.com",
-  "wikiless.funami.tech",
-  "wl.vern.cc",
-];
-
-const searxInstances = [
-  "search.bus-hit.me",
-  "search.projectsegfau.lt",
-  "northboot.xyz",
-  "opnxng.com",
-];
-
-const searxngInstances = [
-  "baresearch.org",
-  "dynabyte.ca",
-  "search.bus-hit.me",
-  "search.leptons.xyz",
-];
+const Instances = {
+  anonymousoverflow: [
+    "code.whatever.social",
+    "overflow.smnz.de",
+    "overflow.lunar.icu",
+    "overflow.adminforge.de",
+    "overflow.hostux.net",
+    "overflow.projectsegfau.lt",
+    "code.whateveritworks.org",
+    "ao.bloatcat.tk",
+    "anonoverflow.frontendfriendly.xyz",
+    "ao.owo.si",
+    "overflow.datura.network",
+    "ao.ftw.lol",
+    "anonoverflow.hyperreal.coffee",
+    "overflow.sudovanilla.com",
+  ],
+  beatbump: ["beatbump.ml", "bb.eu.projectsegfau.lt"],
+  proxigram: [
+    "proxigram.privacyfrontends.repl.co",
+    "proxigram.protokolla.fi",
+    "proxigram.kyun.li",
+    "proxigram.drgns.space",
+    "ig.opnxng.com",
+  ],
+  biblioreads: [
+    "biblioreads.eu.org",
+    "biblioreads.vercel.app",
+    "biblioreads.lunar.icu",
+    "read.whateveritworks.org",
+    "biblioreads.privacyfucking.rocks",
+    "read.seitan-ayoub.lol",
+  ],
+  binternet: [
+    "binternet.ahwx.org",
+    "binternet.revvy.de",
+    "binternet.bloatcat.tk",
+    "bn.opnxng.com",
+  ],
+  breezewiki: [
+    "breezewiki.com",
+    "antifandom.com",
+    "breezewiki.pussthecat.org",
+    "bw.hamstro.dev",
+    "bw.projectsegfau.lt",
+    "breeze.hostux.net",
+    "bw.artemislena.eu",
+    "nerd.whatever.social",
+    "breezewiki.frontendfriendly.xyz",
+    "breeze.nohost.network",
+    "breeze.whateveritworks.org",
+    "z.opnxng.com",
+    "breezewiki.hyperreal.coffee",
+    "breezewiki.catsarch.com",
+    "breeze.mint.lgbt",
+    "breezewiki.woodland.cafe",
+  ],
+  dumb: [
+    "sing.whatever.social",
+    "dumb.lunar.icu",
+    "dumb.privacydev.net",
+  ],
+  intellectual: [
+    "intellectual.insprill.net",
+    "in.bloatcat.tk",
+    "intellectual.privacyfucking.rocks",
+  ],
+  invidious: [
+    "yewtu.be",
+    "vid.puffyan.us",
+    "yt.artemislena.eu",
+    "invidious.flokinet.to",
+    "invidious.projectsegfau.lt",
+    "invidious.slipfox.xyz",
+    "invidious.privacydev.net",
+    "vid.priv.au",
+    "iv.ggtyler.dev",
+    "invidious.lunar.icu",
+    "inv.zzls.xyz",
+    "inv.tux.pizza",
+    "invidious.protokolla.fi",
+    "proxied.invidious.fi",
+    "onion.tube",
+    "inv.citw.lgbt",
+    "yt.oelrichsgarcia.de",
+    "invidious.no-logs.com",
+    "invidious.io.lol",
+    "iv.nboeck.de",
+    "invidious.asir.dev",
+    "iv.datura.network",
+    "invidious.fdn.fr",
+    "anontube.lvkaszus.pl",
+    "invidious.perennialte.ch",
+    "yt.cdaut.de",
+    "invidious.drgns.space",
+  ],
+  piped: [
+    "piped.video",
+    "cf.piped.video",
+    "fl.piped.video",
+    "do.piped.video",
+    "az.piped.video",
+    "piped.syncpundit.io",
+    "piped.mha.fi",
+    "piped.lunar.icu",
+    "piped.rafo.tech",
+    "il.ax",
+    "piped.projectsegfau.lt",
+    "watch.whatever.social",
+    "piped.privacydev.net",
+    "piped.smnz.de",
+    "piped.adminforge.de",
+    "piped.hostux.net",
+    "piped.yt",
+    "piped.astartes.nl",
+    "piped.osphost.fi",
+    "piped.drgns.space",
+    "pi.ggtyler.dev",
+    "piped.seitan-ayoub.lol",
+    "piped.12a.app",
+  ],
+  libreddit: [
+    "libreddit.kavin.rocks",
+    "libreddit.strongthany.cc",
+    "libreddit.northboot.xyz",
+    "libreddit.hu",
+    "libreddit.kylrth.com",
+    "libreddit.tiekoetter.com",
+    "l.opnxng.com",
+    "libreddit.privacydev.net",
+    "libreddit.oxymagnesium.com",
+    "libreddit.freedit.eu",
+    "libreddit.mha.fi",
+    "lr.artemislena.eu",
+    "lr.aeong.one",
+    "libreddit.lunar.icu",
+    "snoo.habedieeh.re",
+    "libreddit.kutay.dev",
+    "libreddit.tux.pizza",
+  ],
+  libremdb: [
+    "libremdb.iket.me",
+    "libremdb.pussthecat.org",
+    "binge.whatever.social",
+    "libremdb.lunar.icu",
+    "libremdb.jeikobu.net",
+    "binge.whateveritworks.org",
+    "libremdb.nerdyfam.tech",
+    "libremdb.tux.pizza",
+    "libremdb.frontendfriendly.xyz",
+    "d.opnxng.com",
+  ],
+  lingva: [
+    "lingva.frontendfriendly.xyz",
+    "lingva.retiolus.net",
+    "translate.plausibility.cloud",
+    "lingva.lunar.icu",
+  ],
+  nitter: [
+    "nitter.net",
+    "nitter:nitter@nitter.nixnet.services",
+    "nitter.unixfox.eu",
+    "nitter.mint.lgbt",
+    "nitter.esmailelbob.xyz",
+    "nitter.poast.org",
+    "nitter.cz",
+    "nitter.projectsegfau.lt",
+    "nitter.soopy.moe",
+    "nitter.d420.de",
+    "nitter.nohost.network",
+    "nitter.x86-64-unknown-linux-gnu.zip",
+    "nitter.woodland.cafe",
+    "nitter.dafriser.be",
+    "nitter.perennialte.ch",
+    "nitter.salastil.com",
+    "n.populas.no",
+    "nitter.uni-sonia.com",
+    "n.opnxng.com",
+    "nitter.ktachibana.party",
+  ],
+  proxitok: [
+    "proxitok.pabloferreiro.es",
+    "proxitok.pussthecat.org",
+    "tok.habedieeh.re",
+    "tok.adminforge.de",
+    "tik.hostux.net",
+    "cringe.whatever.social",
+    "cringe.whateveritworks.org",
+    "cringe.datura.network",
+    "tt.opnxng.com",
+    "proxitok.tinfoil-hat.net",
+    "tiktok.wpme.pl",
+  ],
+  quetre: [
+    "quetre.iket.me",
+    "quetre.privacydev.net",
+    "questions.whateveritworks.org",
+    "quetre.frontendfriendly.xyz",
+    "q.opnxng.com",
+    "quetre.ftw.lol",
+    "quora.seitan-ayoub.lol",
+    "ask.sudovanilla.com",
+    "quetre.drgns.space",
+  ],
+  rimgo: [
+    "imgur.artemislena.eu",
+    "ri.zzls.xyz",
+    "rimgo.lunar.icu",
+    "rimgo.kling.gg",
+    "rimgo.projectsegfau.lt",
+    "rimgo.nohost.network",
+    "rimgo.drgns.space",
+    "rimgo.quantenzitrone.eu",
+  ],
+  scribe: [
+    "scribe.rip",
+    "scribe.citizen4.eu",
+    "scribe.bus-hit.me",
+    "scribe.rawbit.ninja",
+    "m.opnxng.com",
+  ],
+  teddit: [
+    "i.opnxng.com",
+    "reddit.lol",
+    "teddit.bus-hit.me",
+    "teddit.hostux.net",
+    "teddit.net",
+    "teddit.no-logs.com",
+    "teddit.projectsegfau.lt",
+    "teddit.pussthecat.org",
+    "teddit.zaggy.nl",
+  ],
+  tent: ["tent.sny.sh", "tent.bloatcat.tk"],
+  tubo: ["tubo.migalmoreno.com"],
+  wikiless: [
+    "wikiless.tiekoetter.com",
+    "wikiless.funami.tech",
+    "wikiless.rawbit.ninja",
+    "wiki.adminforge.de",
+    "wikiless.rafo.tech",
+    "wiki.seitan-ayoub.lol",
+    "wikiless.ftw.lol",
+    "wl.ftw.lol",
+  ],
+  searx: [
+    "search.bus-hit.me",
+    "search.projectsegfau.lt",
+    "northboot.xyz",
+    "opnxng.com",
+  ],
+  searxng: [
+    "search.sapti.me",
+    "priv.au",
+    "www.gruble.de",
+    "search.lvkaszus.pl",
+    "searx.divided-by-zero.eu",
+    "searx.perennialte.ch",
+    "search.mdosch.de",
+    "searx.kutay.dev",
+    "searx.si",
+    "searx.namejeff.xyz",
+    "search.whateveritworks.org",
+    "searx.work",
+    "search.smnz.de",
+    "searx.prvcy.eu",
+    "searx.headpat.exchange",
+  ],
+};
 
 let farsideInstance = keepHistory === true ? "farside.link/_" : "farside.link";
 
@@ -315,7 +436,7 @@ const hash = window.location.hash, scheme = `${window.location.protocol}//`;
 
 let debug_mode = false;
 
-if (debug_mode === true) {
+if (debug_mode) {
   alert(
     "\n== DEBUG MODE IS ON ==" +
       "\nIf you're seeing this" +
@@ -338,12 +459,12 @@ let selectedInstance = "", newURL = "";
 const getrandom = async(instances) => instances[Math.floor(Math.random() * instances.length)];
 
 async function redirectInstagram() {
-  if (instagram[0] === true) {
+  if (instagram[0]) {
     let newPathName = "";
     let newQuery = "";
     let tempURL = "";
 
-    selectedInstance = await getrandom(proxigramInstances);
+    selectedInstance = await getrandom(Instances.proxigram);
 
     if (window.location.pathname.startsWith("/accounts/login/")) {
       newPathName = window.location.pathname.replace("/accounts/login/", "");
@@ -370,18 +491,15 @@ async function redirectInstagram() {
 }
 
 async function redirectTwitter() {
-  if (twitter[0] === true) {
+  if (twitter[0]) {
     window.stop();
 
     let newPathName = "";
     let newQuery = "";
 
-    if (twitter[1] === false) {
-      selectedInstance = await getrandom(nitterInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/nitter`;
-    }
+    selectedInstance = twitter[1] ? `${farsideInstance}/nitter` : await getrandom(Instances.nitter);
 
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     if (window.location.pathname.startsWith("/i/flow/login")) {
       newPathName = window.location.pathname.replace("/i/flow/login", "");
       newQuery = window.location.search.replace(
@@ -389,23 +507,16 @@ async function redirectTwitter() {
         "/"
       );
       newURL = `${scheme}${selectedInstance}${newPathName}${newQuery}${hash}`;
-      window.location.replace(newURL);
-    } else {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
 async function redirectReddit() {
-  if (reddit[0] === true) {
+  if (reddit[0]) {
     window.stop();
 
-    if (reddit[1] === false) {
-      selectedInstance = await getrandom(eval(redditFrontend + "Instances"));
-    } else {
-      selectedInstance = `${farsideInstance}/${redditFrontend}`;
-    }
+    selectedInstance = reddit[1] ? `${farsideInstance}/${redditFrontend}` : await getrandom(Instances[redditFrontend]);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -414,76 +525,54 @@ async function redirectReddit() {
 }
 
 async function redirectYoutube() {
-  if (youtube[0] === true) {
+  if (youtube[0]) {
     window.stop();
 
     if (youtubeFrontend !== "tubo") {
-      if (youtube[1] === false) {
-        selectedInstance = await getrandom(eval(youtubeFrontend + "Instances"));
-      } else {
-        selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
-      }
+      selectedInstance = youtube[1] ?
+        `${farsideInstance}/${youtubeFrontend}` :
+        await getrandom(Instances[youtubeFrontend]);
 
       newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
       window.location.replace(newURL);
     } else {
-      selectedInstance = await getrandom(tuboInstances);
+      selectedInstance = await getrandom(Instances.tubo);
 
+      newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
       if (
         window.location.pathname.startsWith("/@") ||
         window.location.pathname.startsWith("/channel")
       ) {
         newURL = `${scheme}${selectedInstance}/channel?url=${window.location.href}`;
-        window.location.replace(newURL);
-      } else {
-        newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
-        window.location.replace(newURL);
       }
+      window.location.replace(newURL);
     }
   }
 }
 
 async function redirectTiktok() {
-  if (tiktok[0] === true) {
+  if (tiktok[0]) {
     window.stop();
 
-    if (tiktok[1] === false) {
-      selectedInstance = await getrandom(proxitokInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/proxitok`;
-    }
+    selectedInstance = tiktok[1] ? `${farsideInstance}/proxitok` : await getrandom(Instances.proxitok);
 
-    if (window.location.pathname.startsWith("/discover")) {
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    if (window.location.pathname.startsWith("/discover/")) {
       newURL = `${scheme}${selectedInstance}${window.location.pathname.replace(
         "discover",
         "tag"
       )}${hash}`;
-
-      window.location.replace(newURL);
-    } else if (
-      window.location.pathname.search(/[a-z][a-z]\-[A-Z][A-Z]/g) !== -1
-    ) {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-
-      window.location.replace(newURL);
-    } else {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
 async function redirectImgur() {
-  if (imgur[0] === true) {
+  if (imgur[0]) {
     window.stop();
 
-    if (imgur[1] === false) {
-      selectedInstance = await getrandom(rimgoInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/rimgo`;
-    }
+    selectedInstance = imgur[1] ? `${farsideInstance}/rimgo` : await getrandom(Instances.rimgo);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -492,14 +581,10 @@ async function redirectImgur() {
 }
 
 async function redirectMedium() {
-  if (medium[0] === true || window.location.pathname !== "/") {
+  if (medium[0]) {
     window.stop();
 
-    if (medium[1] === false) {
-      selectedInstance = await getrandom(scribeInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/scribe`;
-    }
+    selectedInstance = medium[1] ? `${farsideInstance}/scribe` : await getrandom(Instances.scribe);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -508,31 +593,24 @@ async function redirectMedium() {
 }
 
 async function redirectYoutubeMusic() {
-  if (youtube[0] === true) {
+  if (youtube[0]) {
     window.stop();
 
-    let beatbumpInstance = await getrandom(beatbumpInstances);
+    let beatbumpInstance = await getrandom(Instances.beatbump);
+    newURL = `${scheme}${beatbumpInstance}${window.location.pathname}${window.location.search}${hash}`;
 
     if (window.location.pathname.startsWith("/watch")) {
-      if (youtube[1] === false) {
-        selectedInstance = await getrandom(eval(youtubeFrontend + "Instances"));
-      } else {
-        selectedInstance = `${farsideInstance}/${youtubeFrontend}`;
-      }
+      selectedInstance = youtube[1] ? `${farsideInstance}/${youtubeFrontend}` : await getrandom(Instances[youtubeFrontend]);
 
       newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-
-      window.location.replace(newURL);
-    } else {
-      newURL = `${scheme}${beatbumpInstance}${window.location.pathname}${window.location.search}${hash}`;
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
 async function redirectHackerNews() {
   if (
-    hackernews[0] === true &&
+    hackernews[0] &&
     window.location.pathname !== "/user" &&
     window.location.pathname !== "/item"
   ) {
@@ -543,15 +621,12 @@ async function redirectHackerNews() {
 }
 
 async function redirectGTranslate() {
-  if (gtranslate[0] === true) {
+  if (gtranslate[0]) {
     window.stop();
 
-    if (gtranslate[1] === false) {
-      selectedInstance = await getrandom(lingvaInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/lingva`;
-    }
+    selectedInstance = gtranslate[1] ? `${farsideInstance}/lingva` : await getrandom(Instances.lingva);
 
+    newURL = scheme + selectedInstance;
     if (window.location.search !== "") {
       newURL =
         scheme +
@@ -564,33 +639,26 @@ async function redirectGTranslate() {
           .replace("&text=", "/")
           .replace("&op=translate", "") +
         hash;
-
-      window.location.replace(newURL);
-    } else {
-      newURL = scheme + selectedInstance;
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
 async function redirectReuters() {
-  if (reuters[0] === true) {
+  if (reuters[0]) {
     window.stop();
     location.hostname = "neuters.de";
   }
 }
 
 async function redirectWikipedia() {
-  if (wikipedia[0] === true) {
+  if (wikipedia[0]) {
     window.stop();
     const langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
 
-    if (wikipedia[1] === false) {
-      selectedInstance = await getrandom(wikilessInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/wikiless`;
-    }
+    selectedInstance = wikipedia[1] ? `${farsideInstance}/wikiless` : await getrandom(Instances.wikiless);
 
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=en${hash}`;
     if (langCodeIndex !== -1) {
       newURL =
         scheme +
@@ -600,23 +668,16 @@ async function redirectWikipedia() {
         window.location.hostname[langCodeIndex] +
         window.location.hostname[langCodeIndex + 1] +
         hash;
-      window.location.replace(newURL);
-    } else {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=en${hash}`;
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
 async function redirectImdb() {
-  if (imdb[0] === true) {
+  if (imdb[0]) {
     window.stop();
 
-    if (imdb[1] === false) {
-      selectedInstance = await getrandom(libremdbInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/libremdb`;
-    }
+    selectedInstance = imdb[1] ? `${farsideInstance}/libremdb` : await getrandom(Instances.libremdb);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -625,14 +686,10 @@ async function redirectImdb() {
 }
 
 async function redirectQuora() {
-  if (quora[0] === true) {
+  if (quora[0]) {
     window.stop();
 
-    if (quora[1] === false) {
-      selectedInstance = await getrandom(quetreInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/quetre`;
-    }
+    selectedInstance = quora[1] ? `${farsideInstance}/quetre` : await getrandom(Instances.quetre);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -641,15 +698,14 @@ async function redirectQuora() {
 }
 
 async function redirectFandom() {
-  if (fandom[0] === true) {
-    let randomInstance = await getrandom(breezewikiInstances);
+  if (fandom[0]) {
+    selectedInstance = await getrandom(Instances.breezewiki);
     const fandomName = window.location.hostname.replace(/\..*/, "");
     window.stop();
 
+    newURL = `${scheme}${selectedInstance}`;
     if (fandomName !== "www") {
-      newURL = `${scheme}${randomInstance}/${fandomName}${window.location.pathname}${window.location.search}${hash}`;
-    } else {
-      newURL = `${scheme}${randomInstance}`;
+      newURL = `${scheme}${selectedInstance}/${fandomName}${window.location.pathname}${window.location.search}${hash}`;
     }
 
     window.location.replace(newURL);
@@ -658,17 +714,13 @@ async function redirectFandom() {
 
 async function redirectGoogle() {
   if (
-    google[0] === true &&
+    google[0] &&
     window.location.hostname.startsWith("www") &&
     window.location.pathname.startsWith("/search")
   ) {
     window.stop();
 
-    if (google[1] === false) {
-      selectedInstance = await getrandom(eval(googleFrontend + "Instances"));
-    } else {
-      selectedInstance = `${farsideInstance}/${googleFrontend}`;
-    }
+    selectedInstance = google[1] ? `${farsideInstance}/${googleFrontend}` : selectedInstance = await getrandom(Instances[googleFrontend]);
 
     if (window.location.pathname.match("/")) {
       newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
@@ -683,35 +735,29 @@ async function redirectGoogle() {
 }
 
 async function redirectGoodreads() {
-  if (goodreads[0] === true) {
+  if (goodreads[0]) {
     window.stop();
 
-    selectedInstance = await getrandom(biblioreadsInstances);
+    selectedInstance = await getrandom(Instances.biblioreads);
 
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     if (window.location.pathname.startsWith("/search")) {
       newURL =
         `${scheme}${selectedInstance}${window.location.pathname}` +
         window.location.search.replace(/.*.q\=/, "/") +
         `${hash}`;
-      window.location.replace(newURL);
-    } else {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
 async function redirectStackoverflow() {
   if (
-    stackoverflow[0] === true &&
+    stackoverflow[0] &&
     window.location.pathname.startsWith("/questions")
   ) {
     window.stop();
-    if (stackoverflow[1] === false) {
-      selectedInstance = await getrandom(anonymousoverflowInstances);
-    } else {
-      selectedInstance = `${farsideInstance}/anonymousoverflow`;
-    }
+    selectedInstance = stackoverflow[1] ? `${farsideInstance}/anonymousoverflow` : await getrandom(Instances.anonymousoverflow);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     window.location.replace(newURL);
@@ -719,10 +765,10 @@ async function redirectStackoverflow() {
 }
 
 async function redirectBandcamp() {
-  if (bandcamp[0] === true) {
+  if (bandcamp[0]) {
     // thanks to libredirect
 
-    selectedInstance = await getrandom(tentInstances);
+    selectedInstance = await getrandom(Instances.tent);
 
     if (
       window.location.hostname === "bandcamp.com" &&
@@ -774,17 +820,16 @@ async function redirectBandcamp() {
 }
 
 async function redirectGenius() {
-  if (genius[0] === true) {
+  if (genius[0]) {
+    selectedInstance = await getrandom(Instances[geniusFrontend]);
     switch (geniusFrontend) {
       case "dumb":
         window.stop();
-        selectedInstance = await getrandom(dumbInstances);
 
         newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
         window.location.replace(newURL);
         break;
       case "intellectual":
-        selectedInstance = await getrandom(intellectualInstances);
 
         if (window.location.pathname.endsWith("-lyrics")) {
           window.stop();
@@ -818,10 +863,10 @@ async function redirectGenius() {
 }
 
 async function redirectPinterest() {
-  if (pinterest[0] === true) {
+  if (pinterest[0]) {
     window.stop();
 
-    selectedInstance = await getrandom(binternetInstances);
+    selectedInstance = await getrandom(Instances.binternet);
 
     if (window.location.hostname === "i.pinimg.com") {
       newURL = `${scheme}${selectedInstance}/image_proxy.php?url=${window.location.href}`;
@@ -844,17 +889,15 @@ async function redirectPinterest() {
 }
 
 async function redirectSoundcloud() {
-  if (soundcloud[0] === true) {
+  if (soundcloud[0]) {
     window.stop();
-    selectedInstance = await getrandom(tuboInstances);
+    selectedInstance = await getrandom(Instances.tubo);
 
+    newURL = `${scheme}${selectedInstance}/kiosk?serviceId=1`;
     if (window.location.pathname !== "/") {
       newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
-      window.location.replace(newURL);
-    } else {
-      newURL = `${scheme}${selectedInstance}/kiosk?serviceId=1`;
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
@@ -938,32 +981,32 @@ switch (urlHostname) {
     redirectSoundcloud();
     break;
 
-  case urlHostname.includes("reddit.com") ? urlHostname : false:
+  case urlHostname.includes("reddit.com") ? urlHostname : 0:
     redirectReddit();
     break;
 
-  case urlHostname.includes("medium.com") ? urlHostname : false:
+  case urlHostname.includes("medium.com") ? urlHostname : 0:
     redirectMedium();
     break;
 
-  case urlHostname.includes("imgur.com") ? urlHostname : false:
-  case urlHostname.includes("imgur.io") ? urlHostname : false:
+  case urlHostname.includes("imgur.com") ? urlHostname : 0:
+  case urlHostname.includes("imgur.io") ? urlHostname : 0:
     redirectImgur();
     break;
 
-  case urlHostname.includes("wikipedia.org") ? urlHostname : false:
+  case urlHostname.includes("wikipedia.org") ? urlHostname : 0:
     redirectWikipedia();
     break;
 
-  case urlHostname.includes("fandom.com") ? urlHostname : false:
+  case urlHostname.includes("fandom.com") ? urlHostname : 0:
     redirectFandom();
     break;
 
-  case urlHostname.includes("bandcamp.com") ? urlHostname : false:
+  case urlHostname.includes("bandcamp.com") ? urlHostname : 0:
     redirectBandcamp();
     break;
 
-  case urlHostname.includes("pinterest.com") ? urlHostname : false:
+  case urlHostname.includes("pinterest.com") ? urlHostname : 0:
     redirectPinterest();
     break;
 }
