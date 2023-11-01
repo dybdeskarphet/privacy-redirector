@@ -722,10 +722,8 @@ async function redirectGoodreads() {
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     if (window.location.pathname.startsWith("/search")) {
-      newURL =
-        `${scheme}${selectedInstance}${window.location.pathname}` +
-        window.location.search.replace(/.*.q\=/, "/") +
-        `${hash}`;
+      const params = new URLSearchParams(window.location.search);
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}/${params.get("q")}${hash}`;
     }
     window.location.replace(newURL);
   }
