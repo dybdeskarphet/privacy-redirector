@@ -551,16 +551,15 @@ async function redirectYoutube() {
 async function redirectTiktok() {
   if (tiktok[0]) {
     window.stop();
-
+    let pathname = window.location.pathname;
     selectedInstance = tiktok[1] ? `${farsideInstance}/proxitok` : await getrandom(Instances.proxitok);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-    if (window.location.pathname.startsWith("/discover/")) {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname.replace(
-        "discover",
-        "tag"
-      )}${hash}`;
+    if (pathname.startsWith("/foryou")) {
+      pathname = pathname.replace("/foryou", "/trending");
+    } else if (pathname.startsWith("/discover/")) {
+      pathname = pathname.replace("discover", "tag");
     }
+    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
     window.location.replace(newURL);
   }
 }
