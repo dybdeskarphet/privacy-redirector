@@ -460,33 +460,30 @@ const getrandom = async(instances) => instances[Math.floor(Math.random() * insta
 
 async function redirectInstagram() {
   if (instagram[0]) {
-    let newPathName = "";
-    let newQuery = "";
-    let tempURL = "";
+    window.stop();
+    let pathname = window.location.pathname;
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
 
     selectedInstance = await getrandom(Instances.proxigram);
 
-    if (window.location.pathname.startsWith("/accounts/login/")) {
-      newPathName = window.location.pathname.replace("/accounts/login/", "");
-      newQuery = window.location.search.replace("?next=", "");
-      tempURL = `${scheme}${selectedInstance}${newPathName}${newQuery}${hash}`;
-    } else {
-      tempURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    switch (true) {
+      case pathname.startsWith("/accounts/login/"):
+      case pathname.startsWith("/accounts/signup/"):
+        pathname = pathname.replace(/^\/accounts\/(login|signup)\/[a-z]*/, "");
+        params.delete("next");
+        search = params.size ? `?${params}` : "";
+        break;
+      case pathname.startsWith("/reel/"):
+      case pathname.startsWith("/tv/"):
+        pathname = pathname.replace(/^\/(reel|tv)\//, "/p/");
+        break;
+      case pathname.endsWith("/reels/"):
+        pathname = pathname.replace("/reels", "");
+        break;
     }
-
-    if (tempURL.includes("/p/")) {
-      window.stop();
-      newURL = `${tempURL}`;
-      window.location.replace(newURL);
-    } else if (tempURL.includes("/reels/")) {
-      window.stop();
-      newURL = tempURL.replace("/reels/", "/p/");
-      window.location.replace(newURL);
-    } else {
-      window.stop();
-      newURL = `${tempURL}`;
-      window.location.replace(newURL);
-    }
+    newURL = `${scheme}${selectedInstance}${pathname}${search}${hash}`;
+    window.location.replace(newURL);
   }
 }
 
