@@ -732,7 +732,7 @@ async function redirectGoodreads() {
 async function redirectStackoverflow() {
   if (
     stackoverflow[0] &&
-    window.location.pathname.startsWith("/questions")
+    (window.location.pathname.startsWith("/questions/") || window.location.pathname === "/")
   ) {
     window.stop();
     selectedInstance = stackoverflow[1] ? `${farsideInstance}/anonymousoverflow` : await getrandom(Instances.anonymousoverflow);
