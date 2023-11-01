@@ -643,21 +643,12 @@ async function redirectReuters() {
 async function redirectWikipedia() {
   if (wikipedia[0]) {
     window.stop();
-    const langCodeIndex = window.location.hostname.search(/^[a-z][a-z]\./);
+    let langCode = /^([a-z\-]+)\./.exec(window.location.hostname)[1];
 
     selectedInstance = wikipedia[1] ? `${farsideInstance}/wikiless` : await getrandom(Instances.wikiless);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=en${hash}`;
-    if (langCodeIndex !== -1) {
-      newURL =
-        scheme +
-        selectedInstance +
-        window.location.pathname +
-        "?lang=" +
-        window.location.hostname[langCodeIndex] +
-        window.location.hostname[langCodeIndex + 1] +
-        hash;
-    }
+    if (langCode === "www") langCode = "en";
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=${langCode}${hash}`;
     window.location.replace(newURL);
   }
 }
