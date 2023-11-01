@@ -510,7 +510,7 @@ async function redirectTwitter() {
 }
 
 async function redirectReddit() {
-  if (reddit[0]) {
+  if (reddit[0] && !window.location.pathname.startsWith("/domain")) {
     window.stop();
 
     selectedInstance = reddit[1] ? `${farsideInstance}/${redditFrontend}` : await getrandom(Instances[redditFrontend]);
