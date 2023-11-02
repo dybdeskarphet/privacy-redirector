@@ -143,6 +143,7 @@ let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "pi
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "librey"; // accepts "librey", "searx", "searxng"
 let geniusFrontend = "intellectual"; // accepts dumb, intellectual
+let hackernewsFrontend = "better"; // accepts better, worker
 
 // OTHER SETTINGS
 let keepHistory = false; // keeps farside.link in the browser history
@@ -451,6 +452,10 @@ const Instances = {
     "searx.prvcy.eu",
     "searx.headpat.exchange",
   ],
+  hackernews: {
+    better: "better-hackernews.vercel.app",
+    worker: "news.workers.tools",
+  },
 };
 
 let farsideInstance = keepHistory === true ? "farside.link/_" : "farside.link";
@@ -611,14 +616,21 @@ async function redirectMedium() {
 }
 
 async function redirectHackerNews() {
-  if (
-    hackernews[0] &&
-    window.location.pathname !== "/user" &&
-    window.location.pathname !== "/item"
-  ) {
-    window.stop();
-    newURL = `${scheme}hn.algolia.com`;
-    window.location.replace(newURL);
+  if (hackernews[0]) {
+    let pathname = window.location.pathname;
+    if (["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(window.location.pathname)) {
+      if (hackernewsFrontend === "better" && window.location.pathname === "/newest") {
+        pathname = "/new";
+      }
+      selectedInstance = Instances.hackernews[hackernewsFrontend];
+    } else if (["/best", "/news", "/submitted", "/threads", "/classic"].includes(window.location.pathname)) {
+      selectedInstance = Instances.hackernews.worker;
+    }
+    if (selectedInstance) {
+      window.stop();
+      newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}`;
+      window.location.replace(newURL);
+    }
   }
 }
 
