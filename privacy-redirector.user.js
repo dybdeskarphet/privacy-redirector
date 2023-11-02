@@ -119,7 +119,7 @@ let bandcamp = [true, true];
 let fandom = [true, true];
 let genius = [true, true];
 let goodreads = [true, false];
-let google = [true, false];
+let google = [true, true];
 let gtranslate = [true, true];
 let hackernews = [true, true];
 let imdb = [true, true];
@@ -141,7 +141,7 @@ let instagram = [true, true];
 let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
 let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
-let googleFrontend = "searxng"; // accepts "searx", "searxng"
+let googleFrontend = "librey"; // accepts "librey", "searx", "searxng"
 let geniusFrontend = "intellectual"; // accepts dumb, intellectual
 
 // OTHER SETTINGS
@@ -317,6 +317,24 @@ const Instances = {
     "libremdb.tux.pizza",
     "libremdb.frontendfriendly.xyz",
     "d.opnxng.com",
+  ],
+  librey: [
+    "search.ahwx.org",
+    "search2.ahwx.org",
+    "librex.zzls.xyz",
+    "ly.owo.si",
+    "librey.org",
+    "librex.supernets.org",
+    "search.davidovski.xyz",
+    "librey.bloatcat.tk",
+    "search.funami.tech",
+    "librex.retro-hax.net",
+    "librex.nohost.network",
+    "search.pabloferreiro.es",
+    "librex.yogeshlamichhane.com.np",
+    "librey.baczek.me",
+    "lx.benike.me",
+    "search.seitan-ayoub.lol",
   ],
   lingva: [
     "lingva.frontendfriendly.xyz",
@@ -690,15 +708,13 @@ async function redirectGoogle() {
 
     selectedInstance = google[1] ? `${farsideInstance}/${googleFrontend}` : selectedInstance = await getrandom(Instances[googleFrontend]);
 
-    if (window.location.pathname.match("/")) {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-      window.location.replace(newURL);
-    } else {
-      newURL = `${scheme}${selectedInstance}${
-        window.location.pathname
-      }${window.location.search.match(/\?q.+?(?=\&)/)}`;
-      window.location.replace(newURL);
-    }
+    let pathname = window.location.pathname;
+    if (googleFrontend === "librey" && pathname === "/search") pathname += ".php";
+    const params = new URLSearchParams(window.location.search);
+    const query = params.entries().q;
+    const search = query ? `?q=${query}` : window.location.search;
+    newURL = `${scheme}${selectedInstance}${pathname}${search}${hash}`;
+    window.location.replace(newURL);
   }
 }
 
