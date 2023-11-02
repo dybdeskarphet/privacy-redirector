@@ -821,27 +821,20 @@ async function redirectGenius() {
 
 async function redirectPinterest() {
   if (pinterest[0]) {
-    window.stop();
-
     selectedInstance = await getrandom(Instances.binternet);
 
     if (window.location.hostname === "i.pinimg.com") {
       newURL = `${scheme}${selectedInstance}/image_proxy.php?url=${window.location.href}`;
-      window.location.replace(newURL);
     } else if (window.location.pathname.startsWith("/search")) {
       newURL =
-        `${scheme}${selectedInstance}` +
-        window.location.pathname
+        `${scheme}${selectedInstance}${window.location.pathname
           .replace("search", "search.php")
-          .replace("/pins/", "") +
-        `${window.location.search}${hash}`;
-      window.location.replace(newURL);
-    } else if (window.location.pathname.startsWith("/pin")) {
-      return;
-    } else {
-      newURL = `${scheme}${selectedInstance}/`;
-      window.location.replace(newURL);
+          .replace("/pins/", "")}${window.location.search}${hash}`;
+    } else if (window.location.pathname === "/") {
+      newURL = `${scheme}${selectedInstance}`;
     }
+
+    if (newURL) window[stop(), location.replace(newURL)];
   }
 }
 
