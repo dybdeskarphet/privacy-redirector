@@ -789,44 +789,33 @@ async function redirectBandcamp() {
 
 async function redirectGenius() {
   if (genius[0]) {
+    const searchpath = `${window.location.pathname}${window.location.search}`;
+
     selectedInstance = await getrandom(Instances[geniusFrontend]);
     switch (geniusFrontend) {
       case "dumb":
-        window.stop();
-
-        newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-        window.location.replace(newURL);
+        newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
         break;
       case "intellectual":
-
         if (window.location.pathname.endsWith("-lyrics")) {
-          window.stop();
-          selectedInstance = selectedInstance + "/lyrics?path=";
-          newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-          window.location.replace(newURL);
-        } else if (window.location.pathname.startsWith("/albums")) {
-          window.stop();
+          newURL = `${scheme}${selectedInstance}/lyrics?path=${searchpath.slice(1)}${hash}`;
+        } else if (window.location.pathname.startsWith("/albums/")) {
           newURL =
-            `${scheme}${selectedInstance}` +
-            `${window.location.pathname}${window.location.search}`.replace(
+            `${scheme}${selectedInstance}${searchpath.replace(
               "/albums",
               "/album?path=albums"
-            ) +
-            `${hash}`;
-          window.location.replace(newURL);
-        } else if (window.location.pathname.startsWith("/artists")) {
-          window.stop();
+            )}${hash}`;
+        } else if (window.location.pathname.startsWith("/artists/")) {
           newURL =
-            `${scheme}${selectedInstance}` +
-            `${window.location.pathname}${window.location.search}`.replace(
+            `${scheme}${selectedInstance}${searchpath.replace(
               "/artists",
               "/artist?path=artists"
-            ) +
-            `${hash}`;
-          window.location.replace(newURL);
+            )}${hash}`;
         }
         break;
     }
+
+    if (newURL) window[stop(), location.replace(newURL)];
   }
 }
 
