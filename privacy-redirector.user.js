@@ -458,7 +458,7 @@ const Instances = {
   },
 };
 
-let farsideInstance = keepHistory === true ? "farside.link/_" : "farside.link";
+let farsideInstance = keepHistory ? "farside.link/_" : "farside.link";
 
 // // // // // // // // // // // // //
 
