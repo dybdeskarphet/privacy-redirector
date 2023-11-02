@@ -940,6 +940,7 @@ switch (urlHostname) {
     break;
 
   case "soundcloud.com":
+  case "m.soundcloud.com":
     redirectSoundcloud();
     break;
 
