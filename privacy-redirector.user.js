@@ -139,7 +139,7 @@ let instagram = [true, true];
 
 // PREFERRED FRONTEND
 let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
-let youtubeMusicFrontend = "beatbump"; // accepts "beatbump", "invidious", "piped"
+let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "searxng"; // accepts "searx", "searxng"
 let geniusFrontend = "intellectual"; // accepts dumb, intellectual
@@ -176,7 +176,15 @@ const Instances = {
     "anonoverflow.hyperreal.coffee",
     "overflow.sudovanilla.com",
   ],
-  beatbump: ["beatbump.ml", "bb.eu.projectsegfau.lt"],
+  hyperpipe: [
+    "hyperpipe.surge.sh",
+    "hyperpipe.esmailelbob.xyz",
+    "music.adminforge.de",
+    "music.pfcd.me",
+    "listen.whateveritworks.org",
+    "hyperpipe.drgns.space",
+    "hyperpipe.lunar.icu",
+  ],
   proxigram: [
     "proxigram.privacyfrontends.repl.co",
     "proxigram.protokolla.fi",
@@ -260,7 +268,6 @@ const Instances = {
     "cf.piped.video",
     "fl.piped.video",
     "do.piped.video",
-    "az.piped.video",
     "piped.syncpundit.io",
     "piped.mha.fi",
     "piped.lunar.icu",
@@ -521,18 +528,15 @@ async function redirectReddit() {
   }
 }
 
-async function redirectYoutube() {
+async function redirectYoutube(frontend) {
   if (youtube[0]) {
     window.stop();
-
-    if (youtubeFrontend !== "tubo") {
-      selectedInstance = youtube[1] ?
-        `${farsideInstance}/${youtubeFrontend}` :
-        await getrandom(Instances[youtubeFrontend]);
+    if (frontend !== "tubo") {
+      selectedInstance = (youtube[1] && frontend !== "hyperpipe") ?
+        `${farsideInstance}/${frontend}` :
+        await getrandom(Instances[frontend]);
 
       newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-
-      window.location.replace(newURL);
     } else {
       selectedInstance = await getrandom(Instances.tubo);
 
@@ -543,8 +547,8 @@ async function redirectYoutube() {
       ) {
         newURL = `${scheme}${selectedInstance}/channel?url=${window.location.href}`;
       }
-      window.location.replace(newURL);
     }
+    window.location.replace(newURL);
   }
 }
 
@@ -584,22 +588,6 @@ async function redirectMedium() {
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
-    window.location.replace(newURL);
-  }
-}
-
-async function redirectYoutubeMusic() {
-  if (youtube[0]) {
-    window.stop();
-
-    let beatbumpInstance = await getrandom(Instances.beatbump);
-    newURL = `${scheme}${beatbumpInstance}${window.location.pathname}${window.location.search}${hash}`;
-
-    if (window.location.pathname.startsWith("/watch")) {
-      selectedInstance = youtube[1] ? `${farsideInstance}/${youtubeFrontend}` : await getrandom(Instances[youtubeFrontend]);
-
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-    }
     window.location.replace(newURL);
   }
 }
@@ -866,7 +854,7 @@ switch (urlHostname) {
   case "www.youtube.com":
   case "m.youtube.com":
   case "www.youtube-nocookie.com":
-    redirectYoutube();
+    redirectYoutube(youtubeFrontend);
     break;
 
   case "www.tiktok.com":
@@ -874,11 +862,7 @@ switch (urlHostname) {
     break;
 
   case "music.youtube.com":
-    if (youtubeMusicFrontend === "beatbump") {
-      redirectYoutubeMusic();
-    } else {
-      redirectYoutube();
-    }
+    redirectYoutube(youtubeMusicFrontend);
     break;
 
   case "news.ycombinator.com":
