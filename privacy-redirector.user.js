@@ -747,53 +747,43 @@ async function redirectBandcamp() {
     // thanks to libredirect
 
     selectedInstance = await getrandom(Instances.tent);
+    const params = new URLSearchParams(window.location.search);
 
-    if (
-      window.location.hostname === "bandcamp.com" &&
-      window.location.pathname === "/search"
-    ) {
-      const query = window.location.searchParams.get("q");
-      newURL = `${scheme}${selectedInstance}/search.php?query=${encodeURIComponent(query)}`;
-      window.location.replace(newURL);
+    if (`${window.location.hostname}${window.location.pathname}` === "bandcamp.com/search") {
+      newURL = `${scheme}${selectedInstance}/search.php?query=${params.get("q")}`;
     }
 
-    if (window.location.hostname.endsWith("bandcamp.com")) {
-      const regex = /^(.*)\.bandcamp\.com/.exec(window.location.hostname);
-      const artist = regex[1];
+    if (window.location.hostname.search(/(daily)?\.bandcamp\.com/) > 0) {
+      const artist = window.location.hostname.replace(/\..+/, "");
       if (window.location.pathname === "/") {
         newURL = `${scheme}${selectedInstance}/artist.php?name=${artist}`;
-        window.location.replace(newURL);
       } else {
-        const regex = /^\/(.*)\/(.*)/.exec(window.location.pathname);
+        const regex = /^\/(.+?)\/(.+)/.exec(window.location.pathname);
         if (regex) {
           const type = regex[1];
           const name = regex[2];
           newURL = `${scheme}${selectedInstance}/release.php?artist=${artist}&type=${type}&name=${name}`;
-          window.location.replace(newURL);
         }
       }
     }
 
     if (window.location.hostname === "f4.bcbits.com") {
-      const regex = /\/img\/(.*)/.exec(window.location.pathname);
-      const image = regex[1];
+      const image = /^\/img\/(.+)/.exec(window.location.pathname)[1];
       newURL = `${scheme}${selectedInstance}/image.php?file=${image}`;
-      window.location.replace(newURL);
     }
 
     if (window.location.hostname === "t4.bcbits.com") {
-      const regex = /\/stream\/(.*)\/(.*)\/(.*)/.exec(window.location.pathname);
+      const regex = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(window.location.pathname);
       if (regex) {
         const directory = regex[1];
         const format = regex[2];
         const file = regex[3];
-        const token = window.location.searchParams.get("token");
-        newURL = `${scheme}${selectedInstance}/audio.php/?directory=${directory}&format=${format}&file=${file}&token=${encodeURIComponent(
-          token
-        )}`;
-        window.location.replace(newURL);
+        const token = params.get("token");
+        newURL = `${scheme}${selectedInstance}/audio.php?directory=${directory}&format=${format}&file=${file}&token=${token}`;
       }
     }
+
+    if (newURL) window[stop(), location.replace(newURL)];
   }
 }
 
