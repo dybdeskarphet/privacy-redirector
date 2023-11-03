@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.4.9
+// @version 1.5.0
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
@@ -225,11 +225,7 @@ const Instances = {
     "breeze.mint.lgbt",
     "breezewiki.woodland.cafe",
   ],
-  dumb: [
-    "sing.whatever.social",
-    "dumb.lunar.icu",
-    "dumb.privacydev.net",
-  ],
+  dumb: ["sing.whatever.social", "dumb.lunar.icu", "dumb.privacydev.net"],
   intellectual: [
     "intellectual.insprill.net",
     "in.bloatcat.tk",
@@ -462,7 +458,8 @@ let farsideInstance = keepHistory ? "farside.link/_" : "farside.link";
 
 // // // // // // // // // // // // //
 
-const hash = window.location.hash, scheme = `${window.location.protocol}//`;
+const hash = window.location.hash,
+  scheme = `${window.location.protocol}//`;
 
 let debug_mode = false;
 
@@ -484,9 +481,11 @@ if (debug_mode) {
   );
 }
 
-let selectedInstance = "", newURL = "";
+let selectedInstance = "",
+  newURL = "";
 
-const getrandom = async(instances) => instances[Math.floor(Math.random() * instances.length)];
+const getrandom = async (instances) =>
+  instances[Math.floor(Math.random() * instances.length)];
 
 async function redirectInstagram() {
   if (instagram[0]) {
@@ -524,7 +523,9 @@ async function redirectTwitter() {
     let newPathName = "";
     let newQuery = "";
 
-    selectedInstance = twitter[1] ? `${farsideInstance}/nitter` : await getrandom(Instances.nitter);
+    selectedInstance = twitter[1]
+      ? `${farsideInstance}/nitter`
+      : await getrandom(Instances.nitter);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     if (window.location.pathname.startsWith("/i/flow/login")) {
@@ -543,7 +544,9 @@ async function redirectReddit() {
   if (reddit[0] && !window.location.pathname.startsWith("/domain")) {
     window.stop();
 
-    selectedInstance = reddit[1] ? `${farsideInstance}/${redditFrontend}` : await getrandom(Instances[redditFrontend]);
+    selectedInstance = reddit[1]
+      ? `${farsideInstance}/${redditFrontend}`
+      : await getrandom(Instances[redditFrontend]);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -555,9 +558,10 @@ async function redirectYoutube(frontend) {
   if (youtube[0]) {
     window.stop();
     if (frontend !== "tubo") {
-      selectedInstance = (youtube[1] && frontend !== "hyperpipe") ?
-        `${farsideInstance}/${frontend}` :
-        await getrandom(Instances[frontend]);
+      selectedInstance =
+        youtube[1] && frontend !== "hyperpipe"
+          ? `${farsideInstance}/${frontend}`
+          : await getrandom(Instances[frontend]);
 
       newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     } else {
@@ -579,7 +583,9 @@ async function redirectTiktok() {
   if (tiktok[0]) {
     window.stop();
     let pathname = window.location.pathname;
-    selectedInstance = tiktok[1] ? `${farsideInstance}/proxitok` : await getrandom(Instances.proxitok);
+    selectedInstance = tiktok[1]
+      ? `${farsideInstance}/proxitok`
+      : await getrandom(Instances.proxitok);
 
     if (pathname.startsWith("/foryou")) {
       pathname = pathname.replace("/foryou", "/trending");
@@ -595,7 +601,9 @@ async function redirectImgur() {
   if (imgur[0]) {
     window.stop();
 
-    selectedInstance = imgur[1] ? `${farsideInstance}/rimgo` : await getrandom(Instances.rimgo);
+    selectedInstance = imgur[1]
+      ? `${farsideInstance}/rimgo`
+      : await getrandom(Instances.rimgo);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -609,13 +617,17 @@ async function redirectMedium() {
 
     if (
       (/^.+?\.medium\.com\/.+/.test(host_path) ||
-      /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname) ||
-      host_path === "medium.com/") &&
-      !(/^\/(tag|m|hc)\//.test(window.location.pathname) ||
-       /\/(about|followers|following)/.test(window.location.pathname))
+        /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname) ||
+        host_path === "medium.com/") &&
+      !(
+        /^\/(tag|m|hc)\//.test(window.location.pathname) ||
+        /\/(about|followers|following)/.test(window.location.pathname)
+      )
     ) {
       window.stop();
-      selectedInstance = medium[1] ? `${farsideInstance}/scribe` : await getrandom(Instances.scribe);
+      selectedInstance = medium[1]
+        ? `${farsideInstance}/scribe`
+        : await getrandom(Instances.scribe);
       newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
       window.location.replace(newURL);
     }
@@ -625,12 +637,23 @@ async function redirectMedium() {
 async function redirectHackerNews() {
   if (hackernews[0]) {
     let pathname = window.location.pathname;
-    if (["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(pathname)) {
-      if (hackernewsFrontend === "better" && window.location.pathname === "/newest") {
+    if (
+      ["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(
+        pathname
+      )
+    ) {
+      if (
+        hackernewsFrontend === "better" &&
+        window.location.pathname === "/newest"
+      ) {
         pathname = "/new";
       }
       selectedInstance = Instances.hackernews[hackernewsFrontend];
-    } else if (["/best", "/news", "/submitted", "/threads", "/classic"].includes(pathname)) {
+    } else if (
+      ["/best", "/news", "/submitted", "/threads", "/classic"].includes(
+        pathname
+      )
+    ) {
       selectedInstance = Instances.hackernews.worker;
     }
     if (selectedInstance) {
@@ -645,12 +668,16 @@ async function redirectGTranslate() {
   if (gtranslate[0]) {
     window.stop();
 
-    selectedInstance = gtranslate[1] ? `${farsideInstance}/lingva` : await getrandom(Instances.lingva);
+    selectedInstance = gtranslate[1]
+      ? `${farsideInstance}/lingva`
+      : await getrandom(Instances.lingva);
 
     newURL = `${scheme}${selectedInstance}`;
     if (window.location.search) {
       const params = new URLSearchParams(window.location.search);
-      newURL += `/${params.get("sl")}/${params.get("tl")}/${params.get("text")}`;
+      newURL += `/${params.get("sl")}/${params.get("tl")}/${params.get(
+        "text"
+      )}`;
     } else if (/^\/\w+\/\w+\/.*/.test(window.location.pathname)) {
       newURL += window.location.pathname.replace(/\+/g, " ");
     }
@@ -670,7 +697,9 @@ async function redirectWikipedia() {
     window.stop();
     let langCode = /^([a-z\-]+)\./.exec(window.location.hostname)[1];
 
-    selectedInstance = wikipedia[1] ? `${farsideInstance}/wikiless` : await getrandom(Instances.wikiless);
+    selectedInstance = wikipedia[1]
+      ? `${farsideInstance}/wikiless`
+      : await getrandom(Instances.wikiless);
 
     if (langCode === "www") langCode = "en";
     newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=${langCode}${hash}`;
@@ -682,7 +711,9 @@ async function redirectImdb() {
   if (imdb[0]) {
     window.stop();
 
-    selectedInstance = imdb[1] ? `${farsideInstance}/libremdb` : await getrandom(Instances.libremdb);
+    selectedInstance = imdb[1]
+      ? `${farsideInstance}/libremdb`
+      : await getrandom(Instances.libremdb);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -694,7 +725,9 @@ async function redirectQuora() {
   if (quora[0]) {
     window.stop();
 
-    selectedInstance = quora[1] ? `${farsideInstance}/quetre` : await getrandom(Instances.quetre);
+    selectedInstance = quora[1]
+      ? `${farsideInstance}/quetre`
+      : await getrandom(Instances.quetre);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
 
@@ -725,10 +758,13 @@ async function redirectGoogle() {
   ) {
     window.stop();
 
-    selectedInstance = google[1] ? `${farsideInstance}/${googleFrontend}` : selectedInstance = await getrandom(Instances[googleFrontend]);
+    selectedInstance = google[1]
+      ? `${farsideInstance}/${googleFrontend}`
+      : (selectedInstance = await getrandom(Instances[googleFrontend]));
 
     let pathname = window.location.pathname;
-    if (googleFrontend === "librey" && pathname === "/search") pathname += ".php";
+    if (googleFrontend === "librey" && pathname === "/search")
+      pathname += ".php";
     const params = new URLSearchParams(window.location.search);
     const query = params.entries().q;
     const search = query ? `?q=${query}` : window.location.search;
@@ -746,7 +782,9 @@ async function redirectGoodreads() {
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     if (window.location.pathname.startsWith("/search")) {
       const params = new URLSearchParams(window.location.search);
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}/${params.get("q")}${hash}`;
+      newURL = `${scheme}${selectedInstance}${
+        window.location.pathname
+      }/${params.get("q")}${hash}`;
     }
     window.location.replace(newURL);
   }
@@ -755,10 +793,13 @@ async function redirectGoodreads() {
 async function redirectStackoverflow() {
   if (
     stackoverflow[0] &&
-    (window.location.pathname.startsWith("/questions/") || window.location.pathname === "/")
+    (window.location.pathname.startsWith("/questions/") ||
+      window.location.pathname === "/")
   ) {
     window.stop();
-    selectedInstance = stackoverflow[1] ? `${farsideInstance}/anonymousoverflow` : await getrandom(Instances.anonymousoverflow);
+    selectedInstance = stackoverflow[1]
+      ? `${farsideInstance}/anonymousoverflow`
+      : await getrandom(Instances.anonymousoverflow);
 
     newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     window.location.replace(newURL);
@@ -772,8 +813,13 @@ async function redirectBandcamp() {
     selectedInstance = await getrandom(Instances.tent);
     const params = new URLSearchParams(window.location.search);
 
-    if (`${window.location.hostname}${window.location.pathname}` === "bandcamp.com/search") {
-      newURL = `${scheme}${selectedInstance}/search.php?query=${params.get("q")}`;
+    if (
+      `${window.location.hostname}${window.location.pathname}` ===
+      "bandcamp.com/search"
+    ) {
+      newURL = `${scheme}${selectedInstance}/search.php?query=${params.get(
+        "q"
+      )}`;
     }
 
     if (window.location.hostname.search(/(daily)?\.bandcamp\.com/) > 0) {
@@ -796,7 +842,9 @@ async function redirectBandcamp() {
     }
 
     if (window.location.hostname === "t4.bcbits.com") {
-      const regex = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(window.location.pathname);
+      const regex = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(
+        window.location.pathname
+      );
       if (regex) {
         const directory = regex[1];
         const format = regex[2];
@@ -806,7 +854,7 @@ async function redirectBandcamp() {
       }
     }
 
-    if (newURL) window[stop(), location.replace(newURL)];
+    if (newURL) window[(stop(), location.replace(newURL))];
   }
 }
 
@@ -821,24 +869,24 @@ async function redirectGenius() {
         break;
       case "intellectual":
         if (window.location.pathname.endsWith("-lyrics")) {
-          newURL = `${scheme}${selectedInstance}/lyrics?path=${searchpath.slice(1)}${hash}`;
+          newURL = `${scheme}${selectedInstance}/lyrics?path=${searchpath.slice(
+            1
+          )}${hash}`;
         } else if (window.location.pathname.startsWith("/albums/")) {
-          newURL =
-            `${scheme}${selectedInstance}${searchpath.replace(
-              "/albums",
-              "/album?path=albums"
-            )}${hash}`;
+          newURL = `${scheme}${selectedInstance}${searchpath.replace(
+            "/albums",
+            "/album?path=albums"
+          )}${hash}`;
         } else if (window.location.pathname.startsWith("/artists/")) {
-          newURL =
-            `${scheme}${selectedInstance}${searchpath.replace(
-              "/artists",
-              "/artist?path=artists"
-            )}${hash}`;
+          newURL = `${scheme}${selectedInstance}${searchpath.replace(
+            "/artists",
+            "/artist?path=artists"
+          )}${hash}`;
         }
         break;
     }
 
-    if (newURL) window[stop(), location.replace(newURL)];
+    if (newURL) window[(stop(), location.replace(newURL))];
   }
 }
 
@@ -849,15 +897,14 @@ async function redirectPinterest() {
     if (window.location.hostname === "i.pinimg.com") {
       newURL = `${scheme}${selectedInstance}/image_proxy.php?url=${window.location.href}`;
     } else if (window.location.pathname.startsWith("/search")) {
-      newURL =
-        `${scheme}${selectedInstance}${window.location.pathname
-          .replace("search", "search.php")
-          .replace("/pins/", "")}${window.location.search}${hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname
+        .replace("search", "search.php")
+        .replace("/pins/", "")}${window.location.search}${hash}`;
     } else if (window.location.pathname === "/") {
       newURL = `${scheme}${selectedInstance}`;
     }
 
-    if (newURL) window[stop(), location.replace(newURL)];
+    if (newURL) window[(stop(), location.replace(newURL))];
   }
 }
 
