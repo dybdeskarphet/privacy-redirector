@@ -605,25 +605,32 @@ async function redirectImgur() {
 
 async function redirectMedium() {
   if (medium[0]) {
-    window.stop();
+    const host_path = `${window.location.hostname}${window.location.pathname}`;
 
-    selectedInstance = medium[1] ? `${farsideInstance}/scribe` : await getrandom(Instances.scribe);
-
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-
-    window.location.replace(newURL);
+    if (
+      (/^.+?\.medium\.com\/.+/.test(host_path) ||
+      /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname) ||
+      host_path === "medium.com/") &&
+      !(/^\/(tag|m|hc)\//.test(window.location.pathname) ||
+       /\/(about|followers|following)/.test(window.location.pathname))
+    ) {
+      window.stop();
+      selectedInstance = medium[1] ? `${farsideInstance}/scribe` : await getrandom(Instances.scribe);
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+      window.location.replace(newURL);
+    }
   }
 }
 
 async function redirectHackerNews() {
   if (hackernews[0]) {
     let pathname = window.location.pathname;
-    if (["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(window.location.pathname)) {
+    if (["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(pathname)) {
       if (hackernewsFrontend === "better" && window.location.pathname === "/newest") {
         pathname = "/new";
       }
       selectedInstance = Instances.hackernews[hackernewsFrontend];
-    } else if (["/best", "/news", "/submitted", "/threads", "/classic"].includes(window.location.pathname)) {
+    } else if (["/best", "/news", "/submitted", "/threads", "/classic"].includes(pathname)) {
       selectedInstance = Instances.hackernews.worker;
     }
     if (selectedInstance) {
