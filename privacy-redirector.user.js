@@ -624,12 +624,12 @@ async function redirectMedium() {
 async function redirectHackerNews() {
   if (hackernews[0]) {
     let pathname = window.location.pathname;
-    if (["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(window.location.pathname)) {
+    if (["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(pathname)) {
       if (hackernewsFrontend === "better" && window.location.pathname === "/newest") {
         pathname = "/new";
       }
       selectedInstance = Instances.hackernews[hackernewsFrontend];
-    } else if (["/best", "/news", "/submitted", "/threads", "/classic"].includes(window.location.pathname)) {
+    } else if (["/best", "/news", "/submitted", "/threads", "/classic"].includes(pathname)) {
       selectedInstance = Instances.hackernews.worker;
     }
     if (selectedInstance) {
