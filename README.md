@@ -32,6 +32,7 @@ Bu belgeyi Türkçe okumak için
 
 ## 🫂 Credits
 
+- [joshcangit](https://github.com/joshcangit)
 - [Farside.link](https://github.com/benbusby/farside)
 - [Libredirect](https://github.com/libredirect/browser_extension) for
   Bandcamp redirection
