@@ -609,7 +609,8 @@ async function redirectMedium() {
 
     if (
       (/^.+?\.medium\.com\/.+/.test(host_path) ||
-      /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname)) &&
+      /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname) ||
+      host_path === "medium.com/") &&
       !(/^\/(tag|m|hc)\//.test(window.location.pathname) ||
        /\/(about|followers|following)/.test(window.location.pathname))
     ) {
