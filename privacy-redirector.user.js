@@ -605,13 +605,19 @@ async function redirectImgur() {
 
 async function redirectMedium() {
   if (medium[0]) {
-    window.stop();
+    const host_path = `${window.location.hostname}${window.location.pathname}`;
 
-    selectedInstance = medium[1] ? `${farsideInstance}/scribe` : await getrandom(Instances.scribe);
-
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-
-    window.location.replace(newURL);
+    if (
+      (/^.+?\.medium\.com\/.+/.test(host_path) ||
+      /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname)) &&
+      !(/^\/(tag|m|hc)\//.test(window.location.pathname) ||
+       /\/(about|followers|following)/.test(window.location.pathname))
+    ) {
+      window.stop();
+      selectedInstance = medium[1] ? `${farsideInstance}/scribe` : await getrandom(Instances.scribe);
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+      window.location.replace(newURL);
+    }
   }
 }
 
