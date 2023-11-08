@@ -578,12 +578,22 @@ async function redirectTwitter() {
 async function redirectReddit() {
   if (reddit[0] && !window.location.pathname.startsWith("/domain")) {
     window.stop();
+    let pathname = window.location.pathname;
+    let search = window.location.search;
 
     selectedInstance = reddit[1]
       ? `${farsideInstance}/${redditFrontend}`
       : await getrandom(Instances[redditFrontend]);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    if (pathname === "/media" && search) {
+      const params = new URLSearchParams(search);
+      const mediaURL = new URL(params.get("url"));
+      if (["i.redd.it", "preview.redd.it"].includes(mediaURL.hostname)) {
+        pathname = `/img${mediaURL.pathname}`;
+        search = mediaURL.search;
+      }
+    }
+    newURL = `${scheme}${selectedInstance}${pathname}${search}${hash}`;
 
     window.location.replace(newURL);
   }
