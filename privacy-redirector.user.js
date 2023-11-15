@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.5.1
+// @version 1.5.2
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
@@ -555,22 +555,21 @@ async function redirectTwitter() {
   if (twitter[0]) {
     window.stop();
 
-    let newPathName = "";
-    let newQuery = "";
+    let path = window.location.pathname;
+    let search = window.location.search;
 
     selectedInstance = twitter[1]
       ? `${farsideInstance}/nitter`
       : await getrandom(Instances.nitter);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
-    if (window.location.pathname.startsWith("/i/flow/login")) {
-      newPathName = window.location.pathname.replace("/i/flow/login", "");
-      newQuery = window.location.search.replace(
-        "?redirect_after_login=%2F",
-        "/"
-      );
-      newURL = `${scheme}${selectedInstance}${newPathName}${newQuery}${hash}`;
+    if (path.startsWith("/i/flow/login")) {
+      path = path.replace("/i/flow/login", "");
+      search = search.replace("?redirect_after_login=%2F", "/");
     }
+
+    path.includes("%2F") && (path = path.replace("%2F", "/"));
+
+    newURL = `${scheme}${selectedInstance}${path}${search}${hash}`;
     window.location.replace(newURL);
   }
 }
