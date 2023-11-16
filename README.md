@@ -29,7 +29,7 @@ By [clicking this URL](https://raw.githubusercontent.com/dybdeskarphet/privacy-r
 
    Add the copied script to your userscript manager. If you don't have a userscript manager, you can use one of the following:
 
-   - [Violentmonkey](https://violentmonkey.github.io/) (Opera, Chrome, Firefox, Safari)
+   - [Violentmonkey](https://violentmonkey.github.io/) (Opera, Chrome, Firefox)
    - [Tampermonkey](https://www.tampermonkey.net/) (Chrome, Firefox, Safari, Edge)
    - [Greasemonkey](https://www.greasespot.net/) (Firefox)
 
