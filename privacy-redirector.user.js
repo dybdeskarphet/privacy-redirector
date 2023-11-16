@@ -568,6 +568,7 @@ async function redirectTwitter() {
     }
 
     path.includes("%2F") && (path = path.replace("%2F", "/"));
+    search.includes("%2F") && (search = search.replace("%2F", "/"));
 
     newURL = `${scheme}${selectedInstance}${path}${search}${hash}`;
     window.location.replace(newURL);
