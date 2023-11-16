@@ -66,20 +66,20 @@ Feel free to contribute and add support for more platforms!
 
 ## ❓ FAQ
 
-**How can I disable some redirections?**
+- **How can I disable some redirections?**
 
-> You have to edit the values of the userscript. Change the `REDIRECTION` value to
-> `false` for the redirections you want. You can also disable [farside.link](https://github.com/benbusby/farside)
-> and add your custom instances. A little familiarity with JavaScript syntax should
-> be enough.
+  You have to edit the values of the userscript. Change the `REDIRECTION` value to
+  `false` for the redirections you want. You can also disable [farside.link](https://github.com/benbusby/farside)
+  and add your custom instances. A little familiarity with JavaScript syntax should
+  be enough.
 
-**Why scribe.rip doesn't redirect to user pages?**
+- **Why scribe.rip doesn't redirect to user pages?**
 
-> "It's intentional that there is no way to browse content from a user, see popular
-> posts, consume via an RSS feed, or further engage with an article via comments or
-> "claps".I want to spend my time encouraging writers to move to worthy platforms,
-> not making a bad platform worthy."
-> ~ [edwardloveall](https://sr.ht/~edwardloveall/Scribe/#project-goals)
+  "It's intentional that there is no way to browse content from a user, see popular
+  posts, consume via an RSS feed, or further engage with an article via comments or
+  "claps".I want to spend my time encouraging writers to move to worthy platforms,
+  not making a bad platform worthy."
+  ~ [edwardloveall](https://sr.ht/~edwardloveall/Scribe/#project-goals)
 
 ## ❤️ Contributing
 
