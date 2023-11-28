@@ -555,22 +555,19 @@ async function redirectTwitter() {
   if (twitter[0]) {
     window.stop();
 
-    let path = window.location.pathname;
-    let search = window.location.search;
+    const pathname = window.location.pathname;
+    let searchpath = `${pathname}${window.location.search}`;
 
     selectedInstance = twitter[1]
       ? `${farsideInstance}/nitter`
       : await getrandom(Instances.nitter);
 
-    if (path.startsWith("/i/flow/login")) {
-      path = path.replace("/i/flow/login", "");
-      search = search.replace("?redirect_after_login=%2F", "/");
-    }
+    if (pathname === "/i/flow/login") searchpath = searchpath
+      .replace("/i/flow/login?redirect_after_login=", "");
 
-    path.includes("%2F") && (path = path.replace("%2F", "/"));
-    search.includes("%2F") && (search = search.replace("%2F", "/"));
+    if (searchpath.includes("%")) searchpath = decodeURIComponent(searchpath);
 
-    newURL = `${scheme}${selectedInstance}${path}${search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
     window.location.replace(newURL);
   }
 }
