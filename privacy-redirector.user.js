@@ -599,26 +599,23 @@ async function redirectReddit() {
 async function redirectYoutube(frontend) {
   if (youtube[0]) {
     window.stop();
+    let searchpath = `${window.location.pathname}${window.location.search}`;
     if (frontend !== "tubo") {
       selectedInstance =
         youtube[1] && frontend !== "hyperpipe"
           ? `${farsideInstance}/${frontend}`
           : await getrandom(Instances[frontend]);
-
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     } else {
       selectedInstance = await getrandom(Instances.tubo);
 
-      newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
+      searchpath = `/stream?url=${window.location.href}`;
       if (
         window.location.pathname.startsWith("/@") ||
         window.location.pathname.startsWith("/channel")
-      ) {
-        newURL = `${scheme}${selectedInstance}/channel?url=${window.location.href}`;
-      }
+      ) searchpath = `/channel?url=${window.location.href}`;
     }
+    newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
     window.location.replace(newURL);
-  }
 }
 
 async function redirectTiktok() {
