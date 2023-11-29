@@ -143,6 +143,7 @@ let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "pi
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "librey"; // accepts "librey", "searx", "searxng"
 let geniusFrontend = "intellectual"; // accepts dumb, intellectual
+let mediumFrontend = "scribe"; // accepts libmedium, scribe
 let hackernewsFrontend = "better"; // accepts better, worker
 
 // OTHER SETTINGS
@@ -288,6 +289,13 @@ const Instances = {
     "pi.ggtyler.dev",
     "piped.seitan-ayoub.lol",
     "piped.12a.app",
+  ],
+  libmedium: [
+    "libmedium.batsense.net",
+    "medium.hostux.net",
+    "libmedium.privacyfucking.rocks",
+    "libmedium.frontendfriendly.xyz",
+    "libmedium.esmailelbob.xyz",
   ],
   libreddit: [
     "redditor.fly.dev",
@@ -655,22 +663,25 @@ async function redirectImgur() {
 
 async function redirectMedium() {
   if (medium[0]) {
-    const host_path = `${window.location.hostname}${window.location.pathname}`;
+    let pathname = window.location.pathname;
+    const host_path = `${window.location.hostname}${pathname}`;
 
     if (
       (/^.+?\.medium\.com\/.+/.test(host_path) ||
-        /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname) ||
+        /^\/@?[a-z0-9\-\_]+\//.test(pathname) ||
         host_path === "medium.com/") &&
       !(
-        /^\/(tag|m|hc)\//.test(window.location.pathname) ||
-        /\/(about|followers|following)/.test(window.location.pathname)
+        /^\/(tag|m|hc)\//.test(pathname) ||
+        /\/(about|followers|following)/.test(pathname)
       )
     ) {
       window.stop();
-      selectedInstance = medium[1]
+      selectedInstance = medium[1] && mediumFrontend === "scribe"
         ? `${farsideInstance}/scribe`
-        : await getrandom(Instances.scribe);
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+        : await getrandom(Instances[mediumFrontend]);
+      const username = window.location.hostname.replace(/\.?medium\.com/, "");
+      if (username) pathname = `/${username}${pathname}`;
+      newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
       window.location.replace(newURL);
     }
   }
