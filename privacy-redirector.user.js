@@ -725,15 +725,14 @@ async function redirectGTranslate() {
       ? `${farsideInstance}/lingva`
       : await getrandom(Instances.lingva);
 
-    newURL = `${scheme}${selectedInstance}`;
+    let pathname = window.location.pathname;
     if (window.location.search) {
       const params = new URLSearchParams(window.location.search);
-      newURL += `/${params.get("sl")}/${params.get("tl")}/${params.get(
-        "text"
-      )}`;
-    } else if (/^\/\w+\/\w+\/.*/.test(window.location.pathname)) {
-      newURL += window.location.pathname.replace(/\+/g, " ");
+      pathname = `/${params.get("sl")}/${params.get("tl")}/${params.get("text")}`;
+    } else if (/^\/\w+\/\w+\/.*/.test(pathname)) {
+      pathname = pathname.replace(/\+/g, " ");
     }
+    newURL = `${scheme}${selectedInstance}${pathname}`;
     window.location.replace(newURL);
   }
 }
