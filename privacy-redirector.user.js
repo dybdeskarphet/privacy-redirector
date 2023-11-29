@@ -869,49 +869,34 @@ async function redirectBandcamp() {
 
     selectedInstance = await getrandom(Instances.tent);
     const params = new URLSearchParams(window.location.search);
+    const artist = window.location.hostname.replace(/\..+/, "");
+    const regex = /^\/(.+?)\/(.+)/.exec(window.location.pathname);
+    const audio = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(window.location.pathname);
+    const image = /^\/img\/(.+)/.exec(window.location.pathname);
+    let searchpath = "";
 
-    if (
-      `${window.location.hostname}${window.location.pathname}` ===
-      "bandcamp.com/search"
-    ) {
-      newURL = `${scheme}${selectedInstance}/search.php?query=${params.get(
-        "q"
-      )}`;
-    }
-
-    if (window.location.hostname.search(/(daily)?\.bandcamp\.com/) > 0) {
-      const artist = window.location.hostname.replace(/\..+/, "");
-      if (window.location.pathname === "/") {
-        newURL = `${scheme}${selectedInstance}/artist.php?name=${artist}`;
-      } else {
-        const regex = /^\/(.+?)\/(.+)/.exec(window.location.pathname);
-        if (regex) {
-          const type = regex[1];
-          const name = regex[2];
-          newURL = `${scheme}${selectedInstance}/release.php?artist=${artist}&type=${type}&name=${name}`;
+    switch (true) {
+      case window.location.pathname === "/search":
+        searchpath = `/search.php?query=${params.get("q")}`;
+        break;
+      case window.location.hostname.search(/(daily)?\.bandcamp\.com/) > 0:
+        if (window.location.pathname === "/") {
+          searchpath = `/artist.php?name=${artist}`;
+        } else if (regex.length > 2) {
+          searchpath = `/release.php?artist=${artist}&type=${regex[1]}&name=${regex[2]}`;
         }
-      }
+        break;
+      case window.location.hostname === "f4.bcbits.com":
+        if (image.length > 1) searchpath = `/image.php?file=${image[1]}`;
+        break;
+      case window.location.hostname === "t4.bcbits.com":
+        if (audio.length > 3) searchpath = `/audio.php?directory=${audio[1]}&format=${audio[2]}&file=${audio[3]}&token=${params.get("token")}`;
+        break;
+      default: return;
     }
-
-    if (window.location.hostname === "f4.bcbits.com") {
-      const image = /^\/img\/(.+)/.exec(window.location.pathname)[1];
-      newURL = `${scheme}${selectedInstance}/image.php?file=${image}`;
-    }
-
-    if (window.location.hostname === "t4.bcbits.com") {
-      const regex = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(
-        window.location.pathname
-      );
-      if (regex) {
-        const directory = regex[1];
-        const format = regex[2];
-        const file = regex[3];
-        const token = params.get("token");
-        newURL = `${scheme}${selectedInstance}/audio.php?directory=${directory}&format=${format}&file=${file}&token=${token}`;
-      }
-    }
-
-    if (newURL) window[(stop(), location.replace(newURL))];
+    window.stop();
+    newURL = `${scheme}${selectedInstance}${searchpath}`;
+    window.location.replace(newURL);
   }
 }
 
