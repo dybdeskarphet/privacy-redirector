@@ -626,11 +626,14 @@ async function redirectTiktok() {
       ? `${farsideInstance}/proxitok`
       : await getrandom(Instances.proxitok);
 
-    if (pathname.startsWith("/foryou")) {
-      pathname = pathname.replace("/foryou", "/trending");
-    } else if (pathname.startsWith("/discover/")) {
-      pathname = pathname.replace("discover", "tag");
-    }
+    await Promise.any([
+      ["/@/", "/@placeholder/"],
+      ["/discover/", "/tag/"],
+      ["/foryou", "/trending"],
+    ].map(async([key, value]) => {
+      if (pathname.startsWith(key)) pathname = pathname.replace(key, value);
+    }));
+
     newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
     window.location.replace(newURL);
   }
