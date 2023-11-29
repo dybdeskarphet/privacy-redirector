@@ -797,14 +797,13 @@ async function redirectQuora() {
 
 async function redirectFandom() {
   if (fandom[0]) {
-    selectedInstance = await getrandom(Instances.breezewiki);
-    const fandomName = window.location.hostname.replace(/\..+/, "");
     window.stop();
+    const fandomName = window.location.hostname.replace(/\..+/, "");
+    selectedInstance = await getrandom(Instances.breezewiki);
 
-    newURL = `${scheme}${selectedInstance}`;
-    if (fandomName !== "www") {
-      newURL += `/${fandomName}${window.location.pathname}${window.location.search}${hash}`;
-    }
+    let pathname = window.location.pathname;
+    if (fandomName !== "www") pathname = `/${fandomName}${pathname}`;
+    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
 
     window.location.replace(newURL);
   }
