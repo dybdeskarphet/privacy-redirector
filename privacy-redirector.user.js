@@ -838,13 +838,11 @@ async function redirectGoodreads() {
 
     selectedInstance = await getrandom(Instances.biblioreads);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     if (window.location.pathname.startsWith("/search")) {
-      const params = new URLSearchParams(window.location.search);
-      newURL = `${scheme}${selectedInstance}${
-        window.location.pathname
-      }/${params.get("q")}${hash}`;
+      const params = new URLSearchParams(search);
+      search = `/${params.get("q")}`;
     }
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${search}${hash}`;
     window.location.replace(newURL);
   }
 }
