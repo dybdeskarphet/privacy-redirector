@@ -363,6 +363,12 @@ const Instances = {
     "lingva.lunar.icu",
     "lingva.garudalinux.org",
   ],
+  neuters: [
+    "neuters.de",
+    "news.whateveritworks.org",
+    "neuters.hyperreal.coffee",
+    "neuters.privacyfucking.rocks",
+  ],
   nitter: [
     "nitter.net",
     "nitter:nitter@nitter.nixnet.services",
@@ -740,7 +746,9 @@ async function redirectGTranslate() {
 async function redirectReuters() {
   if (reuters[0]) {
     window.stop();
-    location.hostname = "neuters.de";
+    selectedInstance = await getrandom(Instances.neuters);
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    window.location.replace(newURL);
   }
 }
 
