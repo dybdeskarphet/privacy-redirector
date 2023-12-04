@@ -711,9 +711,7 @@ async function redirectHackerNews() {
       if (
         hackernewsFrontend === "better" &&
         window.location.pathname === "/newest"
-      ) {
-        pathname = "/new";
-      }
+      ) pathname = "/new";
       selectedInstance = Instances.hackernews[hackernewsFrontend];
     } else if (
       ["/best", "/news", "/submitted", "/threads", "/classic"].includes(
