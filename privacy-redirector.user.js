@@ -97,6 +97,7 @@
 // @match *://translate.google.com/*
 // @match *://twitter.com/*
 // @match *://www.goodreads.com/*
+// @match *://www.pixiv.net/*
 // @match *://youtube.com/*
 // @exclude *://*.youtube.com/redirect*
 // @exclude *://youtube.com/redirect*
@@ -126,6 +127,7 @@ let imdb = [true, true];
 let imgur = [true, false];
 let medium = [true, true];
 let pinterest = [true, true];
+let pixiv = [true, true];
 let quora = [true, false];
 let reddit = [true, false];
 let reuters = [true, true];
@@ -391,6 +393,11 @@ const Instances = {
     "nitter.uni-sonia.com",
     "n.opnxng.com",
     "nitter.ktachibana.party",
+  ],
+  pixivfe: [
+    "pixivfe.exozy.me",
+    "pixivfe.drgns.space",
+    "pix.chaotic.ninja",
   ],
   proxitok: [
     "proxitok.pabloferreiro.es",
@@ -954,6 +961,17 @@ async function redirectSoundcloud() {
   }
 }
 
+async function redirectPixiv() {
+  if (pixiv[0]) {
+    window.stop();
+    selectedInstance = await getrandom(Instances.pixivfe);
+
+    const pathname = window.location.pathname.replace(/^\/\w{2}\//, "/");
+    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}`;
+    window.location.replace(newURL);
+  }
+}
+
 const urlHostname = window.location.hostname;
 
 switch (urlHostname) {
@@ -1029,6 +1047,10 @@ switch (urlHostname) {
   case "soundcloud.com":
   case "m.soundcloud.com":
     redirectSoundcloud();
+    break;
+
+  case "www.pixiv.net":
+    redirectPixiv();
     break;
 
   case urlHostname.includes("reddit.com") ? urlHostname : 0:
