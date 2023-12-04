@@ -97,6 +97,7 @@
 // @match *://translate.google.com/*
 // @match *://twitter.com/*
 // @match *://www.goodreads.com/*
+// @match *://www.pixiv.net/*
 // @match *://youtube.com/*
 // @exclude *://*.youtube.com/redirect*
 // @exclude *://youtube.com/redirect*
@@ -126,6 +127,7 @@ let imdb = [true, true];
 let imgur = [true, false];
 let medium = [true, true];
 let pinterest = [true, true];
+let pixiv = [true, true];
 let quora = [true, false];
 let reddit = [true, false];
 let reuters = [true, true];
@@ -143,6 +145,7 @@ let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "pi
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "librey"; // accepts "librey", "searx", "searxng"
 let geniusFrontend = "intellectual"; // accepts dumb, intellectual
+let mediumFrontend = "scribe"; // accepts libmedium, scribe
 let hackernewsFrontend = "better"; // accepts better, worker
 
 // OTHER SETTINGS
@@ -163,51 +166,62 @@ LIST OF INSTANCES TO USE IF FARSIDE IS NOT ENABLED
 const Instances = {
   anonymousoverflow: [
     "code.whatever.social",
+    "ao.vern.cc",
     "overflow.smnz.de",
     "overflow.lunar.icu",
     "overflow.adminforge.de",
-    "overflow.r4fo.com",
-    "overflow.hostux.net",
     "overflow.projectsegfau.lt",
-    "ao.bloatcat.tk",
+    "code.whateveritworks.org",
+    "ao.bloat.cat",
     "anonoverflow.frontendfriendly.xyz",
     "ao.owo.si",
     "overflow.datura.network",
-    "ao.ftw.lol",
+    "overflow.freedit.eu",
+    "ao.rootdo.org",
     "anonoverflow.hyperreal.coffee",
+    "a.opnxng.com",
     "overflow.sudovanilla.com",
+    "anonymousoverflow.privacyfucking.rocks",
+    "exchange.seitan-ayoub.lol",
+    "overflow.r4fo.com",
   ],
   hyperpipe: [
     "hyperpipe.surge.sh",
+    "hyperpipe.onrender.com",
     "hyperpipe.esmailelbob.xyz",
     "music.adminforge.de",
     "music.pfcd.me",
-    "hyperpipe.drgns.space",
+    "listen.whateveritworks.org",
     "hyperpipe.projectsegfau.lt",
     "hp.ggtyler.dev",
     "hyperpipe.lunar.icu",
+    "music.seitan-ayoub.lol",
   ],
   proxigram: [
     "proxigram.privacyfrontends.repl.co",
     "proxigram.protokolla.fi",
     "proxigram.kyun.li",
-    "proxigram.drgns.space",
+    "proxigram.lunar.icu",
     "ig.opnxng.com",
   ],
   biblioreads: [
     "biblioreads.eu.org",
     "biblioreads.vercel.app",
     "biblioreads.mooo.com",
+    "bl.vern.cc",
     "biblioreads.lunar.icu",
+    "read.whateveritworks.org",
     "biblioreads.privacyfucking.rocks",
     "read.seitan-ayoub.lol",
   ],
   binternet: [
     "binternet.ahwx.org",
-    "binternet.revvy.de",
-    "binternet.bloatcat.tk",
+    "bn.bloat.cat",
     "bn.opnxng.com",
     "binternet.privacyfucking.rocks",
+    "bn.vern.cc",
+    "pin.whateveritworks.org",
+    "binternet.esmailelbob.xyz",
   ],
   breezewiki: [
     "breezewiki.com",
@@ -220,17 +234,21 @@ const Instances = {
     "nerd.whatever.social",
     "breezewiki.frontendfriendly.xyz",
     "breeze.nohost.network",
+    "breeze.whateveritworks.org",
     "z.opnxng.com",
     "breezewiki.hyperreal.coffee",
     "breezewiki.catsarch.com",
     "breeze.mint.lgbt",
     "breezewiki.woodland.cafe",
+    "breezewiki.lunar.icu",
+    "fandom.adminforge.de",
   ],
-  dumb: ["sing.whatever.social", "dumb.lunar.icu", "dumb.privacydev.net"],
+  dumb: ["dumb.privacydev.net", "db.vern.cc", "sing.whatever.social", "dumb.lunar.icu", "dumb.esmailelbob.xyz"],
   intellectual: [
     "intellectual.insprill.net",
-    "in.bloatcat.tk",
+    "in.bloat.cat",
     "intellectual.privacyfucking.rocks",
+    "intellectual.frontendfriendly.xyz",
   ],
   invidious: [
     "yewtu.be",
@@ -243,7 +261,6 @@ const Instances = {
     "vid.priv.au",
     "iv.ggtyler.dev",
     "invidious.lunar.icu",
-    "inv.zzls.xyz",
     "inv.tux.pizza",
     "invidious.protokolla.fi",
     "proxied.invidious.fi",
@@ -260,47 +277,54 @@ const Instances = {
     "anontube.lvkaszus.pl",
     "invidious.perennialte.ch",
     "yt.cdaut.de",
-    "invidious.drgns.space",
     "invidious.einfachzocken.eu",
+    "yt.drgnz.club",
   ],
   piped: [
     "piped.video",
     "cf.piped.video",
     "fl.piped.video",
     "do.piped.video",
-    "piped.syncpundit.io",
+    "az.piped.video",
     "piped.mha.fi",
+    "piped.garudalinux.org",
     "watch.leptons.xyz",
     "piped.lunar.icu",
     "piped.r4fo.com",
     "piped.game.yt",
-    "il.ax",
-    "piped.projectsegfau.lt",
-    "watch.whatever.social",
     "piped.privacydev.net",
     "piped.smnz.de",
     "piped.adminforge.de",
     "piped.hostux.net",
-    "piped.yt",
     "piped.astartes.nl",
     "piped.osphost.fi",
-    "piped.drgns.space",
+    "piped.simpleprivacy.fr",
     "pi.ggtyler.dev",
     "piped.seitan-ayoub.lol",
+    "yt.owo.si",
     "piped.12a.app",
+    "piped.minionflo.net",
+    "piped.game.yt",
+  ],
+  libmedium: [
+    "libmedium.batsense.net",
+    "md.vern.cc",
+    "medium.hostux.net",
+    "read.sudovanilla.com",
+    "libmedium.privacyfucking.rocks",
+    "libmedium.frontendfriendly.xyz",
+    "libmedium.esmailelbob.xyz",
   ],
   libreddit: [
     "redditor.fly.dev",
     "libreddit.kavin.rocks",
     "libreddit.strongthany.cc",
     "libreddit.northboot.xyz",
-    "libreddit.hu",
     "libreddit.kylrth.com",
     "libreddit.tiekoetter.com",
     "l.opnxng.com",
     "libreddit.projectsegfau.lt",
     "libreddit.privacydev.net",
-    "discuss.whatever.social",
     "libreddit.frontendfriendly.xyz",
     "libreddit.oxymagnesium.com",
     "libreddit.freedit.eu",
@@ -316,10 +340,16 @@ const Instances = {
     "libreddit.nerdyfam.tech",
     "libreddit.perennialte.ch",
     "libreddit.baczek.me",
+    "libreddit.private.coffee",
+    "lr.seitan-ayoub.lol",
+    "l.bloat.cat",
+    "reddit.pfcd.me",
   ],
   libremdb: [
     "libremdb.iket.me",
     "libremdb.pussthecat.org",
+    "ld.vern.cc",
+    "libremdb.esmailelbob.xyz",
     "binge.whatever.social",
     "libremdb.lunar.icu",
     "libremdb.jeikobu.net",
@@ -331,13 +361,12 @@ const Instances = {
   ],
   librey: [
     "search.ahwx.org",
-    "search2.ahwx.org",
-    "librex.zzls.xyz",
     "ly.owo.si",
+    "librey.danyaal.xyz",
     "librey.org",
     "librex.supernets.org",
     "search.davidovski.xyz",
-    "librey.bloatcat.tk",
+    "librex.uk.to",
     "search.funami.tech",
     "librex.retro-hax.net",
     "librex.nohost.network",
@@ -346,38 +375,49 @@ const Instances = {
     "librey.baczek.me",
     "lx.benike.me",
     "search.seitan-ayoub.lol",
+    "librey.hyperreal.coffee",
   ],
   lingva: [
     "lingva.ml",
+    "lingva.thedaviddelta.com",
     "lingva.frontendfriendly.xyz",
     "lingva.retiolus.net",
     "translate.plausibility.cloud",
     "lingva.lunar.icu",
     "lingva.garudalinux.org",
+    "lingva.seitan-ayoub.lol",
+  ],
+  neuters: [
+    "neuters.de",
+    "news.whateveritworks.org",
+    "neuters.hyperreal.coffee",
+    "neuters.privacyfucking.rocks",
   ],
   nitter: [
     "nitter.net",
-    "nitter:nitter@nitter.nixnet.services",
     "nitter.unixfox.eu",
-    "nitter.mint.lgbt",
     "nitter.esmailelbob.xyz",
     "nitter.poast.org",
-    "nitter.cz",
+    "nitter.privacydev.net",
     "nitter.projectsegfau.lt",
     "nitter.soopy.moe",
     "nitter.rawbit.ninja",
     "nitter.d420.de",
+    "nitter.freedit.eu",
     "nitter.nohost.network",
+    "nitter.no-logs.com",
+    "nitter.io.lol",
     "nitter.x86-64-unknown-linux-gnu.zip",
     "nitter.woodland.cafe",
     "nitter.dafriser.be",
+    "nitter.catsarch.com",
     "nitter.perennialte.ch",
     "nitter.salastil.com",
-    "n.populas.no",
     "nitter.uni-sonia.com",
     "n.opnxng.com",
     "nitter.ktachibana.party",
   ],
+  pixivfe: ["pixivfe.exozy.me", "pix.chaotic.ninja"],
   proxitok: [
     "proxitok.pabloferreiro.es",
     "proxitok.pussthecat.org",
@@ -388,7 +428,10 @@ const Instances = {
     "tik.hostux.net",
     "cringe.whatever.social",
     "proxitok.lunar.icu",
+    "proxitok.privacy.com.de",
     "proxitok.r4fo.com",
+    "cringe.whateveritworks.org",
+    "cringe.seitan-ayoub.lol",
     "cringe.datura.network",
     "tt.opnxng.com",
     "proxitok.tinfoil-hat.net",
@@ -396,36 +439,42 @@ const Instances = {
   ],
   quetre: [
     "quetre.iket.me",
+    "qr.vern.cc",
     "quetre.pussthecat.org",
     "quetre.privacydev.net",
     "ask.habedieeh.re",
     "quetre.blackdrgn.nl",
     "quetre.lunar.icu",
+    "questions.whateveritworks.org",
     "quetre.frontendfriendly.xyz",
     "q.opnxng.com",
-    "quetre.ftw.lol",
+    "quetre.rootdo.org",
     "quora.seitan-ayoub.lol",
+    "quetre.esmailelbob.xyz",
     "quetre.catsarch.com",
-    "quetre.drgns.space",
+    "ask.sudovanilla.org",
+    "quetre.smnz.de",
   ],
   rimgo: [
     "rimgo.totaldarkness.net",
     "imgur.artemislena.eu",
-    "ri.zzls.xyz",
     "rimgo.lunar.icu",
+    "imgur.010032.xyz",
     "rimgo.kling.gg",
     "rimgo.projectsegfau.lt",
     "rimgo.nohost.network",
     "rimgo.catsarch.com",
-    "rimgo.drgns.space",
     "rimgo.quantenzitrone.eu",
     "rimgo.frylo.net",
   ],
   scribe: [
     "scribe.rip",
     "scribe.citizen4.eu",
+    "scribe.bus-hit.me",
+    "scribe.projectsegfau.lt",
     "scribe.rawbit.ninja",
     "m.opnxng.com",
+    "scribe.hyperreal.coffee",
   ],
   teddit: [
     "i.opnxng.com",
@@ -437,19 +486,24 @@ const Instances = {
     "teddit.pussthecat.org",
     "teddit.zaggy.nl",
     "t.sneed.network",
+    "td.vern.cc",
   ],
-  tent: ["tent.sny.sh", "tent.bloatcat.tk"],
+  tent: ["tent.sny.sh", "tent.bloat.cat", "tn.vern.cc"],
   tubo: ["tubo.migalmoreno.com"],
   wikiless: [
+    "wikiless.whateveritworks.org",
     "wikiless.tiekoetter.com",
     "wikiless.funami.tech",
+    "wl.vern.cc",
+    "wiki.froth.zone",
+    "wikiless.northboot.xyz",
     "wikiless.rawbit.ninja",
     "wiki.adminforge.de",
+    "wikiless.rootdo.org",
+    "w.sneed.network",
     "wikiless.r4fo.com",
     "wiki.seitan-ayoub.lol",
-    "wikiless.ftw.lol",
-    "wl.ftw.lol",
-    "w.sneed.network",
+    "wikiless.esmailelbob.xyz",
     "wikiless.ditatompel.com",
   ],
   searx: [
@@ -555,22 +609,19 @@ async function redirectTwitter() {
   if (twitter[0]) {
     window.stop();
 
-    let path = window.location.pathname;
-    let search = window.location.search;
+    const pathname = window.location.pathname;
+    let searchpath = `${pathname}${window.location.search}`;
 
     selectedInstance = twitter[1]
       ? `${farsideInstance}/nitter`
       : await getrandom(Instances.nitter);
 
-    if (path.startsWith("/i/flow/login")) {
-      path = path.replace("/i/flow/login", "");
-      search = search.replace("?redirect_after_login=%2F", "/");
-    }
+    if (pathname === "/i/flow/login") searchpath = searchpath
+      .replace("/i/flow/login?redirect_after_login=", "");
 
-    path.includes("%2F") && (path = path.replace("%2F", "/"));
-    search.includes("%2F") && (search = search.replace("%2F", "/"));
+    if (searchpath.includes("%")) searchpath = decodeURIComponent(searchpath);
 
-    newURL = `${scheme}${selectedInstance}${path}${search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
     window.location.replace(newURL);
   }
 }
@@ -602,26 +653,23 @@ async function redirectReddit() {
 async function redirectYoutube(frontend) {
   if (youtube[0]) {
     window.stop();
+    let searchpath = `${window.location.pathname}${window.location.search}`;
     if (frontend !== "tubo") {
       selectedInstance =
         youtube[1] && frontend !== "hyperpipe"
           ? `${farsideInstance}/${frontend}`
           : await getrandom(Instances[frontend]);
-
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     } else {
       selectedInstance = await getrandom(Instances.tubo);
 
-      newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
+      searchpath = `/stream?url=${window.location.href}`;
       if (
         window.location.pathname.startsWith("/@") ||
         window.location.pathname.startsWith("/channel")
-      ) {
-        newURL = `${scheme}${selectedInstance}/channel?url=${window.location.href}`;
-      }
+      ) searchpath = `/channel?url=${window.location.href}`;
     }
+    newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
     window.location.replace(newURL);
-  }
 }
 
 async function redirectTiktok() {
@@ -632,11 +680,14 @@ async function redirectTiktok() {
       ? `${farsideInstance}/proxitok`
       : await getrandom(Instances.proxitok);
 
-    if (pathname.startsWith("/foryou")) {
-      pathname = pathname.replace("/foryou", "/trending");
-    } else if (pathname.startsWith("/discover/")) {
-      pathname = pathname.replace("discover", "tag");
-    }
+    await Promise.any([
+      ["/@/", "/@placeholder/"],
+      ["/discover/", "/tag/"],
+      ["/foryou", "/trending"],
+    ].map(async([key, value]) => {
+      if (pathname.startsWith(key)) pathname = pathname.replace(key, value);
+    }));
+
     newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
     window.location.replace(newURL);
   }
@@ -658,22 +709,25 @@ async function redirectImgur() {
 
 async function redirectMedium() {
   if (medium[0]) {
-    const host_path = `${window.location.hostname}${window.location.pathname}`;
+    let pathname = window.location.pathname;
+    const host_path = `${window.location.hostname}${pathname}`;
 
     if (
       (/^.+?\.medium\.com\/.+/.test(host_path) ||
-        /^\/@?[a-z0-9\-\_]+\//.test(window.location.pathname) ||
+        /^\/@?[a-z0-9\-\_]+\//.test(pathname) ||
         host_path === "medium.com/") &&
       !(
-        /^\/(tag|m|hc)\//.test(window.location.pathname) ||
-        /\/(about|followers|following)/.test(window.location.pathname)
+        /^\/(tag|m|hc)\//.test(pathname) ||
+        /\/(about|followers|following)/.test(pathname)
       )
     ) {
       window.stop();
-      selectedInstance = medium[1]
+      selectedInstance = medium[1] && mediumFrontend === "scribe"
         ? `${farsideInstance}/scribe`
-        : await getrandom(Instances.scribe);
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+        : await getrandom(Instances[mediumFrontend]);
+      const username = window.location.hostname.replace(/\.?medium\.com/, "");
+      if (username) pathname = `/${username}${pathname}`;
+      newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
       window.location.replace(newURL);
     }
   }
@@ -690,9 +744,7 @@ async function redirectHackerNews() {
       if (
         hackernewsFrontend === "better" &&
         window.location.pathname === "/newest"
-      ) {
-        pathname = "/new";
-      }
+      ) pathname = "/new";
       selectedInstance = Instances.hackernews[hackernewsFrontend];
     } else if (
       ["/best", "/news", "/submitted", "/threads", "/classic"].includes(
@@ -717,15 +769,14 @@ async function redirectGTranslate() {
       ? `${farsideInstance}/lingva`
       : await getrandom(Instances.lingva);
 
-    newURL = `${scheme}${selectedInstance}`;
+    let pathname = window.location.pathname;
     if (window.location.search) {
       const params = new URLSearchParams(window.location.search);
-      newURL += `/${params.get("sl")}/${params.get("tl")}/${params.get(
-        "text"
-      )}`;
-    } else if (/^\/\w+\/\w+\/.*/.test(window.location.pathname)) {
-      newURL += window.location.pathname.replace(/\+/g, " ");
+      pathname = `/${params.get("sl")}/${params.get("tl")}/${params.get("text")}`;
+    } else if (/^\/\w+\/\w+\/.*/.test(pathname)) {
+      pathname = pathname.replace(/\+/g, " ");
     }
+    newURL = `${scheme}${selectedInstance}${pathname}`;
     window.location.replace(newURL);
   }
 }
@@ -733,7 +784,9 @@ async function redirectGTranslate() {
 async function redirectReuters() {
   if (reuters[0]) {
     window.stop();
-    location.hostname = "neuters.de";
+    selectedInstance = await getrandom(Instances.neuters);
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    window.location.replace(newURL);
   }
 }
 
@@ -782,14 +835,13 @@ async function redirectQuora() {
 
 async function redirectFandom() {
   if (fandom[0]) {
-    selectedInstance = await getrandom(Instances.breezewiki);
-    const fandomName = window.location.hostname.replace(/\..+/, "");
     window.stop();
+    const fandomName = window.location.hostname.replace(/\..+/, "");
+    selectedInstance = await getrandom(Instances.breezewiki);
 
-    newURL = `${scheme}${selectedInstance}`;
-    if (fandomName !== "www") {
-      newURL += `/${fandomName}${window.location.pathname}${window.location.search}${hash}`;
-    }
+    let pathname = window.location.pathname;
+    if (fandomName !== "www") pathname = `/${fandomName}${pathname}`;
+    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
 
     window.location.replace(newURL);
   }
@@ -824,13 +876,11 @@ async function redirectGoodreads() {
 
     selectedInstance = await getrandom(Instances.biblioreads);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
     if (window.location.pathname.startsWith("/search")) {
-      const params = new URLSearchParams(window.location.search);
-      newURL = `${scheme}${selectedInstance}${
-        window.location.pathname
-      }/${params.get("q")}${hash}`;
+      const params = new URLSearchParams(search);
+      search = `/${params.get("q")}`;
     }
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${search}${hash}`;
     window.location.replace(newURL);
   }
 }
@@ -857,81 +907,57 @@ async function redirectBandcamp() {
 
     selectedInstance = await getrandom(Instances.tent);
     const params = new URLSearchParams(window.location.search);
+    const artist = window.location.hostname.replace(/\..+/, "");
+    const regex = /^\/(.+?)\/(.+)/.exec(window.location.pathname);
+    const audio = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(window.location.pathname);
+    const image = /^\/img\/(.+)/.exec(window.location.pathname);
+    let searchpath = "";
 
-    if (
-      `${window.location.hostname}${window.location.pathname}` ===
-      "bandcamp.com/search"
-    ) {
-      newURL = `${scheme}${selectedInstance}/search.php?query=${params.get(
-        "q"
-      )}`;
-    }
-
-    if (window.location.hostname.search(/(daily)?\.bandcamp\.com/) > 0) {
-      const artist = window.location.hostname.replace(/\..+/, "");
-      if (window.location.pathname === "/") {
-        newURL = `${scheme}${selectedInstance}/artist.php?name=${artist}`;
-      } else {
-        const regex = /^\/(.+?)\/(.+)/.exec(window.location.pathname);
-        if (regex) {
-          const type = regex[1];
-          const name = regex[2];
-          newURL = `${scheme}${selectedInstance}/release.php?artist=${artist}&type=${type}&name=${name}`;
+    switch (true) {
+      case window.location.pathname === "/search":
+        searchpath = `/search.php?query=${params.get("q")}`;
+        break;
+      case window.location.hostname.search(/(daily)?\.bandcamp\.com/) > 0:
+        if (window.location.pathname === "/") {
+          searchpath = `/artist.php?name=${artist}`;
+        } else if (regex.length > 2) {
+          searchpath = `/release.php?artist=${artist}&type=${regex[1]}&name=${regex[2]}`;
         }
-      }
+        break;
+      case window.location.hostname === "f4.bcbits.com":
+        if (image.length > 1) searchpath = `/image.php?file=${image[1]}`;
+        break;
+      case window.location.hostname === "t4.bcbits.com":
+        if (audio.length > 3) searchpath = `/audio.php?directory=${audio[1]}&format=${audio[2]}&file=${audio[3]}&token=${params.get("token")}`;
+        break;
+      default: return;
     }
-
-    if (window.location.hostname === "f4.bcbits.com") {
-      const image = /^\/img\/(.+)/.exec(window.location.pathname)[1];
-      newURL = `${scheme}${selectedInstance}/image.php?file=${image}`;
-    }
-
-    if (window.location.hostname === "t4.bcbits.com") {
-      const regex = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(
-        window.location.pathname
-      );
-      if (regex) {
-        const directory = regex[1];
-        const format = regex[2];
-        const file = regex[3];
-        const token = params.get("token");
-        newURL = `${scheme}${selectedInstance}/audio.php?directory=${directory}&format=${format}&file=${file}&token=${token}`;
-      }
-    }
-
-    if (newURL) window[(stop(), location.replace(newURL))];
+    window.stop();
+    newURL = `${scheme}${selectedInstance}${searchpath}`;
+    window.location.replace(newURL);
   }
 }
 
 async function redirectGenius() {
   if (genius[0]) {
-    const searchpath = `${window.location.pathname}${window.location.search}`;
-
+    const pathname = window.location.pathname;
     selectedInstance = await getrandom(Instances[geniusFrontend]);
-    switch (geniusFrontend) {
-      case "dumb":
-        newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
-        break;
-      case "intellectual":
-        if (window.location.pathname.endsWith("-lyrics")) {
-          newURL = `${scheme}${selectedInstance}/lyrics?path=${searchpath.slice(
-            1
-          )}${hash}`;
-        } else if (window.location.pathname.startsWith("/albums/")) {
-          newURL = `${scheme}${selectedInstance}${searchpath.replace(
-            "/albums",
-            "/album?path=albums"
-          )}${hash}`;
-        } else if (window.location.pathname.startsWith("/artists/")) {
-          newURL = `${scheme}${selectedInstance}${searchpath.replace(
-            "/artists",
-            "/artist?path=artists"
-          )}${hash}`;
-        }
-        break;
-    }
 
-    if (newURL) window[(stop(), location.replace(newURL))];
+    await Promise.any([
+      ["lyrics", pathname.endsWith("-lyrics")],
+      ["album", pathname.startsWith("/albums/")],
+      ["artist", pathname.startsWith("/artists/")],
+      [, ["/", "/search"].includes(pathname)],
+    ].map(async([key, value]) => {
+      if (value) {
+        const searchpath = geniusFrontend === "intellectual" && key ?
+          `/${key}?path=${pathname.slice(1)}` :
+          `${pathname}${window.location.search}`;
+        window.stop();
+        newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
+        window.location.replace(newURL);
+      }
+    }));
   }
 }
 
@@ -939,17 +965,18 @@ async function redirectPinterest() {
   if (pinterest[0]) {
     selectedInstance = await getrandom(Instances.binternet);
 
+    let searchpath = "";
     if (window.location.hostname === "i.pinimg.com") {
-      newURL = `${scheme}${selectedInstance}/image_proxy.php?url=${window.location.href}`;
+      searchpath = `/image_proxy.php?url=${window.location.href}`;
     } else if (window.location.pathname.startsWith("/search")) {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname
+      searchpath = `${window.location.pathname
         .replace("search", "search.php")
-        .replace("/pins/", "")}${window.location.search}${hash}`;
-    } else if (window.location.pathname === "/") {
-      newURL = `${scheme}${selectedInstance}`;
-    }
+        .replace("/pins/", "")}${window.location.search}`;
+    } else if (window.location.pathname !== "/") return;
 
-    if (newURL) window[(stop(), location.replace(newURL))];
+    window.stop();
+    newURL = `${scheme}${selectedInstance}${searchpath}`;
+    window.location.replace(newURL);
   }
 }
 
@@ -958,10 +985,20 @@ async function redirectSoundcloud() {
     window.stop();
     selectedInstance = await getrandom(Instances.tubo);
 
-    newURL = `${scheme}${selectedInstance}/kiosk?serviceId=1`;
-    if (window.location.pathname !== "/") {
-      newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
-    }
+    let searchpath = "/kiosk?serviceId=1";
+    if (window.location.pathname !== "/") searchpath = `/stream?url=${window.location.href}`;
+    newURL = `${scheme}${selectedInstance}${searchpath}`;
+    window.location.replace(newURL);
+  }
+}
+
+async function redirectPixiv() {
+  if (pixiv[0]) {
+    window.stop();
+    selectedInstance = await getrandom(Instances.pixivfe);
+
+    const pathname = window.location.pathname.replace(/^\/\w{2}\//, "/");
+    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}`;
     window.location.replace(newURL);
   }
 }
@@ -1041,6 +1078,10 @@ switch (urlHostname) {
   case "soundcloud.com":
   case "m.soundcloud.com":
     redirectSoundcloud();
+    break;
+
+  case "www.pixiv.net":
+    redirectPixiv();
     break;
 
   case urlHostname.includes("reddit.com") ? urlHostname : 0:
