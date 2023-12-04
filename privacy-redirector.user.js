@@ -902,33 +902,24 @@ async function redirectBandcamp() {
 
 async function redirectGenius() {
   if (genius[0]) {
-    const searchpath = `${window.location.pathname}${window.location.search}`;
-
+    const pathname = window.location.pathname;
     selectedInstance = await getrandom(Instances[geniusFrontend]);
-    switch (geniusFrontend) {
-      case "dumb":
-        newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
-        break;
-      case "intellectual":
-        if (window.location.pathname.endsWith("-lyrics")) {
-          newURL = `${scheme}${selectedInstance}/lyrics?path=${searchpath.slice(
-            1
-          )}${hash}`;
-        } else if (window.location.pathname.startsWith("/albums/")) {
-          newURL = `${scheme}${selectedInstance}${searchpath.replace(
-            "/albums",
-            "/album?path=albums"
-          )}${hash}`;
-        } else if (window.location.pathname.startsWith("/artists/")) {
-          newURL = `${scheme}${selectedInstance}${searchpath.replace(
-            "/artists",
-            "/artist?path=artists"
-          )}${hash}`;
-        }
-        break;
-    }
 
-    if (newURL) window[(stop(), location.replace(newURL))];
+    await Promise.any([
+      ["lyrics", pathname.endsWith("-lyrics")],
+      ["album", pathname.startsWith("/albums/")],
+      ["artist", pathname.startsWith("/artists/")],
+      [, ["/", "/search"].includes(pathname)],
+    ].map(async([key, value]) => {
+      if (value) {
+        const searchpath = geniusFrontend === "intellectual" && key ?
+          `/${key}?path=${pathname.slice(1)}` :
+          `${pathname}${window.location.search}`;
+        window.stop();
+        newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
+        window.location.replace(newURL);
+      }
+    }));
   }
 }
 
