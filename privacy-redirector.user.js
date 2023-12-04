@@ -927,17 +927,18 @@ async function redirectPinterest() {
   if (pinterest[0]) {
     selectedInstance = await getrandom(Instances.binternet);
 
+    let searchpath = "";
     if (window.location.hostname === "i.pinimg.com") {
-      newURL = `${scheme}${selectedInstance}/image_proxy.php?url=${window.location.href}`;
+      searchpath = `/image_proxy.php?url=${window.location.href}`;
     } else if (window.location.pathname.startsWith("/search")) {
-      newURL = `${scheme}${selectedInstance}${window.location.pathname
+      searchpath = `${window.location.pathname
         .replace("search", "search.php")
-        .replace("/pins/", "")}${window.location.search}${hash}`;
-    } else if (window.location.pathname === "/") {
-      newURL = `${scheme}${selectedInstance}`;
-    }
+        .replace("/pins/", "")}${window.location.search}`;
+    } else if (window.location.pathname !== "/") return;
 
-    if (newURL) window[(stop(), location.replace(newURL))];
+    window.stop();
+    newURL = `${scheme}${selectedInstance}${searchpath}`;
+    window.location.replace(newURL);
   }
 }
 
