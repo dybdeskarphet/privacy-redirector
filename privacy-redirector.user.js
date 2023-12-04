@@ -947,10 +947,9 @@ async function redirectSoundcloud() {
     window.stop();
     selectedInstance = await getrandom(Instances.tubo);
 
-    newURL = `${scheme}${selectedInstance}/kiosk?serviceId=1`;
-    if (window.location.pathname !== "/") {
-      newURL = `${scheme}${selectedInstance}/stream?url=${window.location.href}`;
-    }
+    let searchpath = "/kiosk?serviceId=1";
+    if (window.location.pathname !== "/") searchpath = `/stream?url=${window.location.href}`;
+    newURL = `${scheme}${selectedInstance}${searchpath}`;
     window.location.replace(newURL);
   }
 }
