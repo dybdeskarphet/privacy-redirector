@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.5.3
+// @version 1.5.4
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
@@ -243,7 +243,13 @@ const Instances = {
     "breezewiki.lunar.icu",
     "fandom.adminforge.de",
   ],
-  dumb: ["dumb.privacydev.net", "db.vern.cc", "sing.whatever.social", "dumb.lunar.icu", "dumb.esmailelbob.xyz"],
+  dumb: [
+    "dumb.privacydev.net",
+    "db.vern.cc",
+    "sing.whatever.social",
+    "dumb.lunar.icu",
+    "dumb.esmailelbob.xyz",
+  ],
   intellectual: [
     "intellectual.insprill.net",
     "in.bloat.cat",
@@ -616,8 +622,11 @@ async function redirectTwitter() {
       ? `${farsideInstance}/nitter`
       : await getrandom(Instances.nitter);
 
-    if (pathname === "/i/flow/login") searchpath = searchpath
-      .replace("/i/flow/login?redirect_after_login=", "");
+    if (pathname === "/i/flow/login")
+      searchpath = searchpath.replace(
+        "/i/flow/login?redirect_after_login=",
+        ""
+      );
 
     if (searchpath.includes("%")) searchpath = decodeURIComponent(searchpath);
 
@@ -666,10 +675,12 @@ async function redirectYoutube(frontend) {
       if (
         window.location.pathname.startsWith("/@") ||
         window.location.pathname.startsWith("/channel")
-      ) searchpath = `/channel?url=${window.location.href}`;
+      )
+        searchpath = `/channel?url=${window.location.href}`;
     }
     newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
     window.location.replace(newURL);
+  }
 }
 
 async function redirectTiktok() {
@@ -680,13 +691,15 @@ async function redirectTiktok() {
       ? `${farsideInstance}/proxitok`
       : await getrandom(Instances.proxitok);
 
-    await Promise.any([
-      ["/@/", "/@placeholder/"],
-      ["/discover/", "/tag/"],
-      ["/foryou", "/trending"],
-    ].map(async([key, value]) => {
-      if (pathname.startsWith(key)) pathname = pathname.replace(key, value);
-    }));
+    await Promise.any(
+      [
+        ["/@/", "/@placeholder/"],
+        ["/discover/", "/tag/"],
+        ["/foryou", "/trending"],
+      ].map(async ([key, value]) => {
+        if (pathname.startsWith(key)) pathname = pathname.replace(key, value);
+      })
+    );
 
     newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
     window.location.replace(newURL);
@@ -722,9 +735,10 @@ async function redirectMedium() {
       )
     ) {
       window.stop();
-      selectedInstance = medium[1] && mediumFrontend === "scribe"
-        ? `${farsideInstance}/scribe`
-        : await getrandom(Instances[mediumFrontend]);
+      selectedInstance =
+        medium[1] && mediumFrontend === "scribe"
+          ? `${farsideInstance}/scribe`
+          : await getrandom(Instances[mediumFrontend]);
       const username = window.location.hostname.replace(/\.?medium\.com/, "");
       if (username) pathname = `/${username}${pathname}`;
       newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
@@ -744,7 +758,8 @@ async function redirectHackerNews() {
       if (
         hackernewsFrontend === "better" &&
         window.location.pathname === "/newest"
-      ) pathname = "/new";
+      )
+        pathname = "/new";
       selectedInstance = Instances.hackernews[hackernewsFrontend];
     } else if (
       ["/best", "/news", "/submitted", "/threads", "/classic"].includes(
@@ -772,7 +787,9 @@ async function redirectGTranslate() {
     let pathname = window.location.pathname;
     if (window.location.search) {
       const params = new URLSearchParams(window.location.search);
-      pathname = `/${params.get("sl")}/${params.get("tl")}/${params.get("text")}`;
+      pathname = `/${params.get("sl")}/${params.get("tl")}/${params.get(
+        "text"
+      )}`;
     } else if (/^\/\w+\/\w+\/.*/.test(pathname)) {
       pathname = pathname.replace(/\+/g, " ");
     }
@@ -909,7 +926,9 @@ async function redirectBandcamp() {
     const params = new URLSearchParams(window.location.search);
     const artist = window.location.hostname.replace(/\..+/, "");
     const regex = /^\/(.+?)\/(.+)/.exec(window.location.pathname);
-    const audio = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(window.location.pathname);
+    const audio = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(
+      window.location.pathname
+    );
     const image = /^\/img\/(.+)/.exec(window.location.pathname);
     let searchpath = "";
 
@@ -928,9 +947,13 @@ async function redirectBandcamp() {
         if (image.length > 1) searchpath = `/image.php?file=${image[1]}`;
         break;
       case window.location.hostname === "t4.bcbits.com":
-        if (audio.length > 3) searchpath = `/audio.php?directory=${audio[1]}&format=${audio[2]}&file=${audio[3]}&token=${params.get("token")}`;
+        if (audio.length > 3)
+          searchpath = `/audio.php?directory=${audio[1]}&format=${
+            audio[2]
+          }&file=${audio[3]}&token=${params.get("token")}`;
         break;
-      default: return;
+      default:
+        return;
     }
     window.stop();
     newURL = `${scheme}${selectedInstance}${searchpath}`;
@@ -943,21 +966,24 @@ async function redirectGenius() {
     const pathname = window.location.pathname;
     selectedInstance = await getrandom(Instances[geniusFrontend]);
 
-    await Promise.any([
-      ["lyrics", pathname.endsWith("-lyrics")],
-      ["album", pathname.startsWith("/albums/")],
-      ["artist", pathname.startsWith("/artists/")],
-      [, ["/", "/search"].includes(pathname)],
-    ].map(async([key, value]) => {
-      if (value) {
-        const searchpath = geniusFrontend === "intellectual" && key ?
-          `/${key}?path=${pathname.slice(1)}` :
-          `${pathname}${window.location.search}`;
-        window.stop();
-        newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
-        window.location.replace(newURL);
-      }
-    }));
+    await Promise.any(
+      [
+        ["lyrics", pathname.endsWith("-lyrics")],
+        ["album", pathname.startsWith("/albums/")],
+        ["artist", pathname.startsWith("/artists/")],
+        [, ["/", "/search"].includes(pathname)],
+      ].map(async ([key, value]) => {
+        if (value) {
+          const searchpath =
+            geniusFrontend === "intellectual" && key
+              ? `/${key}?path=${pathname.slice(1)}`
+              : `${pathname}${window.location.search}`;
+          window.stop();
+          newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
+          window.location.replace(newURL);
+        }
+      })
+    );
   }
 }
 
@@ -986,7 +1012,8 @@ async function redirectSoundcloud() {
     selectedInstance = await getrandom(Instances.tubo);
 
     let searchpath = "/kiosk?serviceId=1";
-    if (window.location.pathname !== "/") searchpath = `/stream?url=${window.location.href}`;
+    if (window.location.pathname !== "/")
+      searchpath = `/stream?url=${window.location.href}`;
     newURL = `${scheme}${selectedInstance}${searchpath}`;
     window.location.replace(newURL);
   }
