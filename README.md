@@ -51,6 +51,7 @@ Once the userscript is installed, visit your favorite social media platforms, an
 - Instagram → [Proxigram](https://codeberg.org/ThePenguinDev/Proxigram)
 - Medium → [Scribe](https://sr.ht/~edwardloveall/Scribe/)
 - Pinterest → [Binternet](https://github.com/Ahwxorg/Binternet)
+- Pixiv → [PixivFE](https://codeberg.org/vnpower/pixivfe)
 - Quora → [Quetre](https://github.com/zyachel/quetre)
 - Reddit → [Libreddit](https://github.com/libreddit/libreddit), [Teddit](https://codeberg.org/teddit/teddit)
 - Reuters → [Neuters](https://github.com/HookedBehemoth/neuters)
