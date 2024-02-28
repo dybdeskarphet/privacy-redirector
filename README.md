@@ -49,7 +49,7 @@ Once the userscript is installed, visit your favorite social media platforms, an
 - IMDb → [libremdb](https://github.com/zyachel/libremdb)
 - Imgur → [rimgo](https://codeberg.org/rimgo/rimgo)
 - Instagram → [Proxigram](https://codeberg.org/ThePenguinDev/Proxigram)
-- Medium → [Scribe](https://sr.ht/~edwardloveall/Scribe/), [LibMedium](https://github.com/realaravinth/libmedium), [mediumm.rip](https://github.com/SphericalKat/medium.rip)
+- Medium → [Scribe](https://sr.ht/~edwardloveall/Scribe/), [LibMedium](https://github.com/realaravinth/libmedium), [medium.rip](https://github.com/SphericalKat/medium.rip)
 - Pinterest → [Binternet](https://github.com/Ahwxorg/Binternet)
 - Pixiv → [PixivFE](https://codeberg.org/vnpower/pixivfe)
 - Quora → [Quetre](https://github.com/zyachel/quetre)
