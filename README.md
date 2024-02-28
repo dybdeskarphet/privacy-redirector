@@ -6,7 +6,7 @@
 
 ## 📖 Description
 
-The Privacy Redirector userscript redirects popular social media platforms to their privacy-respecting frontends, such as Nitter for Twitter and Piped for YouTube. This helps you enjoy the content while avoiding unnecessary tracking.
+The Privacy Redirector userscript redirects popular social media platforms to privacy-respecting frontends, such as Nitter for Twitter and Piped for YouTube. This helps you enjoy the content while avoiding unnecessary tracking.
 
 Bu belgeyi Türkçe okumak için
 <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/doc/README_tr.md">tıklayın</a>.
@@ -49,7 +49,7 @@ Once the userscript is installed, visit your favorite social media platforms, an
 - IMDb → [libremdb](https://github.com/zyachel/libremdb)
 - Imgur → [rimgo](https://codeberg.org/rimgo/rimgo)
 - Instagram → [Proxigram](https://codeberg.org/ThePenguinDev/Proxigram)
-- Medium → [Scribe](https://sr.ht/~edwardloveall/Scribe/)
+- Medium → [Scribe](https://sr.ht/~edwardloveall/Scribe/), [LibMedium](https://github.com/realaravinth/libmedium), [mediumm.rip](https://github.com/SphericalKat/medium.rip)
 - Pinterest → [Binternet](https://github.com/Ahwxorg/Binternet)
 - Pixiv → [PixivFE](https://codeberg.org/vnpower/pixivfe)
 - Quora → [Quetre](https://github.com/zyachel/quetre)
@@ -58,6 +58,7 @@ Once the userscript is installed, visit your favorite social media platforms, an
 - SoundCloud → [Tubo](https://github.com/migalmoreno/tubo)
 - Stack Overflow → [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow)
 - TikTok → [ProxiTok](https://github.com/pablouser1/ProxiTok)
+- Twitch → [SafeTwitch](https://codeberg.org/SafeTwitch/safetwitch)
 - Twitter → [Nitter](https://github.com/zedeus/nitter)
 - Wikipedia → [Wikiless](https://codeberg.org/orenom/wikiless)
 - YouTube Music → [Piped](https://github.com/TeamPiped/Piped), [Invidious](https://github.com/iv-org/invidious), [Hyperpipe](https://codeberg.org/Hyperpipe/Hyperpipe)
