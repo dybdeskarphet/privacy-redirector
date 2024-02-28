@@ -58,6 +58,7 @@ Once the userscript is installed, visit your favorite social media platforms, an
 - SoundCloud → [Tubo](https://github.com/migalmoreno/tubo)
 - Stack Overflow → [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow)
 - TikTok → [ProxiTok](https://github.com/pablouser1/ProxiTok)
+- Twitch → [SafeTwitch](https://codeberg.org/SafeTwitch/safetwitch)
 - Twitter → [Nitter](https://github.com/zedeus/nitter)
 - Wikipedia → [Wikiless](https://codeberg.org/orenom/wikiless)
 - YouTube Music → [Piped](https://github.com/TeamPiped/Piped), [Invidious](https://github.com/iv-org/invidious), [Hyperpipe](https://codeberg.org/Hyperpipe/Hyperpipe)
