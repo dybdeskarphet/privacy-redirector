@@ -75,18 +75,20 @@
 // @match *://*.instagram.com/*
 // @match *://*.medium.com/*
 // @match *://*.pinterest.com/*
-// @match *://i.pinimg.com/*
 // @match *://*.quora.com/*
 // @match *://*.reddit.com/*
 // @match *://*.reuters.com/*
+// @match *://*.soundcloud.com/*
 // @match *://*.tiktok.com/*
+// @match *://*.twitch.tv/*
+// @match *://twitch.tv/*
 // @match *://*.twitter.com/*
 // @match *://*.wikipedia.org/*
 // @match *://*.youtube-nocookie.com/*
 // @match *://*.youtube.com/*
-// @match *://*.soundcloud.com/*
 // @match *://f4.bcbits.com/*
 // @match *://genius.com/*
+// @match *://i.pinimg.com/*
 // @match *://imgur.com/*
 // @match *://instagram.com/*
 // @match *://medium.com/*
@@ -137,6 +139,7 @@ let tiktok = [true, false];
 let twitter = [true, true];
 let wikipedia = [true, false];
 let youtube = [true, false];
+let twitch = [true, true];
 let instagram = [true, true];
 
 // PREFERRED FRONTEND
@@ -512,6 +515,24 @@ const Instances = {
     "wiki.seitan-ayoub.lol",
     "wikiless.esmailelbob.xyz",
     "wikiless.ditatompel.com",
+  ],
+  safetwitch: [
+    "safetwitch.drgns.space",
+    "safetwitch.drgns.space",
+    "safetwitch.projectsegfau.lt",
+    "stream.whateveritworks.org",
+    "safetwitch.datura.network",
+    "ttv.vern.cc",
+    "safetwitch.frontendfriendly.xyz",
+    "ttv.femboy.band",
+    "twitch.seitan-ayoub.lol",
+    "st.ggtyler.dev",
+    "safetwitch.lunar.icu",
+    "twitch.sudovanilla.com",
+    "safetwitch.r4fo.com",
+    "safetwitch.ducks.party",
+    "safetwitch.nogafam.fr",
+    "safetwitch.privacyredirect.com",
   ],
   searx: [
     "search.bus-hit.me",
@@ -1031,6 +1052,26 @@ async function redirectPixiv() {
   }
 }
 
+async function redirectTwitch() {
+  if (twitch[0]) {
+    window.stop();
+    selectedInstance = await getrandom(Instances.safetwitch);
+
+    const pathname =
+      window.location.pathname == "/search"
+        ? window.location.pathname + "/"
+        : window.location.pathname;
+
+    let searchpath =
+      window.location.pathname == "/search"
+        ? window.location.search.replace("term", "query")
+        : window.location.search;
+
+    newURL = `${scheme}${selectedInstance}${pathname}${searchpath}`;
+    window.location.replace(newURL);
+  }
+}
+
 const urlHostname = window.location.hostname;
 
 switch (urlHostname) {
@@ -1110,6 +1151,11 @@ switch (urlHostname) {
 
   case "www.pixiv.net":
     redirectPixiv();
+    break;
+
+  case "twitch.tv":
+  case "www.twitch.tv":
+    redirectTwitch();
     break;
 
   case urlHostname.includes("reddit.com") ? urlHostname : 0:
