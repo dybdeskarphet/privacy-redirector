@@ -145,7 +145,7 @@ let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "pi
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "librey"; // accepts "librey", "searx", "searxng"
 let geniusFrontend = "intellectual"; // accepts dumb, intellectual
-let mediumFrontend = "scribe"; // accepts libmedium, scribe
+let mediumFrontend = "scribe"; // accepts libmedium, scribe, mediumrip
 let hackernewsFrontend = "better"; // accepts better, worker
 
 // OTHER SETTINGS
@@ -393,6 +393,7 @@ const Instances = {
     "lingva.garudalinux.org",
     "lingva.seitan-ayoub.lol",
   ],
+  mediumrip: ["medium.rip"],
   neuters: [
     "neuters.de",
     "news.whateveritworks.org",
@@ -720,7 +721,7 @@ async function redirectImgur() {
   }
 }
 
-async function redirectMedium() {
+async function redirectMedium(frontend) {
   if (medium[0]) {
     let pathname = window.location.pathname;
     const host_path = `${window.location.hostname}${pathname}`;
