@@ -1,8 +1,10 @@
 # 🔀 Privacy Redirector
 
+
 [![Greasy Fork](https://img.shields.io/greasyfork/v/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
 [![Greasy Fork](https://img.shields.io/greasyfork/dt/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
 [![GitHub](https://img.shields.io/github/license/dybdeskarphet/privacy-redirector?style=flat-square)](./LICENSE)
+![test instances](https://github.com/dybdeskarphet/privacy-redirector/actions/workflows/testInstances.yml/badge.svg)
 
 ## 📖 Description
 
