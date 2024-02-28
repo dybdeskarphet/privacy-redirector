@@ -6,7 +6,7 @@
 
 ## 📖 Description
 
-The Privacy Redirector userscript redirects popular social media platforms to their privacy-respecting frontends, such as Nitter for Twitter and Piped for YouTube. This helps you enjoy the content while avoiding unnecessary tracking.
+The Privacy Redirector userscript redirects popular social media platforms to privacy-respecting frontends, such as Nitter for Twitter and Piped for YouTube. This helps you enjoy the content while avoiding unnecessary tracking.
 
 Bu belgeyi Türkçe okumak için
 <a href="https://github.com/dybdeskarphet/privacy-redirector/blob/main/doc/README_tr.md">tıklayın</a>.
