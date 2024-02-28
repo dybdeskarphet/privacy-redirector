@@ -758,9 +758,9 @@ async function redirectMedium(frontend) {
     ) {
       window.stop();
       selectedInstance =
-        medium[1] && mediumFrontend === "scribe"
+        medium[1] && frontend === "scribe"
           ? `${farsideInstance}/scribe`
-          : await getrandom(Instances[mediumFrontend]);
+          : await getrandom(Instances[frontend]);
       const username = window.location.hostname.replace(/\.?medium\.com/, "");
       if (username) pathname = `/${username}${pathname}`;
       newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
@@ -1163,7 +1163,7 @@ switch (urlHostname) {
     break;
 
   case urlHostname.includes("medium.com") ? urlHostname : 0:
-    redirectMedium();
+    redirectMedium(mediumFrontend);
     break;
 
   case urlHostname.includes("imgur.com") ? urlHostname : 0:
