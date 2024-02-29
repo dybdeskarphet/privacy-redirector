@@ -383,10 +383,7 @@ const Instances = {
     "lingva.seitan-ayoub.lol",
   ],
   mediumrip: ["medium.rip"],
-  neuters: [
-    "neuters.de",
-    "neuters.privacyfucking.rocks",
-  ],
+  neuters: ["neuters.de", "neuters.privacyfucking.rocks"],
   nitter: [
     "nitter.net",
     "nitter.unixfox.eu",
@@ -655,23 +652,31 @@ async function redirectYoutube(frontend) {
   if (youtube[0]) {
     window.stop();
     let searchpath = `${window.location.pathname}${window.location.search}`;
-    if (frontend !== "tubo") {
-      selectedInstance =
-        youtube[1] && frontend !== "hyperpipe"
-          ? `${farsideInstance}/${frontend}`
-          : await getrandom(Instances[frontend]);
+    if (window.location.pathname.startsWith("/embed")) {
+      selectedInstance = youtube[1]
+        ? `${farsideInstance}/invidious`
+        : await getrandom(Instances["invidious"]);
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+      window.location.replace(newURL);
     } else {
-      selectedInstance = await getrandom(Instances.tubo);
+      if (frontend !== "tubo") {
+        selectedInstance =
+          youtube[1] && frontend !== "hyperpipe"
+            ? `${farsideInstance}/${frontend}`
+            : await getrandom(Instances[frontend]);
+      } else {
+        selectedInstance = await getrandom(Instances.tubo);
 
-      searchpath = `/stream?url=${window.location.href}`;
-      if (
-        window.location.pathname.startsWith("/@") ||
-        window.location.pathname.startsWith("/channel")
-      )
-        searchpath = `/channel?url=${window.location.href}`;
+        searchpath = `/stream?url=${window.location.href}`;
+        if (
+          window.location.pathname.startsWith("/@") ||
+          window.location.pathname.startsWith("/channel")
+        )
+          searchpath = `/channel?url=${window.location.href}`;
+      }
+      newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
+      window.location.replace(newURL);
     }
-    newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
-    window.location.replace(newURL);
   }
 }
 
@@ -1159,5 +1164,6 @@ switch (urlHostname) {
 }
 
 // export module for the test in github action
-typeof module !== 'undefined' ? module.exports = {Instances: Instances} : true;
-
+typeof module !== "undefined"
+  ? (module.exports = { Instances: Instances })
+  : true;
