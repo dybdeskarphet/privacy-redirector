@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.5.5
+// @version 1.5.6
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
