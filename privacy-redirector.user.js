@@ -724,7 +724,7 @@ async function redirectMedium(frontend) {
 
     if (
       (/^.+?\.medium\.com\/.+/.test(host_path) ||
-        /^\/@?[a-z0-9\-\_]+\//.test(pathname) ||
+        /^\/@?[^\/]+?\//.test(pathname) ||
         host_path === "medium.com/") &&
       !(
         /^\/(tag|m|hc)\//.test(pathname) ||
@@ -787,7 +787,7 @@ async function redirectGTranslate() {
       pathname = `/${params.get("sl")}/${params.get("tl")}/${params.get(
         "text"
       )}`;
-    } else if (/^\/\w+\/\w+\/.*/.test(pathname)) {
+    } else if (/^\/\w+?\/\w+?\/.*/.test(pathname)) {
       pathname = pathname.replace(/\+/g, " ");
     }
     newURL = `${scheme}${selectedInstance}${pathname}`;
@@ -922,8 +922,8 @@ async function redirectBandcamp() {
     selectedInstance = await getrandom(Instances.tent);
     const params = new URLSearchParams(window.location.search);
     const artist = window.location.hostname.replace(/\..+/, "");
-    const regex = /^\/(.+?)\/(.+)/.exec(window.location.pathname);
-    const audio = /^\/stream\/([a-f0-9]+)\/(.+)\/([0-9]+)/.exec(
+    const regex = /^\/([^\/]+?)\/(.+)/.exec(window.location.pathname);
+    const audio = /^\/stream\/([a-f0-9]+?)\/([^\/]+?)\/([0-9]+)/.exec(
       window.location.pathname
     );
     const image = /^\/img\/(.+)/.exec(window.location.pathname);
