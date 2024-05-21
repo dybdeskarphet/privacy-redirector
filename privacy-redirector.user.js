@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.5.7
+// @version 1.5.8
 // @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
 // @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
@@ -83,6 +83,8 @@
 // @match *://*.twitch.tv/*
 // @match *://twitch.tv/*
 // @match *://*.twitter.com/*
+// @match *://*.x.com/*
+// @match *://x.com/*
 // @match *://*.wikipedia.org/*
 // @match *://*.youtube-nocookie.com/*
 // @match *://*.youtube.com/*
@@ -1053,6 +1055,8 @@ switch (urlHostname) {
 
   case "twitter.com":
   case "mobile.twitter.com":
+  case "x.com":
+  case "mobile.x.com":
     redirectTwitter();
     break;
 
