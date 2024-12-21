@@ -858,9 +858,8 @@ async function redirectGTranslate() {
             "text",
           )}&from=${params.get("sl")}&to=${params.get("tl")}&engine=google`;
           newURL = `${scheme}${selectedInstance}${pathname}`;
-        } else if (/^\/\w+?\/\w+?\/.*/.test(pathname)) {
-          newURL = `${scheme}${selectedInstance}`;
         }
+
         break;
 
       default:
