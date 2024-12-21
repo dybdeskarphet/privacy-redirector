@@ -149,6 +149,7 @@ let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
 let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "librey"; // accepts "librey", "searx", "searxng"
+let googleTranslateFrontend = "mozhi"; // accepts "lingva", "mozhi"
 let geniusFrontend = "intellectual"; // accepts dumb, intellectual
 let mediumFrontend = "scribe"; // accepts libmedium, scribe, mediumrip
 let hackernewsFrontend = "better"; // accepts better, worker
@@ -535,6 +536,21 @@ const Instances = {
     better: "better-hackernews.vercel.app",
     worker: "news.workers.tools",
   },
+  mozhi: [
+    "mozhi.aryak.me",
+    "translate.bus-hit.me",
+    "nyc1.mz.ggtyler.dev",
+    "translate.projectsegfau.lt",
+    "translate.nerdvpn.de",
+    "mozhi.ducks.party",
+    "mozhi.frontendfriendly.xyz",
+    "mozhi.pussthecat.org",
+    "mo.zorby.top",
+    "mozhi.adminforge.de",
+    "translate.privacyredirect.com",
+    "mozhi.canine.tools",
+    "mozhi.gitro.xyz",
+  ],
 };
 
 let farsideInstance = keepHistory ? "farside.link/_" : "farside.link";
@@ -560,7 +576,7 @@ if (debug_mode) {
       "\nQuery: " +
       window.location.search +
       "\nHash: " +
-      hash
+      hash,
   );
 }
 
@@ -613,7 +629,7 @@ async function redirectTwitter() {
     if (pathname === "/i/flow/login")
       searchpath = searchpath.replace(
         "/i/flow/login?redirect_after_login=",
-        ""
+        "",
       );
 
     if (searchpath.includes("%")) searchpath = decodeURIComponent(searchpath);
@@ -694,7 +710,7 @@ async function redirectTiktok() {
         ["/foryou", "/trending"],
       ].map(async ([key, value]) => {
         if (pathname.startsWith(key)) pathname = pathname.replace(key, value);
-      })
+      }),
     );
 
     newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
@@ -748,7 +764,7 @@ async function redirectHackerNews() {
     let pathname = window.location.pathname;
     if (
       ["/newest", "/item", "/user", "/ask", "/show", "/jobs", "/"].includes(
-        pathname
+        pathname,
       )
     ) {
       if (
@@ -759,7 +775,7 @@ async function redirectHackerNews() {
       selectedInstance = Instances.hackernews[hackernewsFrontend];
     } else if (
       ["/best", "/news", "/submitted", "/threads", "/classic"].includes(
-        pathname
+        pathname,
       )
     ) {
       selectedInstance = Instances.hackernews.worker;
@@ -775,21 +791,43 @@ async function redirectHackerNews() {
 async function redirectGTranslate() {
   if (gtranslate[0]) {
     window.stop();
-
-    selectedInstance = gtranslate[1]
-      ? `${farsideInstance}/lingva`
-      : await getrandom(Instances.lingva);
-
     let pathname = window.location.pathname;
-    if (window.location.search) {
-      const params = new URLSearchParams(window.location.search);
-      pathname = `/${params.get("sl")}/${params.get("tl")}/${params.get(
-        "text"
-      )}`;
-    } else if (/^\/\w+?\/\w+?\/.*/.test(pathname)) {
-      pathname = pathname.replace(/\+/g, " ");
+
+    switch (googleTranslateFrontend) {
+      case "lingva":
+        selectedInstance = gtranslate[1]
+          ? `${farsideInstance}/lingva`
+          : await getrandom(Instances.lingva);
+
+        if (window.location.search) {
+          const params = new URLSearchParams(window.location.search);
+          pathname = `/${params.get("sl")}/${params.get("tl")}/${params.get(
+            "text",
+          )}`;
+        } else if (/^\/\w+?\/\w+?\/.*/.test(pathname)) {
+          pathname = pathname.replace(/\+/g, " ");
+        }
+        newURL = `${scheme}${selectedInstance}${pathname}`;
+        break;
+
+      case "mozhi":
+        selectedInstance = await getrandom(Instances.mozhi);
+
+        if (window.location.search) {
+          const params = new URLSearchParams(window.location.search);
+          pathname = `?text=${params.get(
+            "text",
+          )}&from=${params.get("sl")}&to=${params.get("tl")}&engine=google`;
+          newURL = `${scheme}${selectedInstance}${pathname}`;
+        } else if (/^\/\w+?\/\w+?\/.*/.test(pathname)) {
+          newURL = `${scheme}${selectedInstance}`;
+        }
+        break;
+
+      default:
+        break;
     }
-    newURL = `${scheme}${selectedInstance}${pathname}`;
+
     window.location.replace(newURL);
   }
 }
@@ -923,7 +961,7 @@ async function redirectBandcamp() {
     const artist = window.location.hostname.replace(/\..+/, "");
     const regex = /^\/([^\/]+?)\/(.+)/.exec(window.location.pathname);
     const audio = /^\/stream\/([a-f0-9]+?)\/([^\/]+?)\/([0-9]+)/.exec(
-      window.location.pathname
+      window.location.pathname,
     );
     const image = /^\/img\/(.+)/.exec(window.location.pathname);
     let searchpath = "";
@@ -978,7 +1016,7 @@ async function redirectGenius() {
           newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
           window.location.replace(newURL);
         }
-      })
+      }),
     );
   }
 }
