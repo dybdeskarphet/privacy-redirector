@@ -28,42 +28,71 @@
 // @name:uk Редиректор конфіденційності
 // @name:zh 隐私重定向器
 // @name:zh-CN 隐私重定向器
-// @description	Redirect social media platforms to their privacy respecting frontends
-// @description:bg Пренасочване на платформите за социални медии към заглавните им страници, съобразени с поверителността
-// @description:br Redirecionando as plataformas de mídia social para suas primeiras páginas de privacidade
-// @description:cs Přesměrování platforem sociálních médií na jejich titulní stránky šetrné k soukromí
-// @description:de Leitet von Social-Media-Plattformen auf deren jeweilige datenschutzfreundlicheren Frontends
-// @description:da Omdirigering af sociale medieplatforme til deres privatlivsvenlige forsider
-// @description:et Sotsiaalmeediaplatvormide ümbersuunamine nende privaatsussõbralikele esilehtedele
-// @description:es Redirigir las plataformas de medios sociales a sus portadas respetuosas con la privacidad
-// @description:fi Sosiaalisen median alustojen ohjaaminen yksityisyyden suojaa edistäville etusivuille.
-// @description:fr Rediriger les plateformes de médias sociaux vers leurs pages d'accueil respectueuses de la vie privée
-// @description:el Αναπροσανατολισμός των πλατφορμών κοινωνικής δικτύωσης στις μπροστινές σελίδες τους που είναι φιλικές προς το απόρρητο
-// @description:hu A közösségi médiaplatformok átirányítása az adatvédelem-barát kezdőlapokra
-// @description:id Mengarahkan platform media sosial ke halaman depan yang ramah privasi
-// @description:it Reindirizzare le piattaforme di social media verso le loro pagine frontali che rispettano la privacy
-// @description:ja ソーシャルメディアプラットフォームをプライバシーに配慮したフロントページにリダイレクトする
-// @description:lt Socialinės žiniasklaidos platformų nukreipimas į privatumą užtikrinančius pirmuosius puslapius
-// @description:lv Sociālo plašsaziņas līdzekļu platformu pāradresēšana uz to privātumam draudzīgajām pirmajām lapām.
-// @description:nl Sociale-mediaplatforms omleiden naar hun privacyvriendelijke voorpagina's
-// @description:pl Przekierowanie platform mediów społecznościowych na ich przyjazne dla prywatności strony tytułowe
-// @description:pt Redireccionar as plataformas de redes sociais para as suas primeiras páginas amigas da privacidade
-// @description:ro Redirecționarea platformelor de socializare către paginile lor de început care respectă viața privată
-// @description:ru Перенаправление платформ социальных сетей на их главные страницы, дружественные к конфиденциальности
-// @description:sv Omdirigera sociala medieplattformar till deras integritetsvänliga förstasidor.
-// @description:sl preusmeritev platform družabnih medijev na njihove naslovne strani, ki so prijazne do zasebnosti.
-// @description:sk Presmerovanie platforiem sociálnych médií na ich úvodné stránky, ktoré chránia súkromie
-// @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan önyüzlerine yönlendirir
-// @description:uk Перенаправлення соціальних медіа-платформ на їхні головні сторінки, дружні до приватності
+// @description	Redirect social media platforms to their privacy respecting
+// frontends
+// @description:bg Пренасочване на платформите за социални медии към заглавните
+// им страници, съобразени с поверителността
+// @description:br Redirecionando as plataformas de mídia social para suas
+// primeiras páginas de privacidade
+// @description:cs Přesměrování platforem sociálních médií na jejich titulní
+// stránky šetrné k soukromí
+// @description:de Leitet von Social-Media-Plattformen auf deren jeweilige
+// datenschutzfreundlicheren Frontends
+// @description:da Omdirigering af sociale medieplatforme til deres
+// privatlivsvenlige forsider
+// @description:et Sotsiaalmeediaplatvormide ümbersuunamine nende
+// privaatsussõbralikele esilehtedele
+// @description:es Redirigir las plataformas de medios sociales a sus portadas
+// respetuosas con la privacidad
+// @description:fi Sosiaalisen median alustojen ohjaaminen yksityisyyden suojaa
+// edistäville etusivuille.
+// @description:fr Rediriger les plateformes de médias sociaux vers leurs pages
+// d'accueil respectueuses de la vie privée
+// @description:el Αναπροσανατολισμός των πλατφορμών κοινωνικής δικτύωσης στις
+// μπροστινές σελίδες τους που είναι φιλικές προς το απόρρητο
+// @description:hu A közösségi médiaplatformok átirányítása az adatvédelem-barát
+// kezdőlapokra
+// @description:id Mengarahkan platform media sosial ke halaman depan yang ramah
+// privasi
+// @description:it Reindirizzare le piattaforme di social media verso le loro
+// pagine frontali che rispettano la privacy
+// @description:ja
+// ソーシャルメディアプラットフォームをプライバシーに配慮したフロントページにリダイレクトする
+// @description:lt Socialinės žiniasklaidos platformų nukreipimas į privatumą
+// užtikrinančius pirmuosius puslapius
+// @description:lv Sociālo plašsaziņas līdzekļu platformu pāradresēšana uz to
+// privātumam draudzīgajām pirmajām lapām.
+// @description:nl Sociale-mediaplatforms omleiden naar hun privacyvriendelijke
+// voorpagina's
+// @description:pl Przekierowanie platform mediów społecznościowych na ich
+// przyjazne dla prywatności strony tytułowe
+// @description:pt Redireccionar as plataformas de redes sociais para as suas
+// primeiras páginas amigas da privacidade
+// @description:ro Redirecționarea platformelor de socializare către paginile
+// lor de început care respectă viața privată
+// @description:ru Перенаправление платформ социальных сетей на их главные
+// страницы, дружественные к конфиденциальности
+// @description:sv Omdirigera sociala medieplattformar till deras
+// integritetsvänliga förstasidor.
+// @description:sl preusmeritev platform družabnih medijev na njihove naslovne
+// strani, ki so prijazne do zasebnosti.
+// @description:sk Presmerovanie platforiem sociálnych médií na ich úvodné
+// stránky, ktoré chránia súkromie
+// @description:tr Sosyal medya platformlarını, gizliliğe saygı duyan
+// önyüzlerine yönlendirir
+// @description:uk Перенаправлення соціальних медіа-платформ на їхні головні
+// сторінки, дружні до приватності
 // @description:zh 将社交媒体平台重定向到其隐私友好的首页
 // @description:zh-CN 将社交媒体平台重定向到其隐私友好的首页
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
 // @version 1.5.8
-// @downloadURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
+// @downloadURL
+// https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
-// @updateURL https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
+// @updateURL
+// https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @run-at document-start
 // @match *://*.bandcamp.com/*
 // @match *://*.fandom.com/*
@@ -81,6 +110,7 @@
 // @match *://*.soundcloud.com/*
 // @match *://*.tiktok.com/*
 // @match *://*.twitch.tv/*
+// @match *://*.deepl.com/*
 // @match *://twitch.tv/*
 // @match *://*.twitter.com/*
 // @match *://*.x.com/*
@@ -121,6 +151,7 @@ PARTICULAR PLATFORM */
 //           REDIRECTON / FARSIDE
 
 let bandcamp = [true, true];
+let deepl = [false, true]; // Mozhi Deepl engine doesn't work
 let fandom = [true, true];
 let genius = [true, true];
 let goodreads = [true, false];
@@ -129,6 +160,7 @@ let gtranslate = [true, true];
 let hackernews = [true, true];
 let imdb = [true, true];
 let imgur = [true, false];
+let instagram = [true, true];
 let medium = [true, true];
 let pinterest = [true, true];
 let pixiv = [true, true];
@@ -138,11 +170,10 @@ let reuters = [true, true];
 let soundcloud = [true, true];
 let stackoverflow = [true, true];
 let tiktok = [true, false];
+let twitch = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, false];
 let youtube = [true, false];
-let twitch = [true, true];
-let instagram = [true, true];
 
 // PREFERRED FRONTEND
 let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
@@ -671,7 +702,9 @@ async function redirectYoutube(frontend) {
       selectedInstance = youtube[1]
         ? `${farsideInstance}/invidious`
         : await getrandom(Instances["invidious"]);
-      newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+      newURL = `${scheme}${selectedInstance}${window.location.pathname}${
+        window.location.search
+      }${hash}`;
       window.location.replace(newURL);
     } else {
       if (frontend !== "tubo") {
@@ -713,7 +746,9 @@ async function redirectTiktok() {
       }),
     );
 
-    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${
+      hash
+    }`;
     window.location.replace(newURL);
   }
 }
@@ -726,7 +761,9 @@ async function redirectImgur() {
       ? `${farsideInstance}/rimgo`
       : await getrandom(Instances.rimgo);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${
+      window.location.search
+    }${hash}`;
 
     window.location.replace(newURL);
   }
@@ -753,7 +790,9 @@ async function redirectMedium(frontend) {
           : await getrandom(Instances[frontend]);
       const username = window.location.hostname.replace(/\.?medium\.com/, "");
       if (username) pathname = `/${username}${pathname}`;
-      newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
+      newURL = `${scheme}${selectedInstance}${pathname}${
+        window.location.search
+      }${hash}`;
       window.location.replace(newURL);
     }
   }
@@ -832,11 +871,26 @@ async function redirectGTranslate() {
   }
 }
 
+async function redirectDeepl() {
+  if (deepl[0]) {
+    selectedInstance = await getrandom(Instances.mozhi);
+    if (window.location.hash) {
+      let hash_parts = window.location.hash.substring(1).split("/");
+      let pathname = `?text=${hash_parts[2]}&from=${hash_parts[0]}&to=${hash_parts[1]}&engine=deepl`;
+      newURL = `${scheme}${selectedInstance}${pathname}`;
+    }
+
+    window.location.replace(newURL);
+  }
+}
+
 async function redirectReuters() {
   if (reuters[0]) {
     window.stop();
     selectedInstance = await getrandom(Instances.neuters);
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${
+      window.location.search
+    }${hash}`;
     window.location.replace(newURL);
   }
 }
@@ -851,7 +905,9 @@ async function redirectWikipedia() {
       : await getrandom(Instances.wikiless);
 
     if (langCode === "www") langCode = "en";
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=${langCode}${hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}?lang=${
+      langCode
+    }${hash}`;
     window.location.replace(newURL);
   }
 }
@@ -864,7 +920,9 @@ async function redirectImdb() {
       ? `${farsideInstance}/libremdb`
       : await getrandom(Instances.libremdb);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${
+      window.location.search
+    }${hash}`;
 
     window.location.replace(newURL);
   }
@@ -878,7 +936,9 @@ async function redirectQuora() {
       ? `${farsideInstance}/quetre`
       : await getrandom(Instances.quetre);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${
+      window.location.search
+    }${hash}`;
 
     window.location.replace(newURL);
   }
@@ -892,7 +952,9 @@ async function redirectFandom() {
 
     let pathname = window.location.pathname;
     if (fandomName !== "www") pathname = `/${fandomName}${pathname}`;
-    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${pathname}${window.location.search}${
+      hash
+    }`;
 
     window.location.replace(newURL);
   }
@@ -931,7 +993,9 @@ async function redirectGoodreads() {
       const params = new URLSearchParams(search);
       search = `/${params.get("q")}`;
     }
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${search}${
+      hash
+    }`;
     window.location.replace(newURL);
   }
 }
@@ -947,7 +1011,9 @@ async function redirectStackoverflow() {
       ? `${farsideInstance}/anonymousoverflow`
       : await getrandom(Instances.anonymousoverflow);
 
-    newURL = `${scheme}${selectedInstance}${window.location.pathname}${window.location.search}${hash}`;
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${
+      window.location.search
+    }${hash}`;
     window.location.replace(newURL);
   }
 }
@@ -1165,6 +1231,10 @@ switch (urlHostname) {
 
   case "www.pixiv.net":
     redirectPixiv();
+    break;
+
+  case "www.deepl.com":
+    redirectDeepl();
     break;
 
   case "twitch.tv":
