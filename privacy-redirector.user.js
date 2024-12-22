@@ -115,6 +115,7 @@
 // @match *://twitch.tv/*
 // @match *://*.twitter.com/*
 // @match *://*.x.com/*
+// @match *://*.tumblr.com/*
 // @match *://x.com/*
 // @match *://*.wikipedia.org/*
 // @match *://*.youtube-nocookie.com/*
@@ -153,11 +154,11 @@ PARTICULAR PLATFORM */
 
 let bandcamp = [true, true];
 let deepl = [false, true]; // Mozhi Deepl engine doesn't work
+let deviantart = [true, false];
 let fandom = [true, true];
 let genius = [true, true];
 let goodreads = [true, false];
 let google = [true, true];
-let deviantart = [true, false];
 let gtranslate = [true, true];
 let hackernews = [true, true];
 let imdb = [true, true];
@@ -172,6 +173,7 @@ let reuters = [true, true];
 let soundcloud = [true, true];
 let stackoverflow = [true, true];
 let tiktok = [true, false];
+let tumblr = [true, false];
 let twitch = [true, true];
 let twitter = [true, true];
 let wikipedia = [true, false];
@@ -585,6 +587,14 @@ const Instances = {
     "mozhi.gitro.xyz",
   ],
   skunkyart: ["art.bloat.cat"],
+  priviblur: [
+    "pb.bloat.cat",
+    "tb.opnxng.com",
+    "priviblur.pussthecat.org",
+    "priviblur.thebunny.zone",
+    "priviblur.gitro.xyz",
+    "priviblur.canine.tools",
+  ],
 };
 
 let farsideInstance = keepHistory ? "farside.link/_" : "farside.link";
@@ -926,6 +936,17 @@ async function redirectDeepl() {
       newURL = `${scheme}${selectedInstance}${pathname}`;
     }
 
+    window.location.replace(newURL);
+  }
+}
+
+async function redirectTumblr() {
+  if (tumblr[0]) {
+    window.stop();
+    selectedInstance = await getrandom(Instances.priviblur);
+    newURL = `${scheme}${selectedInstance}${window.location.pathname}${
+      window.location.search
+    }${hash}`;
     window.location.replace(newURL);
   }
 }
@@ -1319,6 +1340,10 @@ switch (urlHostname) {
 
   case urlHostname.includes("pinterest.com") ? urlHostname : 0:
     redirectPinterest();
+    break;
+
+  case urlHostname.includes("tumblr.com") ? urlHostname : 0:
+    redirectTumblr();
     break;
 }
 
