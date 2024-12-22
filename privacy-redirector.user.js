@@ -111,6 +111,7 @@
 // @match *://*.tiktok.com/*
 // @match *://*.twitch.tv/*
 // @match *://*.deepl.com/*
+// @match *://*.deviantart.com/*
 // @match *://twitch.tv/*
 // @match *://*.twitter.com/*
 // @match *://*.x.com/*
@@ -156,6 +157,7 @@ let fandom = [true, true];
 let genius = [true, true];
 let goodreads = [true, false];
 let google = [true, true];
+let deviantart = [true, false];
 let gtranslate = [true, true];
 let hackernews = [true, true];
 let imdb = [true, true];
@@ -582,6 +584,7 @@ const Instances = {
     "mozhi.canine.tools",
     "mozhi.gitro.xyz",
   ],
+  skunkyart: ["art.bloat.cat"],
 };
 
 let farsideInstance = keepHistory ? "farside.link/_" : "farside.link";
@@ -870,12 +873,56 @@ async function redirectGTranslate() {
   }
 }
 
+async function redirectDeviantart() {
+  window.stop();
+  let pathname = window.location.pathname;
+  let query = window.location.search;
+  let parts = pathname.split("/").filter((n) => n);
+  let pathnameMatch = "";
+  selectedInstance = await getrandom(Instances.skunkyart);
+
+  let patterns = {
+    post: /\/art\/\S+/,
+    tag: /\/tag\/\S+/,
+    search: /(?<=\?q=)[^&]+/,
+    gallery: /\/\w+\/gallery$/,
+    gallery_folder: /\/\w+\/gallery\/\d+/,
+    favorites: /\/(\w+)\/favourites/,
+    profile: /^\/(\w+)$/,
+  };
+
+  if (deviantart[0]) {
+    if (patterns.post.test(pathname)) {
+      pathnameMatch = `/post/${parts[0].toLowerCase()}/${parts[2]}`;
+    } else if (patterns.tag.test(pathname)) {
+      pathnameMatch = `/search?q=${parts[1]}&type=tag`;
+    } else if (pathname.startsWith("/search")) {
+      query = query.match(patterns.search)[0];
+      pathnameMatch = `/search?q=${query}&type=all`;
+    } else if (patterns.gallery.test(pathname)) {
+      pathnameMatch = `/group_user?type=gallery&q=${parts[0]}`;
+    } else if (patterns.gallery_folder.test(pathname)) {
+      pathnameMatch = `/group_user?folder=${parts[2]}&q=${parts[0]}&type=g`;
+    } else if (patterns.favorites.test(pathname)) {
+      pathnameMatch = `/group_user?q=${pathname.match(patterns.favorites)[1]}&type=favorites`;
+    } else if (patterns.profile.test(pathname)) {
+      pathnameMatch = `/group_user?type=about&q=${pathname.match(patterns.profile)[1]}`;
+    }
+  }
+
+  newURL = `${scheme}${selectedInstance}${pathnameMatch}`;
+  window.location.replace(newURL);
+}
+
 async function redirectDeepl() {
   if (deepl[0]) {
+    window.stop();
     selectedInstance = await getrandom(Instances.mozhi);
     if (window.location.hash) {
       let hash_parts = window.location.hash.substring(1).split("/");
-      let pathname = `?text=${hash_parts[2]}&from=${hash_parts[0]}&to=${hash_parts[1]}&engine=deepl`;
+      let pathname = `?text=${hash_parts[2]}&from=${hash_parts[0]}&to=${
+        hash_parts[1]
+      }&engine=deepl`;
       newURL = `${scheme}${selectedInstance}${pathname}`;
     }
 
@@ -1217,6 +1264,10 @@ switch (urlHostname) {
   case "f4.bcbits.com":
   case "t4.bcbits.com":
     redirectBandcamp();
+    break;
+
+  case "www.deviantart.com":
+    redirectDeviantart();
     break;
 
   case "i.pinimg.com":
