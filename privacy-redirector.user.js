@@ -56,8 +56,7 @@
 // privasi
 // @description:it Reindirizzare le piattaforme di social media verso le loro
 // pagine frontali che rispettano la privacy
-// @description:ja
-// ソーシャルメディアプラットフォームをプライバシーに配慮したフロントページにリダイレクトする
+// @description:ja ソーシャルメディアプラットフォームをプライバシーに配慮したフロントページにリダイレクトする
 // @description:lt Socialinės žiniasklaidos platformų nukreipimas į privatumą
 // užtikrinančius pirmuosius puslapius
 // @description:lv Sociālo plašsaziņas līdzekļu platformu pāradresēšana uz to
