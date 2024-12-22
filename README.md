@@ -1,6 +1,5 @@
 # 🔀 Privacy Redirector
 
-
 [![Greasy Fork](https://img.shields.io/greasyfork/v/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
 [![Greasy Fork](https://img.shields.io/greasyfork/dt/436359-privacy-redirector?style=flat-square)](https://greasyfork.org/scripts/436359-privacy-redirector)
 [![GitHub](https://img.shields.io/github/license/dybdeskarphet/privacy-redirector?style=flat-square)](./LICENSE)
@@ -42,6 +41,7 @@ Once the userscript is installed, visit your favorite social media platforms, an
 ## 🔥 Supported Platforms
 
 - Bandcamp → [Tent](https://forgejo.sny.sh/sun/Tent)
+- DeviantArt → [SkunkyArt](https://git.macaw.me/skunky/SkunkyArt)
 - Fandom → [Breezewiki](https://breezewiki.com/)
 - Genius → [dumb](https://github.com/rramiachraf/dumb), [Intellectual](https://github.com/Insprill/intellectual)
 - Goodreads → [BiblioReads](https://github.com/nesaku/BiblioReads)
@@ -60,6 +60,7 @@ Once the userscript is installed, visit your favorite social media platforms, an
 - SoundCloud → [Tubo](https://github.com/migalmoreno/tubo)
 - Stack Overflow → [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow)
 - TikTok → [ProxiTok](https://github.com/pablouser1/ProxiTok)
+- Tumblr → [Priviblur](https://github.com/syeopite/priviblur)
 - Twitch → [SafeTwitch](https://codeberg.org/SafeTwitch/safetwitch)
 - Twitter → [Nitter](https://github.com/zedeus/nitter)
 - Wikipedia → [Wikiless](https://codeberg.org/orenom/wikiless)
