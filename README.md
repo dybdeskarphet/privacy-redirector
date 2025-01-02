@@ -41,11 +41,12 @@ Once the userscript is installed, visit your favorite social media platforms, an
 ## 🔥 Supported Platforms
 
 - Bandcamp → [Tent](https://forgejo.sny.sh/sun/Tent)
+- Deepl → [Mozhi](https://codeberg.org/aryak/mozhi)
 - DeviantArt → [SkunkyArt](https://git.macaw.me/skunky/SkunkyArt)
 - Fandom → [Breezewiki](https://breezewiki.com/)
 - Genius → [dumb](https://github.com/rramiachraf/dumb), [Intellectual](https://github.com/Insprill/intellectual)
 - Goodreads → [BiblioReads](https://github.com/nesaku/BiblioReads)
-- Google Translate → [Lingva Translate](https://github.com/rsmt/lingva-translate)
+- Google Translate → [Lingva Translate](https://github.com/rsmt/lingva-translate), [Mozhi](https://codeberg.org/aryak/mozhi)
 - Google → [Librey](https://github.com/Ahwxorg/librey/), [SearX](https://github.com/searx/searx), [SearXNG](https://github.com/searxng/searxng)
 - Hacker News → [Worker](https://github.com/worker-tools/worker-news), [Better](https://github.com/vedantnn71/better-hackernews)
 - IMDb → [libremdb](https://github.com/zyachel/libremdb)
