@@ -60,7 +60,7 @@
 // @namespace https://github.com/dybdeskarphet/privacy-redirector
 // @author Ahmet Arda Kavakcı
 // @license GPLv3
-// @version 1.6.0
+// @version 1.6.1
 // @downloadURL
 // https://raw.githubusercontent.com/dybdeskarphet/privacy-redirector/main/privacy-redirector.user.js
 // @supportURL https://github.com/dybdeskarphet/privacy-redirector
@@ -809,8 +809,9 @@ async function redirectGTranslate() {
             "text",
           )}&from=${params.get("sl")}&to=${params.get("tl")}&engine=google`;
           newURL = `${scheme}${selectedInstance}${pathname}`;
+        } else {
+          newURL = `${scheme}${selectedInstance}`;
         }
-
         break;
 
       default:
