@@ -153,7 +153,7 @@ let wikipedia = [true, false];
 let youtube = [true, false];
 
 // PREFERRED FRONTEND
-let youtubeFrontend = "piped"; // accepts "invidious", "piped", "tubo"
+let youtubeFrontend = "freetube"; // accepts "invidious", "piped", "tubo", "freetube"
 let youtubeMusicFrontend = "hyperpipe"; // accepts "hyperpipe", "invidious", "piped"
 let redditFrontend = "libreddit"; // accepts "libreddit", "teddit"
 let googleFrontend = "librey"; // accepts "librey", "searx", "searxng"
@@ -658,12 +658,7 @@ async function redirectYoutube(frontend) {
       }${hash}`;
       window.location.replace(newURL);
     } else {
-      if (frontend !== "tubo") {
-        selectedInstance =
-          youtube[1] && frontend !== "hyperpipe"
-            ? `${farsideInstance}/${frontend}`
-            : await getrandom(Instances[frontend]);
-      } else {
+      if (frontend === "tubo") {
         selectedInstance = await getrandom(Instances.tubo);
 
         searchpath = `/stream?url=${window.location.href}`;
@@ -672,7 +667,17 @@ async function redirectYoutube(frontend) {
           window.location.pathname.startsWith("/channel")
         )
           searchpath = `/channel?url=${window.location.href}`;
+      } else if (frontend === "freetube") {
+        let youtube_link = window.location.href;
+        window.location.replace(`freetube://${youtube_link}`);
+        return;
+      } else {
+        selectedInstance =
+          youtube[1] && frontend !== "hyperpipe"
+            ? `${farsideInstance}/${frontend}`
+            : await getrandom(Instances[frontend]);
       }
+
       newURL = `${scheme}${selectedInstance}${searchpath}${hash}`;
       window.location.replace(newURL);
     }
